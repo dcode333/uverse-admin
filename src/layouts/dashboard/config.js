@@ -24,7 +24,7 @@ export const items = [
   },
   {
     title: 'Users',
-    path: '/customers',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -33,7 +33,7 @@ export const items = [
   },
   {
     title: 'Plethorium',
-    path: '/companies',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -42,7 +42,7 @@ export const items = [
   },
   {
     title: 'Badges',
-    path: '/account',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -51,7 +51,7 @@ export const items = [
   },
   {
     title: 'Check Ins',
-    path: '/settings',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />
@@ -60,7 +60,7 @@ export const items = [
   },
   {
     title: 'Drops',
-    path: '/auth/login',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <LockClosedIcon />
@@ -69,7 +69,7 @@ export const items = [
   },
   {
     title: 'Notification',
-    path: '/auth/register',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <UserPlusIcon />
