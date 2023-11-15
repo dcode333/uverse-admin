@@ -13,7 +13,6 @@ import {
   Tooltip,
   useMediaQuery
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
 
@@ -106,7 +105,7 @@ export const TopNav = (props) => {
                 height: 40,
                 width: 40
               }}
-              src="/assets/avatars/avatar-anika-visser.png"
+              src="/assets/avatars/avatar-nasimiyu-danai.png"
             />
           </Stack>
         </Stack>
