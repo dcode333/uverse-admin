@@ -12,7 +12,7 @@ export const createTypography = () => {
       lineHeight: 1.57
     },
     button: {
-      fontWeight: 600
+      fontWeight: 600,
     },
     caption: {
       fontSize: '0.75rem',

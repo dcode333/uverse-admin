@@ -17,7 +17,7 @@ import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
 
-const SIDE_NAV_WIDTH = 280;
+const SIDE_NAV_WIDTH = 230;
 const TOP_NAV_HEIGHT = 64;
 
 export const TopNav = (props) => {
@@ -31,7 +31,7 @@ export const TopNav = (props) => {
         component="header"
         sx={{
           backdropFilter: 'blur(6px)',
-          backgroundColor: (theme) => alpha(theme.palette.background.default, 0.8),
+          backgroundColor: 'neutral.3000',
           position: 'sticky',
           left: {
             lg: `${SIDE_NAV_WIDTH}px`

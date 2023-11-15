@@ -21,7 +21,10 @@ export const neutral = {
   600: '#4D5761',
   700: '#2F3746',
   800: '#1C2536',
-  900: '#111927'
+  900: '#111927',
+  1000: '#4B00FF',
+  2000: '#0B0B0B', //sidebar Bg
+  3000: '#000000'
 };
 
 export const indigo = withAlphas({

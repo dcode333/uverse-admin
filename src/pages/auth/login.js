@@ -71,12 +71,12 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login | UVERSE
         </title>
       </Head>
       <Box
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: 'background.paoer',
           flex: '1 1 auto',
           alignItems: 'center',
           display: 'flex',
@@ -158,9 +158,6 @@ const Page = () => {
                     value={formik.values.password}
                   />
                 </Stack>
-                <FormHelperText sx={{ mt: 1 }}>
-                  Optionally you can skip.
-                </FormHelperText>
                 {formik.errors.submit && (
                   <Typography
                     color="error"
@@ -173,44 +170,15 @@ const Page = () => {
                 <Button
                   fullWidth
                   size="large"
-                  sx={{ mt: 3 }}
+                  sx={{ mt: 3, bgcolor: 'neutral.1000', borderRadius: 1 / 2 }}
                   type="submit"
                   variant="contained"
                 >
-                  Continue
+                  Sign In
                 </Button>
-                <Button
-                  fullWidth
-                  size="large"
-                  sx={{ mt: 3 }}
-                  onClick={handleSkip}
-                >
-                  Skip authentication
-                </Button>
-                <Alert
-                  color="primary"
-                  severity="info"
-                  sx={{ mt: 3 }}
-                >
-                  <div>
-                    You can use <b>demo@devias.io</b> and password <b>Password123!</b>
-                  </div>
-                </Alert>
               </form>
             )}
-            {method === 'phoneNumber' && (
-              <div>
-                <Typography
-                  sx={{ mb: 1 }}
-                  variant="h6"
-                >
-                  Not available in the demo
-                </Typography>
-                <Typography color="text.secondary">
-                  To prevent unnecessary costs we disabled this feature in the demo.
-                </Typography>
-              </div>
-            )}
+
           </div>
         </Box>
       </Box>

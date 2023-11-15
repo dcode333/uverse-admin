@@ -1,16 +1,20 @@
-import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
-import CogIcon from '@heroicons/react/24/solid/CogIcon';
-import LockClosedIcon from '@heroicons/react/24/solid/LockClosedIcon';
-import ShoppingBagIcon from '@heroicons/react/24/solid/ShoppingBagIcon';
-import UserIcon from '@heroicons/react/24/solid/UserIcon';
-import UserPlusIcon from '@heroicons/react/24/solid/UserPlusIcon';
+import ChartBarIcon from '@heroicons/react/24/solid/Squares2X2Icon';
+import CogIcon from '@heroicons/react/24/outline/MapPinIcon';
+import LockClosedIcon from '@heroicons/react/24/solid/CursorArrowRippleIcon';
+import ShoppingBagIcon from '@heroicons/react/24/solid/BuildingOffice2Icon';
+import UserIcon from '@heroicons/react/24/solid/StarIcon';
+import UserPlusIcon from '@heroicons/react/24/outline/BellIcon';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
-import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
+import XCircleIcon from '@heroicons/react/24/solid/ViewColumnsIcon';
+import QRIcon from '@heroicons/react/24/solid/QrCodeIcon';
+import SettingIcon from '@heroicons/react/24/outline/Cog6ToothIcon';
+import LogoutIcon from '@heroicons/react/24/solid/ArrowRightOnRectangleIcon';
+
 import { SvgIcon } from '@mui/material';
 
 export const items = [
   {
-    title: 'Overview',
+    title: 'Home',
     path: '/',
     icon: (
       <SvgIcon fontSize="small">
@@ -19,7 +23,7 @@ export const items = [
     )
   },
   {
-    title: 'Customers',
+    title: 'Users',
     path: '/customers',
     icon: (
       <SvgIcon fontSize="small">
@@ -28,7 +32,7 @@ export const items = [
     )
   },
   {
-    title: 'Companies',
+    title: 'Plethorium',
     path: '/companies',
     icon: (
       <SvgIcon fontSize="small">
@@ -37,7 +41,7 @@ export const items = [
     )
   },
   {
-    title: 'Account',
+    title: 'Badges',
     path: '/account',
     icon: (
       <SvgIcon fontSize="small">
@@ -46,7 +50,7 @@ export const items = [
     )
   },
   {
-    title: 'Settings',
+    title: 'Check Ins',
     path: '/settings',
     icon: (
       <SvgIcon fontSize="small">
@@ -55,7 +59,7 @@ export const items = [
     )
   },
   {
-    title: 'Login',
+    title: 'Drops',
     path: '/auth/login',
     icon: (
       <SvgIcon fontSize="small">
@@ -64,7 +68,7 @@ export const items = [
     )
   },
   {
-    title: 'Register',
+    title: 'Notification',
     path: '/auth/register',
     icon: (
       <SvgIcon fontSize="small">
@@ -73,11 +77,42 @@ export const items = [
     )
   },
   {
-    title: 'Error',
+    title: 'Library',
     path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <XCircleIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'NFC & QR',
+    path: '/404',
+    icon: (
+      <SvgIcon fontSize="small">
+        <QRIcon />
+      </SvgIcon>
+    )
+  }
+
+];
+
+export const account = [
+  {
+    title: 'Settings',
+    path: '/settings',
+    icon: (
+      <SvgIcon fontSize="small">
+        <SettingIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Logout',
+    path: '/auth/login',
+    icon: (
+      <SvgIcon fontSize="small">
+        <LogoutIcon />
       </SvgIcon>
     )
   }

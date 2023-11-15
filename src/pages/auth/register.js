@@ -48,7 +48,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Register | Devias Kit
+          Register | UVERSE
         </title>
       </Head>
       <Box
@@ -73,7 +73,7 @@ const Page = () => {
               sx={{ mb: 3 }}
             >
               <Typography variant="h4">
-                Register
+                Create An Account
               </Typography>
               <Typography
                 color="text.secondary"
@@ -141,11 +141,11 @@ const Page = () => {
               <Button
                 fullWidth
                 size="large"
-                sx={{ mt: 3 }}
+                sx={{ mt: 3, bgcolor: 'neutral.1000', borderRadius: 1 / 2 }}
                 type="submit"
                 variant="contained"
               >
-                Continue
+                Create Account
               </Button>
             </form>
           </div>
