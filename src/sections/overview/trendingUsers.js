@@ -8,7 +8,7 @@ const YourTableComponent = ({ data }) => {
         <TableContainer component={Paper} sx={{ bgcolor: 'neutral.2000' }}>
             <Table sx={{ minWidth: 650 }}>
                 <TableHead  >
-                    <TableRow >
+                    <TableRow sx={{ borderBottom: '0.5px solid gray' }} >
                         <TableCell>USER NAME</TableCell>
                         <TableCell>Badges</TableCell>
                         <TableCell>Creations</TableCell>
