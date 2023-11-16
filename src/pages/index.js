@@ -81,7 +81,77 @@ const Page = () => {
             ]} />
           </TabPanel>
           <TabPanel value="2">
-            <TrendingUsers />
+            <TrendingUsers data={[
+              {
+                userName: 'Roselinda',
+                badges: 3,
+                creations: 10,
+                checkIns: 5,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+              {
+                userName: 'Roselinda',
+                badges: 5,
+                creations: 15,
+                checkIns: 7,
+                archieved: 0,
+                reposts: 10,
+                img: '/assets/avatars/avatar.png'
+
+              },
+            ]} />
           </TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
 

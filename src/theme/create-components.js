@@ -277,10 +277,10 @@ export function createComponents(config) {
           borderBottom: 'none',
           [`& .${tableCellClasses.root}`]: {
             borderBottom: 'none',
-            backgroundColor: palette.neutral[50],
-            color: palette.neutral[700],
+            // backgroundColor: 'palette.neutral[50]',
+            color: 'white',
             fontSize: 12,
-            fontWeight: 600,
+            fontWeight: 400,
             lineHeight: 1,
             letterSpacing: 0.5,
             textTransform: 'uppercase'

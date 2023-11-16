@@ -26,6 +26,7 @@ export const neutral = {
   2000: '#0B0B0B', // black shade
   3000: '#000000', //black
   4000: '#FFFFFF', //white
+  5000: 'gray', //gray
 };
 
 export const indigo = withAlphas({

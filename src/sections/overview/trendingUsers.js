@@ -1,54 +1,61 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Avatar } from '@mui/material';
+import ArchiIcon from '@heroicons/react/24/outline/BookmarkIcon';
+import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
+import { SvgIcon } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function TrendingUsers() {
+const YourTableComponent = ({ data }) => {
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650, bgcolor: 'gray' }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+        <TableContainer component={Paper} sx={{ bgcolor: 'neutral.2000' }}>
+            <Table sx={{ minWidth: 650 }}>
+                <TableHead  >
+                    <TableRow >
+                        <TableCell>USER NAME</TableCell>
+                        <TableCell>Badges</TableCell>
+                        <TableCell>Creations</TableCell>
+                        <TableCell>CheckIns</TableCell>
+                        <TableCell>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                Archieved
+                                <SvgIcon fontSize="small" sx={{ ml: 1 / 2 }}>
+                                    <ArchiIcon />
+                                </SvgIcon>
+                            </div>
+                        </TableCell>
+                        <TableCell>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                Reposts
+                                <SvgIcon fontSize="small" sx={{ ml: 1 / 2 }}>
+                                    <RepostIcon />
+                                </SvgIcon>
+                            </div>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {row.name}
+                    {data.map((row, index) => (
+                        <TableRow key={index} >
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000', justifyContent: 'center' }}>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <Avatar src={row.img} sx={{ width: 25, height: 25 }} /> {/* Replace with actual image source */}
+                                    <span style={{ marginLeft: '12px' }}>{row.userName}</span>
+                                </div>
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.badges}</TableCell>
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.creations}</TableCell>
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.checkIns}</TableCell>
+                            {/* Add logic to display logos */}
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>
+                                {row.archieved}
+                            </TableCell>
+                            <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>
+                                {row.reposts}
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-}
+};
+
+export default YourTableComponent;
