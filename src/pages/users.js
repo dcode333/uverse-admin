@@ -28,126 +28,118 @@ const Page = () => {
       }}
     >
       <Container maxWidth="xl">
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 2, borderColor: 'neutral.2000' }}>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-              TabIndicatorProps={{
-                style: {
-                  backgroundColor: 'neutral.3000',
-                  width: '50px',
-                }
-              }}
-            >
-              <Tab label="Users" value="1" />
-              <Tab label="Profile Information" value="2" />
-              <Tab label="Badges" value="3" />
-              <Tab label="Anylatics" value="4" />
-            </TabList>
-          </Box>
-
-          <TabPanel value="1">
-            <UserList data={[
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
-
-
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10,
+        <UserList data={[
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
 
 
-              },
-              {
-                userName: 'Hellanora',
-                img: '/assets/avatars/avatarmed.png',
-                likes: 10,
-                comments: 10,
-                shares: 10
-              },
-              // Add more objects as needed
-            ]} />
-          </TabPanel>
-          <TabPanel value="2">
-          </TabPanel>
-          <TabPanel value="3">
-          </TabPanel>
-          <TabPanel value="4">
-          </TabPanel>
-        </TabContext>
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10,
 
+
+          },
+          {
+            userName: 'Hellanora',
+            img: '/assets/avatars/avatarmed.png',
+            likes: 10,
+            comments: 10,
+            shares: 10
+          },
+          // Add more objects as needed
+        ]} />
       </Container>
     </Box>
   </>
