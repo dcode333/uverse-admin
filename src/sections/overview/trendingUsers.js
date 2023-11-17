@@ -3,7 +3,7 @@ import ArchiIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import { SvgIcon } from '@mui/material';
 
-const YourTableComponent = ({ data }) => {
+const TrendingUsers = ({ data }) => {
     return (
         <TableContainer component={Paper} sx={{ bgcolor: 'neutral.2000' }}>
             <Table sx={{ minWidth: 650 }}>
@@ -32,18 +32,17 @@ const YourTableComponent = ({ data }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((row, index) => (
+                    {data?.map((row, index) => (
                         <TableRow key={index} >
                             <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000', justifyContent: 'center' }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Avatar src={row.img} sx={{ width: 25, height: 25 }} /> {/* Replace with actual image source */}
+                                    <Avatar src={row.img} sx={{ width: 25, height: 25 }} />
                                     <span style={{ marginLeft: '12px' }}>{row.userName}</span>
                                 </div>
                             </TableCell>
                             <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.badges}</TableCell>
                             <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.creations}</TableCell>
                             <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>{row.checkIns}</TableCell>
-                            {/* Add logic to display logos */}
                             <TableCell sx={{ color: 'neutral.5000', borderBottom: '0.5px solid #000000' }}>
                                 {row.archieved}
                             </TableCell>
@@ -58,4 +57,4 @@ const YourTableComponent = ({ data }) => {
     );
 };
 
-export default YourTableComponent;
+export default TrendingUsers;

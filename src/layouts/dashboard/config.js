@@ -24,7 +24,7 @@ export const items = [
   },
   {
     title: 'Users',
-    path: '/404',
+    path: '/users',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
