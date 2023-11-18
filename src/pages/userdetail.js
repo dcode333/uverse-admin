@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Box, Container, Tab, Tabs, Unstable_Grid2 as Grid } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import UserList from '../sections/user/userslist'
+import ProfileInformation from '../sections/user/profileinfo'
 import React from 'react';
 
 const now = new Date();
@@ -48,6 +48,7 @@ const Page = () => {
                     </Box>
 
                     <TabPanel value="1">
+                        <ProfileInformation />
                     </TabPanel>
                     <TabPanel value="2">
                     </TabPanel>
