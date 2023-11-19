@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import { Box, Container, Tab, Tabs, Unstable_Grid2 as Grid } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab'
+import { Box, Container } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import UserList from '../sections/user/userslist'
 import React from 'react';
@@ -138,7 +137,6 @@ const Page = () => {
             comments: 10,
             shares: 10
           },
-          // Add more objects as needed
         ]} />
       </Container>
     </Box>
