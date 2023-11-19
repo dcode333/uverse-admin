@@ -3,6 +3,8 @@ import { Box, Container, Tab, Tabs, Unstable_Grid2 as Grid } from '@mui/material
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import ProfileInformation from '../sections/user/profileinfo'
+import Badges from '../sections/user/badges'
+
 import React from 'react';
 
 const now = new Date();
@@ -50,7 +52,9 @@ const Page = () => {
                     <TabPanel value="1">
                         <ProfileInformation />
                     </TabPanel>
+
                     <TabPanel value="2">
+                        <Badges />
                     </TabPanel>
                     <TabPanel value="3">
                     </TabPanel>

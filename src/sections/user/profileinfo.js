@@ -1,6 +1,6 @@
 import { Grid, Box, Typography, Card, CardContent, Paper } from '@mui/material';
 import React from 'react'
-import ProfileCard from './profileCard'
+import ProfileCard from './components/profileCard'
 
 import { SvgIcon } from '@mui/material';
 import ArrowDownIcon from '@heroicons/react/24/solid/ChevronDownIcon';
