@@ -115,7 +115,7 @@ function ProfileCard(props) {
 
                     <Box sx={{ width: '60%', color: 'neutral.4000', my: 1 }}>
                         {details?.socialLinks?.map((item, index) => (
-                            <Typography gutterBottom fontSize={'10px'} component="div">
+                            <Typography key={index} gutterBottom fontSize={'10px'} component="div">
                                 {item}
                             </Typography>))
                         }
@@ -130,7 +130,7 @@ function ProfileCard(props) {
 
                     <Box sx={{ width: '60%', color: 'neutral.4000', my: 1 }}>
                         {details?.interests?.map((item, index) => (
-                            <Chip variant="outlined" size="small" label={item} sx={{ borderRadius: 0.5, color: 'neutral.4000', fontSize: '8px', m: 0.5 }} />
+                            <Chip variant="outlined" size="small" key={index} label={item} sx={{ borderRadius: 0.5, color: 'neutral.4000', fontSize: '8px', m: 0.5 }} />
                         ))}
                     </Box >
                 </Box>
