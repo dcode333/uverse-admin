@@ -1,9 +1,9 @@
 {
   "name": "material-kit-react",
   "version": "3.0.0",
-  "author": "Devias",
+  "author": "umair",
   "licence": "MIT",
-  "homepage": "https://devias.io",
+  "homepage": "http://uverse-admin.vercel.app/",
   "private": false,
   "scripts": {
     "dev": "next",
@@ -32,6 +32,7 @@
     "react": "18.2.0",
     "react-apexcharts": "1.4.0",
     "react-dom": "18.2.0",
+    "react-google-charts": "^4.0.1",
     "simplebar-react": "^3.2.1",
     "yup": "1.0.0"
   },

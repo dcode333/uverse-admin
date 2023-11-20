@@ -4,6 +4,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import ProfileInformation from '../sections/user/profileinfo'
 import Badges from '../sections/user/badges'
+import Anylatics from '../sections/user/Anylatics'
 
 import React from 'react';
 
@@ -57,6 +58,7 @@ const Page = () => {
                         <Badges />
                     </TabPanel>
                     <TabPanel value="3">
+                        <Anylatics />
                     </TabPanel>
                 </TabContext>
 

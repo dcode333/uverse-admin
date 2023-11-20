@@ -4,6 +4,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import FeaturedAssets from '../sections/overview/featuredAssets'
 import TrendingUsers from '../sections/overview/trendingUsers'
+import Analytics from '../sections/user/Anylatics'
 import React from 'react';
 
 const now = new Date();
@@ -153,7 +154,9 @@ const Page = () => {
               },
             ]} />
           </TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="3">
+            <Analytics />
+          </TabPanel>
 
         </TabContext>
 
