@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, CardActionArea, Chip } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 
 function ProfileCard(props) {
     const { details } = props;

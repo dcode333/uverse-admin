@@ -5,6 +5,7 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import ProfileInformation from '../sections/user/profileinfo'
 import Badges from '../sections/user/badges'
 import Anylatics from '../sections/user/Anylatics'
+import Feed from '../sections/user/Feed'
 
 import React from 'react';
 
@@ -47,6 +48,7 @@ const Page = () => {
                             <Tab label="Profile Information" value="1" />
                             <Tab label="Badges" value="2" />
                             <Tab label="Anylatics" value="3" />
+                            <Tab label="Feed" value="4" />
                         </TabList>
                     </Box>
 
@@ -59,6 +61,10 @@ const Page = () => {
                     </TabPanel>
                     <TabPanel value="3">
                         <Anylatics />
+                    </TabPanel>
+
+                    <TabPanel value="4">
+                        <Feed />
                     </TabPanel>
                 </TabContext>
 

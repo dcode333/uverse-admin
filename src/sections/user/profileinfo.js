@@ -35,19 +35,31 @@ function profileinfo() {
 
     return (
         <Grid container>
-            <Grid item xs={12} md={4}>
+            <Grid item
+                xs={12}
+                md={4}>
                 <ProfileCard details={userDetails} />
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item
+                xs={12}
+                md={8}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 1 }}>
                     <Box sx={{ display: 'flex', color: 'neutral.4000', p: 1 }}>
                         <Box width={'50%'}>
-                            <Typography variant="body2" sx={{ textAlign: 'start' }} component="div" gutterBottom>
+                            <Typography variant="body2"
+                                sx={{ textAlign: 'start' }}
+                                component="div"
+                                gutterBottom>
                                 Stats
                             </Typography>
                         </Box>
-                        <Box width={'50%'} display={'flex'} justifyContent={'flex-end'}>
-                            <Typography variant="caption" sx={{ textAlign: 'end', mx: 0.5 }} component="div" gutterBottom>
+                        <Box width={'50%'}
+                            display={'flex'}
+                            justifyContent={'flex-end'}>
+                            <Typography variant="caption"
+                                sx={{ textAlign: 'end', mx: 0.5 }}
+                                component="div"
+                                gutterBottom>
                                 weekly
                             </Typography>
                             <SvgIcon fontSize='small'>
@@ -56,20 +68,36 @@ function profileinfo() {
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex' }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+                        <Grid container
+                            spacing={2}>
+                            <Grid item
+                                xs={12}
+                                sm={6}
+                                md={4}
+                                lg={4}
+                                xl={4} >
                                 <Box sx={styles.statsCard}>
                                     <Typography variant="caption">Upload</Typography>
                                     <Typography variant="subtitle1">{userDetails.uploads}</Typography>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+                            <Grid item
+                                xs={12}
+                                sm={6}
+                                md={4}
+                                lg={4}
+                                xl={4} >
                                 <Box sx={styles.statsCard}>
                                     <Typography variant="caption">Followers</Typography>
                                     <Typography variant="subtitle1">{userDetails.followers}</Typography>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+                            <Grid item
+                                xs={12}
+                                sm={6}
+                                md={4}
+                                lg={4}
+                                xl={4} >
                                 <Box sx={styles.statsCard}>
                                     <Typography variant="caption">Following</Typography>
                                     <Typography variant="subtitle1">{userDetails.following}</Typography>
@@ -78,8 +106,16 @@ function profileinfo() {
                         </Grid>
                     </Box>
                     <Box sx={{ display: 'flex', my: 2, p: 1 }}>
-                        <Grid container spacing={2} alignItems={'center'} justifyContent={'center'}>
-                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2}>
+                        <Grid container
+                            spacing={2}
+                            alignItems={'center'}
+                            justifyContent={'center'}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={3}
+                                xl={2}>
                                 <Box sx={styles.poststat}>
                                     <SvgIcon fontSize=''>
                                         <LikeIcon />
