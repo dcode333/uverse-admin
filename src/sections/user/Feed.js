@@ -44,7 +44,7 @@ function profileinfo() {
         <>
             <Typography variant="subtitle1"
                 sx={{ color: 'neutral.4000', fontWeight: 'bold', mb: 2 }}>
-                Profile
+                Latest Video
             </Typography>
             <Grid container>
                 <Grid item
