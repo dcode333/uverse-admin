@@ -13,6 +13,7 @@ import Link from 'next/link';
 
 
 function profileinfo() {
+
     const userDetails = {
         'username': 'halenora12',
         'email': 'halenora12@gmail.com',
@@ -142,22 +143,36 @@ function profileinfo() {
                                     <Typography variant={'caption'} color={'neutral.4000'}>{userDetails.shares}</Typography>
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={3}
+                                xl={2}>
                                 <Box sx={styles.poststat}>
                                     <SvgIcon fontSize=''>
                                         <RepostIcon />
                                     </SvgIcon>
-                                    <Typography fontSize='10px' marginX={1}>Reposts</Typography>
-                                    <Typography variant={'caption'} color={'neutral.4000'}>{userDetails.reposts}</Typography>
+                                    <Typography fontSize='10px'
+                                        marginX={1}>Reposts</Typography>
+                                    <Typography variant={'caption'}
+                                        color={'neutral.4000'}>{userDetails.reposts}</Typography>
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={3}
+                                xl={2}>
                                 <Box sx={styles.poststat}>
                                     <SvgIcon fontSize=''>
                                         <SavedIcon />
                                     </SvgIcon>
-                                    <Typography fontSize='10px' marginX={1}>Saves</Typography>
-                                    <Typography variant={'caption'} color={'neutral.4000'}>{userDetails.saves}</Typography>
+                                    <Typography fontSize='10px'
+                                        marginX={1}>Saves</Typography>
+                                    <Typography variant={'caption'}
+                                        color={'neutral.4000'}>{userDetails.saves}</Typography>
                                 </Box>
                             </Grid>
 
@@ -165,47 +180,87 @@ function profileinfo() {
                     </Box>
                     <Box sx={{ display: 'flex', color: 'neutral.4000', p: 1 }}>
                         <Box width={'50%'}>
-                            <Typography variant="body2" sx={{ textAlign: 'start' }} component="div" gutterBottom>
+                            <Typography variant="body2"
+                                sx={{ textAlign: 'start' }}
+                                component="div"
+                                gutterBottom>
                                 Upload Review
                             </Typography>
                         </Box>
-                        <Box width={'50%'} display={'flex'} justifyContent={'flex-end'}>
+                        <Box width={'50%'}
+                            display={'flex'}
+                            justifyContent={'flex-end'}>
                             <Link href={`/userdetail`}>
-                                <Typography variant="caption" sx={{ textAlign: 'end', mx: 0.5, color: 'neutral.5000' }} component="div" gutterBottom>
+                                <Typography variant="caption"
+                                    sx={{ textAlign: 'end', mx: 0.5, color: 'neutral.5000' }}
+                                    component="div"
+                                    gutterBottom>
                                     See All
                                 </Typography>
                             </Link>
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', my: 2 }}>
-                        <Grid container sx={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+
+                        <Grid container
+                            sx={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/review.png'} alt="img"
+                                    <img src={'/assets/review.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/review.png'} alt="img"
+                                    <img src={'/assets/review.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/review.png'} alt="img"
+                                    <img src={'/assets/review.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/review.png'} alt="img"
+                                    <img src={'/assets/review.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/review.png'} alt="img"
+                                    <img src={'/assets/review.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
@@ -215,47 +270,88 @@ function profileinfo() {
 
                     <Box sx={{ display: 'flex', color: 'neutral.4000', p: 1 }}>
                         <Box width={'50%'}>
-                            <Typography variant="body2" sx={{ textAlign: 'start' }} component="div" gutterBottom>
+                            <Typography variant="body2"
+                                sx={{ textAlign: 'start' }}
+                                component="div"
+                                gutterBottom>
                                 Check Ins
                             </Typography>
                         </Box>
-                        <Box width={'50%'} display={'flex'} justifyContent={'flex-end'}>
+                        <Box width={'50%'}
+                            display={'flex'}
+                            justifyContent={'flex-end'}>
                             <Link href={`/userdetail`}>
-                                <Typography variant="caption" sx={{ textAlign: 'end', mx: 0.5, color: 'neutral.5000' }} component="div" gutterBottom>
+                                <Typography variant="caption"
+                                    sx={{ textAlign: 'end', mx: 0.5, color: 'neutral.5000' }}
+                                    component="div"
+                                    gutterBottom>
                                     See All
                                 </Typography>
                             </Link>
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', my: 2, justifyContent: 'center', alignItems: 'center' }}>
-                        <Grid container spacing={1} alignItems={'center'} justifyContent={'center'}>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                        <Grid container
+                            spacing={1}
+                            alignItems={'center'}
+                            justifyContent={'center'}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/checkin.png'} alt="img"
+                                    <img src={'/assets/checkin.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/checkin.png'} alt="img"
+                                    <img src={'/assets/checkin.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/checkin.png'} alt="img"
+                                    <img src={'/assets/checkin.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/checkin.png'} alt="img"
+                                    <img src={'/assets/checkin.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={6} sm={6} md={4} lg={2} xl={2}>
+                            <Grid item
+                                xs={6}
+                                sm={6}
+                                md={4}
+                                lg={2}
+                                xl={2}>
                                 <Box sx={styles.review}>
-                                    <img src={'/assets/checkin.png'} alt="img"
+                                    <img src={'/assets/checkin.png'}
+                                        alt="img"
                                         style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
                                 </Box>
                             </Grid>

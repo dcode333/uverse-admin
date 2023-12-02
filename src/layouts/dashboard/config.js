@@ -42,7 +42,7 @@ export const items = [
   },
   {
     title: 'Badges',
-    path: '/404',
+    path: '/badges',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -51,7 +51,7 @@ export const items = [
   },
   {
     title: 'Check Ins',
-    path: '/404',
+    path: '/checkin',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />
