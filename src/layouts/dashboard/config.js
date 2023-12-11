@@ -60,7 +60,7 @@ export const items = [
   },
   {
     title: 'Drops',
-    path: '/404',
+    path: '/drops',
     icon: (
       <SvgIcon fontSize="small">
         <LockClosedIcon />
@@ -69,7 +69,7 @@ export const items = [
   },
   {
     title: 'Notification',
-    path: '/404',
+    path: '/notifications',
     icon: (
       <SvgIcon fontSize="small">
         <UserPlusIcon />
