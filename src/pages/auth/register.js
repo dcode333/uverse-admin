@@ -15,6 +15,7 @@ const Page = () => {
       email: '',
       name: '',
       password: '',
+      phone: '',
       submit: null
     },
     validationSchema: Yup.object({
@@ -30,7 +31,11 @@ const Page = () => {
       password: Yup
         .string()
         .max(255)
-        .required('Password is required')
+        .required('Password is required'),
+      phone: Yup
+        .string()
+        .max(255)
+        .required('Phone is required')
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -63,7 +68,7 @@ const Page = () => {
           sx={{
             maxWidth: 550,
             px: 3,
-            py: '100px',
+            py: '50px',
             width: '100%'
           }}
         >
@@ -127,6 +132,17 @@ const Page = () => {
                   onChange={formik.handleChange}
                   type="password"
                   value={formik.values.password}
+                />
+                <TextField
+                  error={!!(formik.touched.phone && formik.errors.phone)}
+                  fullWidth
+                  helperText={formik.touched.phone && formik.errors.phone}
+                  label="Phone Number"
+                  name="phone"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="phone"
+                  value={formik.values.phone}
                 />
               </Stack>
               {formik.errors.submit && (

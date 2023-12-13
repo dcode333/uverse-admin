@@ -33,7 +33,7 @@ export const items = [
   },
   {
     title: 'Plethorium',
-    path: '/404',
+    path: '/plethorium',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -78,7 +78,7 @@ export const items = [
   },
   {
     title: 'Library',
-    path: '/404',
+    path: '/library',
     icon: (
       <SvgIcon fontSize="small">
         <XCircleIcon />
@@ -87,7 +87,7 @@ export const items = [
   },
   {
     title: 'NFC & QR',
-    path: '/404',
+    path: '/nfc',
     icon: (
       <SvgIcon fontSize="small">
         <QRIcon />

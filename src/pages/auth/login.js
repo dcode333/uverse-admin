@@ -87,7 +87,7 @@ const Page = () => {
           sx={{
             maxWidth: 550,
             px: 3,
-            py: '100px',
+            py: '50px',
             width: '100%'
           }}
         >
@@ -121,12 +121,8 @@ const Page = () => {
               value={method}
             >
               <Tab
-                label="Email"
+                label="Login with Email"
                 value="email"
-              />
-              <Tab
-                label="Phone Number"
-                value="phoneNumber"
               />
             </Tabs>
             {method === 'email' && (
