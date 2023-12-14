@@ -35,18 +35,20 @@ export const Layout = (props) => {
             }
           }}
         >
-          <Box sx={{ p: 10 }}>
+          <Box sx={{ p: 10, alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
             <img
               alt=""
               src="/assets/logos/AppIcon.png"
+
             />
-            <Typography
-              align="center"
-              sx={{ mb: 3 }}
-              variant="subtitle1"
-            >
-              unified reality app
-            </Typography>
+            <img
+              alt=""
+              src="/assets/logos/sublogo.png"
+              width="200"
+              height="30"
+              style={{ marginTop: '10px' }}
+            />
+
           </Box>
         </Grid>
         <Grid
