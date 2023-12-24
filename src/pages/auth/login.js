@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 
 import { useAuth } from 'src/hooks/use-auth';
+import { useAuthContext } from 'src/contexts/auth-context';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
 import { useLogin } from 'src/api/auth/useLogin';
 import { useRefresh } from 'src/api/auth/useRefresh';
@@ -27,6 +28,11 @@ const Page = () => {
   const { isPending: refreshPending } = useRefresh();
   const [method, setMethod] = useState('email');
   const auth = useAuth();
+  const { isAuthenticated } = useAuthContext();
+
+  useEffect(() => {
+    if (isAuthenticated) router.replace('/');
+  }, [isAuthenticated, router]);
 
   const formik = useFormik({
     initialValues: {

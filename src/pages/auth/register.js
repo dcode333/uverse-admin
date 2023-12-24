@@ -7,12 +7,20 @@ import { Box, Link, Stack, TextField, Typography } from '@mui/material';
 import Button from '@mui/lab/LoadingButton';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import { useAuthContext } from 'src/contexts/auth-context';
 import { useRegister } from 'src/api/auth/useRegister';
+import { useEffect } from 'react';
 
 const Page = () => {
   const router = useRouter();
   const { isPending, mutateAsync } = useRegister();
   const auth = useAuth();
+  const { isAuthenticated } = useAuthContext();
+
+  useEffect(() => {
+    if (isAuthenticated) router.replace('/');
+  }, [isAuthenticated, router]);
+
   const formik = useFormik({
     initialValues: {
       email: '',
