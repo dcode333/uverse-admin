@@ -1,17 +1,20 @@
 import Head from 'next/head';
-import { Box, Container, Tab, Tabs, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Container, Tab, Unstable_Grid2 as Grid } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import FeaturedAssets from '../sections/overview/featuredAssets'
 import TrendingUsers from '../sections/overview/trendingUsers'
 import Analytics from '../sections/user/Anylatics'
+import { useAuth } from 'src/hooks/use-auth';
 import React from 'react';
+import Skeleton from '../components/skeleton'
 
 const now = new Date();
 
 const Page = () => {
 
   const [value, setValue] = React.useState('1');
+  const { user, authToken } = useAuth();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -42,9 +45,12 @@ const Page = () => {
                 }
               }}
             >
-              <Tab label="Featured 3D Asset" value="1" />
-              <Tab label="Trending Users" value="2" />
-              <Tab label="Recent Activity" value="3" />
+              <Tab label="Featured 3D Asset"
+                value="1" />
+              <Tab label="Trending Users"
+                value="2" />
+              <Tab label="Recent Activity"
+                value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">

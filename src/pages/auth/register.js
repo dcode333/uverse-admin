@@ -3,12 +3,15 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
+import { Box, Link, Stack, TextField, Typography } from '@mui/material';
+import Button from '@mui/lab/LoadingButton';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import { useRegister } from 'src/api/auth/useRegister';
 
 const Page = () => {
   const router = useRouter();
+  const { isPending, mutateAsync } = useRegister();
   const auth = useAuth();
   const formik = useFormik({
     initialValues: {
@@ -39,7 +42,8 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signUp(values.email, values.name, values.password);
+        const data = await mutateAsync({ email: values.email, password: values.password, number: values.phone });
+        await auth.signIn(data);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });
@@ -160,6 +164,7 @@ const Page = () => {
                 sx={{ mt: 3, bgcolor: 'neutral.1000', borderRadius: 1 / 2 }}
                 type="submit"
                 variant="contained"
+                loading={isPending}
               >
                 Create Account
               </Button>

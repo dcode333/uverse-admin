@@ -5,18 +5,19 @@ import UserList from '../sections/user/userslist'
 import React from 'react';
 
 const now = new Date();
-
 const Page = () => {
 
   const [value, setValue] = React.useState('1');
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+
   return <>
     <Head>
       <title>
-        Users | UVERSE
+        users | UVERSE
       </title>
     </Head>
     <Box

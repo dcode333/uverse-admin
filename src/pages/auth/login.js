@@ -1,14 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
+import LoadingButton from '@mui/lab/LoadingButton';
 import * as Yup from 'yup';
 import {
-  Alert,
   Box,
-  Button,
-  FormHelperText,
   Link,
   Stack,
   Tab,
@@ -16,17 +14,24 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import { useLogin } from 'src/api/auth/useLogin';
+import { useRefresh } from 'src/api/auth/useRefresh';
+
 
 const Page = () => {
   const router = useRouter();
-  const auth = useAuth();
+  const { isPending, mutateAsync, isSuccess, reset } = useLogin();
+  const { isPending: refreshPending } = useRefresh();
   const [method, setMethod] = useState('email');
+  const auth = useAuth();
+
   const formik = useFormik({
     initialValues: {
-      email: 'demo@uvrse.com',
-      password: 'Password123!',
+      email: '',
+      password: '',
       submit: null
     },
     validationSchema: Yup.object({
@@ -42,9 +47,12 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signIn(values.email, values.password);
-        router.push('/');
+        const data = await mutateAsync({ email: values.email, password: values.password });
+        values.submit = null;
+        await auth.signIn(data);
+        router.replace('/');
       } catch (err) {
+        reset();
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
         helpers.setSubmitting(false);
@@ -66,6 +74,7 @@ const Page = () => {
     },
     [auth, router]
   );
+
 
   return (
     <>
@@ -163,15 +172,17 @@ const Page = () => {
                     {formik.errors.submit}
                   </Typography>
                 )}
-                <Button
+                <LoadingButton
                   fullWidth
                   size="large"
                   sx={{ mt: 3, bgcolor: 'neutral.1000', borderRadius: 1 / 2 }}
                   type="submit"
                   variant="contained"
+                  loading={isPending || refreshPending || isSuccess}
+
                 >
                   Sign In
-                </Button>
+                </LoadingButton>
               </form>
             )}
 
