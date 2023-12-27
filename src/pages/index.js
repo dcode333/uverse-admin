@@ -7,7 +7,6 @@ import TrendingUsers from '../sections/overview/trendingUsers'
 import Analytics from '../sections/user/Anylatics'
 import { useAuth } from 'src/hooks/use-auth';
 import React from 'react';
-import Skeleton from '../components/skeleton'
 
 const now = new Date();
 

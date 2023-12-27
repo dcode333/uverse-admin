@@ -32,7 +32,8 @@ const Page = () => {
 
   useEffect(() => {
     if (isAuthenticated) router.replace('/');
-  }, [isAuthenticated, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -61,6 +62,7 @@ const Page = () => {
         reset();
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
+      } finally {
         helpers.setSubmitting(false);
       }
     }
@@ -71,14 +73,6 @@ const Page = () => {
       setMethod(value);
     },
     []
-  );
-
-  const handleSkip = useCallback(
-    () => {
-      auth.skip();
-      router.push('/');
-    },
-    [auth, router]
   );
 
 

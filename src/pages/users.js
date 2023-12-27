@@ -13,7 +13,6 @@ const Page = () => {
     setValue(newValue);
   };
 
-
   return <>
     <Head>
       <title>

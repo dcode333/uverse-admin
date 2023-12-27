@@ -16,7 +16,7 @@ const Page = () => (
         alignItems: 'center',
         display: 'flex',
         flexGrow: 1,
-        minHeight: '100%',
+        minHeight: '80%',
         bgcolor:'neutral.3000'
       }}
     >
@@ -40,38 +40,17 @@ const Page = () => (
               style={{
                 display: 'inline-block',
                 maxWidth: '100%',
-                width: 400
+                width: 300
               }}
             />
           </Box>
           <Typography
             align="center"
-            sx={{ mb: 3 }}
-            variant="h3"
+            sx={{ mb: 3,color:'neutral.5000' }}
+            variant="h5"
           >
-            404: The page you are looking for isn’t here
+            Failed to load the resourse. Try again later !
           </Typography>
-          <Typography
-            align="center"
-            color="text.secondary"
-            variant="body1"
-          >
-            You either tried some shady route or you came here by mistake.
-            Whichever it is, try using the navigation
-          </Typography>
-          <Button
-            component={NextLink}
-            href="/"
-            startIcon={(
-              <SvgIcon fontSize="small">
-                <ArrowLeftIcon />
-              </SvgIcon>
-            )}
-            sx={{ mt: 3 }}
-            variant="contained"
-          >
-            Go back to dashboard
-          </Button>
         </Box>
       </Container>
     </Box>

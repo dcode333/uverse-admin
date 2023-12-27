@@ -25,7 +25,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                User-stats | UVERSE
+                badges | UVERSE
             </title>
         </Head>
         <Box
