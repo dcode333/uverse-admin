@@ -121,6 +121,9 @@ export function createComponents(config) {
           top: 0,
           width: '100%',
           zIndex: 2000
+        },
+        '#selectfield': {
+          color: '#FFFFFF'
         }
       }
     },
@@ -293,7 +296,7 @@ export function createComponents(config) {
     },
     MuiTextField: {
       defaultProps: {
-        variant: 'filled'
+        variant: 'filled',
       }
     }
   };

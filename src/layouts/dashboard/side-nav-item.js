@@ -1,9 +1,19 @@
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
 import { Box, ButtonBase } from '@mui/material';
+import { useAuth } from 'src/hooks/use-auth';
+import { useCallback } from 'react';
 
 export const SideNavItem = (props) => {
   const { active = false, disabled, external, icon, path, title, num } = props;
+  const auth = useAuth();
+
+  const handleSignOut = useCallback(
+    () => {
+      if (path === '/auth/login') auth.signOut();
+    },
+    [auth, path]);
+
 
   const linkProps = path
     ? external
@@ -21,6 +31,7 @@ export const SideNavItem = (props) => {
   return (
     <li>
       <ButtonBase
+        onClick={handleSignOut}
         sx={{
           alignItems: 'center',
           display: 'flex',

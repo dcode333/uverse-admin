@@ -22,7 +22,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                User-stats | UVERSE
+                plethorium | UVERSE
             </title>
         </Head>
         <Box

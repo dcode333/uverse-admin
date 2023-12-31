@@ -21,7 +21,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                User-stats | UVERSE
+                user-stats | UVERSE
             </title>
         </Head>
         <Box
@@ -45,10 +45,14 @@ const Page = () => {
                                 }
                             }}
                         >
-                            <Tab label="Profile Information" value="1" />
-                            <Tab label="Badges" value="2" />
-                            <Tab label="Anylatics" value="3" />
-                            <Tab label="Feed" value="4" />
+                            <Tab label="Profile Information"
+                                value="1" />
+                            <Tab label="Badges"
+                                value="2" />
+                            <Tab label="Anylatics"
+                                value="3" />
+                            <Tab label="Feed"
+                                value="4" />
                         </TabList>
                     </Box>
 

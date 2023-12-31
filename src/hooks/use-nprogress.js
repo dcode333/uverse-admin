@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import nProgress from 'nprogress';
 
+
 export function useNProgress() {
   useEffect(() => {
     Router.events.on('routeChangeStart', nProgress.start);

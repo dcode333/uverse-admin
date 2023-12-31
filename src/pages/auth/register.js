@@ -3,13 +3,24 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
+import { Box, Link, Stack, TextField, Typography } from '@mui/material';
+import Button from '@mui/lab/LoadingButton';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import { useAuthContext } from 'src/contexts/auth-context';
+import { useRegister } from 'src/api/auth/useRegister';
+import { useEffect } from 'react';
 
 const Page = () => {
   const router = useRouter();
+  const { isPending, mutateAsync } = useRegister();
   const auth = useAuth();
+  const { isAuthenticated } = useAuthContext();
+
+  useEffect(() => {
+    if (isAuthenticated) router.replace('/');
+  }, [isAuthenticated, router]);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -39,7 +50,8 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signUp(values.email, values.name, values.password);
+        const data = await mutateAsync({ email: values.email, password: values.password, number: values.phone });
+        await auth.signIn(data);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });
@@ -160,6 +172,7 @@ const Page = () => {
                 sx={{ mt: 3, bgcolor: 'neutral.1000', borderRadius: 1 / 2 }}
                 type="submit"
                 variant="contained"
+                loading={isPending}
               >
                 Create Account
               </Button>

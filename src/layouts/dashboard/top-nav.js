@@ -20,6 +20,8 @@ const SIDE_NAV_WIDTH = 230;
 const TOP_NAV_HEIGHT = 64;
 
 export const TopNav = (props) => {
+
+  
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();

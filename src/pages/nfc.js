@@ -22,7 +22,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                User-stats | UVERSE
+                nfc | UVERSE
             </title>
         </Head>
         <Box

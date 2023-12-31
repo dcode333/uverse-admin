@@ -23,7 +23,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                User-stats | UVERSE
+                library | UVERSE
             </title>
         </Head>
         <Box
