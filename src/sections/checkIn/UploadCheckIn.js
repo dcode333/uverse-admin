@@ -4,26 +4,28 @@ import {
     Paper,
     Button,
     TextField,
-    Autocomplete,
     Snackbar,
-    Alert
+    Alert,
+    MenuItem
 } from '@mui/material';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import UserPlusIcon from '@heroicons/react/24/outline/PaperClipIcon';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadCheckin } from 'src/api/checkin/useCheckin';
-import { useAuth } from 'src/hooks/use-auth';
+import { uploadcheckinschema } from 'src/schemas/checkin';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
-//Invalidate Checkin cache -pending
+
 //Reset media/badgeId -pending
+//Media placeholder overlapped by border -pending
 
-function UploadCheckIn() {
+function UploadCheckIn(props) {
 
-    const { authToken } = useAuth();
+    const { authToken } = props;
     const { data, isLoading } = useBadgeTitle(authToken);
+    const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadCheckin();
     const [postSuccess, setPostSuccess] = useState(false)
     const handleClose = (event, reason) => {
@@ -41,28 +43,7 @@ function UploadCheckIn() {
             badgeId: '',
             submit: null
         },
-        validationSchema: Yup.object({
-            description: Yup
-                .string()
-                .max(255)
-                .required('Description is required'),
-            title: Yup
-                .string()
-                .max(255)
-                .required('Title is required'),
-            longitude: Yup
-                .number()
-                .required('Longitude is required'),
-            latitude: Yup
-                .number()
-                .required('Latitude is required'),
-            media: Yup
-                .mixed()
-                .required('Media is required'),
-            badgeId: Yup
-                .string()
-                .required('Badge ID is required'),
-        }),
+        validationSchema: uploadcheckinschema,
         onSubmit: async (values, helpers) => {
 
             try {
@@ -76,17 +57,9 @@ function UploadCheckIn() {
                     token: authToken
                 });
 
-                helpers.resetForm({
-                    values: {
-                        title: '',
-                        description: '',
-                        longitude: '',
-                        latitude: '',
-                        media: null,
-                        badgeId: '',
-                    },
-                });
+                queryClient.removeQueries('checkins');
                 setPostSuccess(true)
+                helpers.resetForm();
 
             } catch (err) {
                 helpers.setStatus({ success: false });
@@ -208,25 +181,33 @@ function UploadCheckIn() {
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
-                        <Autocomplete
-                            options={data ? data : [{ label: '', id: '' }]}
+                        <TextField
+                            fullWidth
+                            select
+                            variant='filled'
+                            name='badgeId'
                             disabled={isLoading}
-                            sx={{ mb: 6, color: 'red' }}
-                            onChange={(e, val) => formik.setFieldValue('badgeId', val ? val.id : '')}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Badge ID"
-                                    error={!!(formik.touched.badgeId && formik.errors.badgeId)}
-                                    helperText={formik.touched.badgeId && formik.errors.badgeId}
-                                    variant='filled'
-                                    inputProps={{
-                                        ...params.inputProps,
-                                        style: { color: 'red' },
-                                    }}
-                                />
-                            )}
-                        />
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.badgeId && formik.errors.badgeId)}
+                            helperText={formik.touched.badgeId && formik.errors.badgeId}
+                            value={formik.values.badgeId}
+                            label="Badge ID"
+                            id='selectfield'
+                            sx={{ mb: 6 }}
+                        >
+                            <MenuItem value={''} >
+                                None
+                            </MenuItem>
+                            {data?.map((item, i) => (
+                                <MenuItem
+                                    value={item.id}
+                                    key={i}>
+                                    {item.label}
+                                </MenuItem>
+                            ))}
+
+                        </TextField>
                     </Grid>
 
                 </Grid>
@@ -245,7 +226,7 @@ function UploadCheckIn() {
                     variant="contained"
                     loading={isPending || isLoading}
                 >
-                    Save
+                    CREATE
                 </LoadingButton>
             </form >
             <Snackbar open={postSuccess}

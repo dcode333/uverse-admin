@@ -15,6 +15,33 @@ const fetchAllCheckins = async ({ token }) => {
     }
 };
 
+const fetchCheckinTitle = async ({ token }) => {
+    try {
+        const response = await axios.get(`/api/checkins/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const uniqueTitles = new Set();
+        const uniqueCheckinTitles = [];
+
+        (response.data?.results || []).forEach(({ id, title }) => {
+            if (!uniqueTitles.has(title)) {
+                uniqueTitles.add(title);
+                uniqueCheckinTitles.push({ id, label: title });
+            }
+        });
+
+        return uniqueCheckinTitles;
+
+    } catch (error) {
+        console.log(error.message)
+        throw new Error(error.message || 'Fetch Checkin title Failed');
+    }
+};
+
+
 
 const UploadCheckin = async ({
     title,
@@ -34,7 +61,7 @@ const UploadCheckin = async ({
         formData.append('longitude', longitude);
         formData.append('latitude', latitude);
         formData.append('media', media); // Assuming media is a File object
-        // formData.append('reward_badge', badgeId);
+        formData.append('reward_badge', badgeId);
 
         const response = await axios.post(`/api/checkins/`, formData, {
             headers: {
@@ -44,11 +71,21 @@ const UploadCheckin = async ({
         });
 
         return response.data;
-    } catch (error) {
 
+    } catch (error) {
         throw new Error('Checkin upload failed !');
     }
 };
+
+const useCheckinTitle = (token) => {
+    return useQuery({
+        queryKey: ['checkintitle'],
+        queryFn: () => fetchCheckinTitle({ token }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+};
+
 
 const useCheckin = (token) => {
     return useQuery({
@@ -66,4 +103,4 @@ const useUploadCheckin = () => {
     })
 };
 
-export { useCheckin, useUploadCheckin };
+export { useCheckin, useUploadCheckin, useCheckinTitle };

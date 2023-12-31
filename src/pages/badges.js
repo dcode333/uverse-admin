@@ -5,13 +5,15 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import Anylatics from '../sections/badges/Analytics'
 import BadgeList from 'src/sections/badges/BadgeList';
-import UserPlusIcon from '@heroicons/react/24/outline/PaperClipIcon';
+import { useAuth } from 'src/hooks/use-auth';
+import UploadBadge from 'src/sections/badges/UploadBadge';
 
 const now = new Date();
 
 const Page = () => {
 
     const [value, setValue] = React.useState('1');
+    const { authToken } = useAuth();
 
     const [alignment, setAlignment] = React.useState('1');
 
@@ -83,62 +85,8 @@ const Page = () => {
                                 </Box> */}
                             </Box>
                             <BadgeList
-                                items={[
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                ]} />
+                                authToken={authToken}
+                            />
                         </>
                     </TabPanel>
                     <TabPanel value="2">
@@ -146,100 +94,7 @@ const Page = () => {
                     </TabPanel>
 
                     <TabPanel value="3">
-                        <Grid container
-                            spacing={3}>
-                            <Grid item
-                                xs={12}
-                                sm={6}
-                                lg={4}
-                                mb={2}
-                            >
-                                <Typography variant="subtitle1"
-                                    sx={{ textAlign: 'start' }}
-                                    color="neutral.4000">
-                                    Upload
-                                </Typography>
-                                <Paper sx={{ height: 250, backgroundColor: 'neutral.2000', my: 2 }} />
-                                <Button
-                                    variant="contained"
-                                    color='warning'
-                                    fullWidth  >
-                                    <UserPlusIcon style={{ width: '20px', marginRight: '5px' }} />
-                                    Attach Badge or 3D Asset
-                                </Button>
-                            </Grid>
-                            <Grid item
-                                xs={12}
-                                sm={6}
-                                lg={4}>
-                                <TextField
-                                    id="title-input"
-                                    label="Title"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ mb: 6 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                                <TextField
-                                    id="title-input"
-                                    label="Hashtags"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ mb: 6 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                                <TextField
-                                    id="title-input"
-                                    label="Linked Creation"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ mb: 6 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                                <TextField
-                                    id="title-input"
-                                    label="Acheivement required"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ mb: 6 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                            </Grid>
-                            <Grid item
-                                xs={12}
-                                sm={6}
-                                lg={4}>
-                                <TextField
-                                    id="description-input"
-                                    label="Description"
-                                    multiline
-                                    rows={6}
-                                    fullWidth
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                                <TextField
-                                    id="title-input"
-                                    label="Required Tokens"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ my: 5 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Button
-                            sx={{ color: 'white', bgcolor: 'neutral.2000', px: 4 }}
-                            variant="contained">Save</Button>
+                        <UploadBadge authToken={authToken} />
                     </TabPanel>
                 </TabContext>
 

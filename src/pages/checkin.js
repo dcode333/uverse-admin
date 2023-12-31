@@ -84,9 +84,7 @@ const Page = () => {
                                     </ToggleButtonGroup>
                                 </Box> */}
                             </Box>
-                            <CheckIns
-                                authToken={authToken}
-                            />
+                            <CheckIns authToken={authToken} />
                         </>
                     </TabPanel>
                     <TabPanel value="2">
@@ -94,7 +92,7 @@ const Page = () => {
                     </TabPanel>
 
                     <TabPanel value="3">
-                        <UploadCheckIn />
+                        <UploadCheckIn authToken={authToken} />
                     </TabPanel>
 
                 </TabContext>
