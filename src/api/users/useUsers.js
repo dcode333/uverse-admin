@@ -19,6 +19,8 @@ const useUsers = (token) => {
     return useQuery({
         queryKey: ['users'],
         queryFn: () => fetchUsers({ token }),
+        staleTime: Infinity,
+        refetchOnMount: false,
     })
 };
 

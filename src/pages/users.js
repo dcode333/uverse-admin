@@ -2,16 +2,20 @@ import Head from 'next/head';
 import { Box, Container } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import UserList from '../sections/user/userslist'
-import React from 'react';
+import { useAuth } from 'src/hooks/use-auth';
+import { useUsers } from 'src/api/users/useUsers';
+import Skeleton from '../components/skeleton'
+import FailedToFetch from '../components/fetchfail'
 
-const now = new Date();
 const Page = () => {
 
-  const [value, setValue] = React.useState('1');
+  const { authToken } = useAuth();
+  const { data, isLoading, isError } = useUsers(authToken);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+
+  if (isLoading) return <Skeleton />
+  if (isError) return <FailedToFetch />
+
 
   return <>
     <Head>
@@ -27,117 +31,7 @@ const Page = () => {
       }}
     >
       <Container maxWidth="xl">
-        <UserList data={[
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-
-
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10,
-
-
-          },
-          {
-            userName: 'Hellanora',
-            img: '/assets/avatars/avatarmed.png',
-            likes: 10,
-            comments: 10,
-            shares: 10
-          },
-        ]} />
+        <UserList data={data?.results} />
       </Container>
     </Box>
   </>
