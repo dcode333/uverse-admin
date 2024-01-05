@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchBadgeTitle = async ({ token }) => {
     try {
-        const response = await axios.get(`/api/badges/`, {
+        const response = await axios.get(`/api/badge/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -21,7 +21,7 @@ const fetchBadgeTitle = async ({ token }) => {
 
 const fetchAllBadges = async ({ token }) => {
     try {
-        const response = await axios.get(`/api/badges/`, {
+        const response = await axios.get(`/api/badge/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -69,7 +69,7 @@ const UploadBadge = async ({
             formData.append('constraint_number', constraint_number);
 
 
-        const response = await axios.post(`/api/badges/`, formData, {
+        const response = await axios.post(`/api/badge/`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
@@ -79,7 +79,8 @@ const UploadBadge = async ({
         return response.data;
 
     } catch (error) {
-        throw new Error('Badge upload failed !');
+
+        throw new Error(error.message || 'Badge upload failed !');
     }
 };
 

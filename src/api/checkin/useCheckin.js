@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchAllCheckins = async ({ token }) => {
     try {
-        const response = await axios.get(`/api/checkins/`, {
+        const response = await axios.get(`/api/checkin/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -17,7 +17,7 @@ const fetchAllCheckins = async ({ token }) => {
 
 const fetchCheckinTitle = async ({ token }) => {
     try {
-        const response = await axios.get(`/api/checkins/`, {
+        const response = await axios.get(`/api/checkin/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -63,7 +63,7 @@ const UploadCheckin = async ({
         formData.append('media', media); // Assuming media is a File object
         formData.append('reward_badge', badgeId);
 
-        const response = await axios.post(`/api/checkins/`, formData, {
+        const response = await axios.post(`/api/checkin/`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',

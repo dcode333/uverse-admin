@@ -65,7 +65,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Register | UVERSE
+          Register | UVRSE
         </title>
       </Head>
       <Box

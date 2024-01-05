@@ -171,7 +171,9 @@ function UploadBadge(props) {
                             id='selectfield'
                             sx={{ mb: 6 }}
                         >
-                            <MenuItem value={''} />
+                            <MenuItem value={''} >
+                                None
+                            </MenuItem>
                             <MenuItem value={'SignUp'} >SignUp</MenuItem>
                             <MenuItem value={'Follower'}>Follower</MenuItem>
                             <MenuItem value={'Followings'}>Followings</MenuItem>
@@ -232,7 +234,9 @@ function UploadBadge(props) {
                             id='selectfield'
                             sx={{ mb: 6 }}
                         >
-                            <MenuItem value={''} />
+                            <MenuItem value={''} >
+                                None
+                            </MenuItem>
                             {data?.map((item, i) => (
                                 <MenuItem
                                     value={item.id}

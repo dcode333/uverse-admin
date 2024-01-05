@@ -22,7 +22,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                nfc | UVERSE
+                nfc | UVRSE
             </title>
         </Head>
         <Box

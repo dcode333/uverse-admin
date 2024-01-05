@@ -25,7 +25,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                drops | UVERSE
+                drops | UVRSE
             </title>
         </Head>
         <Box

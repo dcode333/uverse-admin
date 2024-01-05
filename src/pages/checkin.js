@@ -27,7 +27,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                checkins | UVERSE
+                checkins | UVRSE
             </title>
         </Head>
         <Box

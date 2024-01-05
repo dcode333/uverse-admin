@@ -1,13 +1,11 @@
 import Head from 'next/head';
-import NextLink from 'next/link';
-import ArrowLeftIcon from '@heroicons/react/24/solid/ArrowLeftIcon';
 import { Box, Button, Container, SvgIcon, Typography } from '@mui/material';
 
 const Page = () => (
   <>
     <Head>
       <title>
-        Try Again Later | UVRSE
+        Nothing to show | UVRSE
       </title>
     </Head>
     <Box
@@ -36,7 +34,7 @@ const Page = () => (
           >
             <img
               alt="Under development"
-              src="/assets/errors/error-500.png"
+              src="/assets/errors/error-404.png"
               style={{
                 display: 'inline-block',
                 maxWidth: '100%',
@@ -49,7 +47,7 @@ const Page = () => (
             sx={{ mb: 3,color:'neutral.5000' }}
             variant="h5"
           >
-            Failed to load the resourse. Try again later !
+            Nothing to show right now. Try again later !
           </Typography>
         </Box>
       </Container>

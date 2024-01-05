@@ -48,7 +48,7 @@ const App = (props) => {
       <CacheProvider value={emotionCache}>
         <Head>
           <title>
-            UVERSE
+            UVRSE
           </title>
           <meta
             name="viewport"

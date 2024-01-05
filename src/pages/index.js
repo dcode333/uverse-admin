@@ -21,7 +21,7 @@ const Page = () => {
   return <>
     <Head>
       <title>
-        Home | UVERSE
+        Home | UVRSE
       </title>
     </Head>
     <Box

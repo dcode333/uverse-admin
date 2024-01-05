@@ -80,7 +80,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | UVERSE
+          Login | UVRSE
         </title>
       </Head>
       <Box

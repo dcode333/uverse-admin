@@ -22,7 +22,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                plethorium | UVERSE
+                plethorium | UVRSE
             </title>
         </Head>
         <Box

@@ -20,14 +20,9 @@ function claimBadgeCard(props) {
                         component="img"
                         height="150"
                         width="180"
-                        image="/assets/badges.png"
+                        image={claimedBadge.media || "/assets/badges.png"}
                         alt="green iguana"
                     />
-                    {/* <Box sx={{ display: 'inline-block', position: 'absolute', bottom: '110px', right: '15px' }}>
-                        <Chip label="Claim" color="success" size="small"
-                            sx={{ fontSize: '8px', borderRadius: 0.5 }}
-                        />
-                    </Box> */}
                 </Box>
                 <CardContent>
                     <Box sx={{ display: 'flex' }}>

@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { Box, Container } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import UserList from '../sections/user/userslist'
+import UserList from '../../sections/user/userslist'
 import { useAuth } from 'src/hooks/use-auth';
 import { useUsers } from 'src/api/users/useUsers';
-import Skeleton from '../components/skeleton'
-import FailedToFetch from '../components/fetchfail'
+import Skeleton from '../../components/skeleton'
+import FailedToFetch from '../../components/fetchfail'
 
 const Page = () => {
 
@@ -20,7 +20,7 @@ const Page = () => {
   return <>
     <Head>
       <title>
-        users | UVERSE
+        users | UVRSE
       </title>
     </Head>
     <Box

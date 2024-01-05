@@ -23,7 +23,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                library | UVERSE
+                library | UVRSE
             </title>
         </Head>
         <Box
@@ -80,63 +80,6 @@ const Page = () => {
                                     </ToggleButtonGroup>
                                 </Box> */}
                             </Box>
-                            <BadgeList
-                                items={[
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                ]} />
                         </>
                     </TabPanel>
                     <TabPanel value="3">

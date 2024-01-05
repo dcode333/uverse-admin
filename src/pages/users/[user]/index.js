@@ -1,17 +1,18 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Box, Container, Tab, Tabs, Unstable_Grid2 as Grid } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import ProfileInformation from '../sections/user/profileinfo'
-import Badges from '../sections/user/badges'
-import Anylatics from '../sections/user/Anylatics'
-import Feed from '../sections/user/Feed'
-
+import ProfileInformation from '../../../sections/user/profileinfo'
+import Badges from '../../../sections/user/badges'
+import Anylatics from '../../../sections/user/Anylatics'
+import Feed from '../../../sections/user/Feed'
 import React from 'react';
 
-const now = new Date();
 
 const Page = () => {
+
+    const { query: { user } } = useRouter()
 
     const [value, setValue] = React.useState('1');
     const handleChange = (event, newValue) => {
@@ -21,7 +22,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                user-stats | UVERSE
+                user-stats | UVRSE
             </title>
         </Head>
         <Box
@@ -57,11 +58,11 @@ const Page = () => {
                     </Box>
 
                     <TabPanel value="1">
-                        <ProfileInformation />
+                        <ProfileInformation userId={user} />
                     </TabPanel>
 
                     <TabPanel value="2">
-                        <Badges />
+                        <Badges userId={user} />
                     </TabPanel>
                     <TabPanel value="3">
                         <Anylatics />

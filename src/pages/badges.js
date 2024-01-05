@@ -27,7 +27,7 @@ const Page = () => {
     return <>
         <Head>
             <title>
-                badges | UVERSE
+                badges | UVRSE
             </title>
         </Head>
         <Box

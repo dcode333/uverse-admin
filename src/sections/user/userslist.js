@@ -19,7 +19,7 @@ const UserList = ({ data }) => {
                     lg={4}
                     xl={4}
                     key={index}>
-                    <Link href={`/userdetail`}
+                    <Link href={`/users/${item.id}`}
                         style={{ textDecoration: 'none' }}>
                         <Card sx={{ display: 'flex', borderRadius: 1, border: '0.5px solid gray', m: 1, bgcolor: 'transparent' }}>
                             <CardMedia
