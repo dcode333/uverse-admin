@@ -56,7 +56,7 @@ const UploadBadge = async ({
         formData.append('type', 'badge');
         formData.append('subtype', 'BADGE');
         formData.append('media', media); // Assuming media is a File object
-        formData.append('checkIn', checkin);
+        formData.append('checkIn', checkin ? checkin : '');
         formData.append('badges_type', badges_type);
         formData.append('hashtag', hashtag);
         formData.append('age_restricted', age_restricted);

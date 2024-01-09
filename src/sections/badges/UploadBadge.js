@@ -174,7 +174,6 @@ function UploadBadge(props) {
                             <MenuItem value={''} >
                                 None
                             </MenuItem>
-                            <MenuItem value={'SignUp'} >SignUp</MenuItem>
                             <MenuItem value={'Follower'}>Follower</MenuItem>
                             <MenuItem value={'Followings'}>Followings</MenuItem>
                             <MenuItem value={'Creations'}>Creations</MenuItem>

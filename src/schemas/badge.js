@@ -9,7 +9,12 @@ const uploadbadgeschema = Yup.object({
     hashtag: Yup.string().required('Hashtag is required'),
     additional_information: Yup.string().required('Additional information is required'),
     age_restricted: Yup.boolean().required('Age restricted is required'),
-    checkin: Yup.string().required('Checkin is required'),
+    checkin: Yup.string()
+        .when('badges_type', {
+            is: 'CheckInRewardedBadge',
+            then: (schema) => schema.required("Checkin is required"),
+            otherwise: (schema) => schema.notRequired()
+        }),
     quantity: Yup.number()
         .when('badges_type', {
             is: 'Misc',
