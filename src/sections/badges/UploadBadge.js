@@ -2,10 +2,10 @@ import {
     Unstable_Grid2 as Grid,
     Typography,
     TextField,
-    Autocomplete,
     Snackbar,
     Alert,
     MenuItem,
+    CircularProgress,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -22,7 +22,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 function UploadBadge(props) {
 
-    const { authToken } = props;
+    const { authToken, handleTabChange } = props;
     const { data, isLoading } = useCheckinTitle(authToken);
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadBadge();
@@ -70,6 +70,7 @@ function UploadBadge(props) {
                 queryClient.resetQueries('badges');
                 helpers.resetForm();
                 setPostSuccess(true)
+                handleTabChange('1')
 
             } catch (err) {
                 helpers.setStatus({ success: false });
@@ -307,6 +308,11 @@ function UploadBadge(props) {
                     type="submit"
                     sx={{ color: 'white', bgcolor: 'neutral.2000', px: 4 }}
                     variant="contained"
+                    loadingIndicator={
+                        <CircularProgress
+                            sx={{ color: 'neutral.1000' }}
+                            size={30} />
+                    }
                     loading={isPending || isLoading}
                 >
                     CREATE

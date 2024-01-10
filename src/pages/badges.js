@@ -8,21 +8,14 @@ import BadgeList from 'src/sections/badges/BadgeList';
 import { useAuth } from 'src/hooks/use-auth';
 import UploadBadge from 'src/sections/badges/UploadBadge';
 
-const now = new Date();
 
 const Page = () => {
 
     const [value, setValue] = React.useState('1');
     const { authToken } = useAuth();
+    const handleTabChange = (val) => setValue(val);
+    const handleChange = (event, newValue) => setValue(newValue);
 
-    const [alignment, setAlignment] = React.useState('1');
-
-    const handleSwitchChange = (event, newAlignment) => {
-        setAlignment(alignment === '1' ? '2' : '1');
-    };
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     return <>
         <Head>
@@ -70,19 +63,6 @@ const Page = () => {
                                 >
                                     Badges
                                 </Typography>
-                                {/* <Box width={'40'}>
-
-                                    <ToggleButtonGroup
-                                        color="primary"
-                                        sx={{ justifySelf: 'center', height: '40px' }}
-                                        value={alignment}
-                                        onChange={handleSwitchChange}
-                                        aria-label="Platform"
-                                    >
-                                        <ToggleButton  value="1">All Check Ins</ToggleButton>
-                                        <ToggleButton value="2">User specific</ToggleButton>
-                                    </ToggleButtonGroup>
-                                </Box> */}
                             </Box>
                             <BadgeList
                                 authToken={authToken}
@@ -94,7 +74,10 @@ const Page = () => {
                     </TabPanel>
 
                     <TabPanel value="3">
-                        <UploadBadge authToken={authToken} />
+                        <UploadBadge
+                            authToken={authToken}
+                            handleTabChange={handleTabChange}
+                        />
                     </TabPanel>
                 </TabContext>
 

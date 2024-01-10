@@ -6,7 +6,8 @@ import {
     TextField,
     Snackbar,
     Alert,
-    MenuItem
+    MenuItem,
+    CircularProgress
 } from '@mui/material';
 import { useFormik } from 'formik';
 import UserPlusIcon from '@heroicons/react/24/outline/PaperClipIcon';
@@ -23,7 +24,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 function UploadCheckIn(props) {
 
-    const { authToken } = props;
+    const { authToken, handleTabChange } = props;
     const { data, isLoading } = useBadgeTitle(authToken);
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadCheckin();
@@ -60,6 +61,7 @@ function UploadCheckIn(props) {
                 queryClient.removeQueries('checkins');
                 setPostSuccess(true)
                 helpers.resetForm();
+                handleTabChange('1');
 
             } catch (err) {
                 helpers.setStatus({ success: false });
@@ -225,6 +227,11 @@ function UploadCheckIn(props) {
                     sx={{ color: 'white', bgcolor: 'neutral.2000', px: 4 }}
                     variant="contained"
                     loading={isPending || isLoading}
+                    loadingIndicator={
+                        <CircularProgress
+                            sx={{ color: 'neutral.1000' }}
+                            size={30} />
+                    }
                 >
                     CREATE
                 </LoadingButton>

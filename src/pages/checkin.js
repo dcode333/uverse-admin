@@ -8,21 +8,13 @@ import CheckIns from 'src/sections/checkIn/CheckIn';
 import { useAuth } from 'src/hooks/use-auth';
 import UploadCheckIn from 'src/sections/checkIn/UploadCheckIn';
 
-const now = new Date();
 
 const Page = () => {
 
     const [value, setValue] = React.useState('1');
-    const [alignment, setAlignment] = React.useState('1');
     const { authToken } = useAuth();
-
-
-    const handleSwitchChange = (event, newAlignment) => {
-        setAlignment(alignment === '1' ? '2' : '1');
-    };
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const handleTabChange = (val) => setValue(val);
+    const handleChange = (event, newValue) => setValue(newValue);
 
     return <>
         <Head>
@@ -70,19 +62,6 @@ const Page = () => {
                                 >
                                     Check-Ins
                                 </Typography>
-                                {/* <Box width={'40'}>
-
-                                    <ToggleButtonGroup
-                                        color="primary"
-                                        sx={{ justifySelf: 'center', height: '40px' }}
-                                        value={alignment}
-                                        onChange={handleSwitchChange}
-                                        aria-label="Platform"
-                                    >
-                                        <ToggleButton  value="1">All Check Ins</ToggleButton>
-                                        <ToggleButton value="2">User specific</ToggleButton>
-                                    </ToggleButtonGroup>
-                                </Box> */}
                             </Box>
                             <CheckIns authToken={authToken} />
                         </>
@@ -92,7 +71,10 @@ const Page = () => {
                     </TabPanel>
 
                     <TabPanel value="3">
-                        <UploadCheckIn authToken={authToken} />
+                        <UploadCheckIn
+                            authToken={authToken}
+                            handleTabChange={handleTabChange}
+                        />
                     </TabPanel>
 
                 </TabContext>
