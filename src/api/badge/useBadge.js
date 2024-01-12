@@ -76,7 +76,7 @@ const UploadBadge = async ({
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
             },
-        });
+        }); 
 
         return response.data;
 
