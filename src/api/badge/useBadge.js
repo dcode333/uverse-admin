@@ -40,13 +40,14 @@ const UploadBadge = async ({
     media,
     checkin,
     token,
-    badges_type,
+    giveaways_type,
     hashtag,
     age_restricted,
     additional_information,
     quantity,
     constraint_number,
-    required_tokens
+    required_tokens,
+    expires_date
 }) => {
     try {
 
@@ -57,15 +58,16 @@ const UploadBadge = async ({
         formData.append('subtype', 'BADGE');
         formData.append('media', media); // Assuming media is a File object
         formData.append('checkIn', checkin ? checkin : '');
-        formData.append('badges_type', badges_type);
+        formData.append('giveaways_type', giveaways_type);
+        formData.append('expires_date', expires_date ? new Date(expires_date).toISOString() : '');
         formData.append('hashtag', hashtag);
         formData.append('age_restricted', age_restricted);
         formData.append('additional_information', additional_information);
-        if (badges_type === 'Misc') {
+        if (giveaways_type === 'Misc') {
             formData.append('quantity', quantity);
             formData.append('required_tokens', required_tokens);
         }
-        if (badges_type === 'Follower' || badges_type === 'Followings' || badges_type === 'Creations')
+        if (giveaways_type === 'Follower' || giveaways_type === 'Followings' || giveaways_type === 'Creations')
             formData.append('constraint_number', constraint_number);
 
 

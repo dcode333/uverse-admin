@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 
+const yesterday = new Date(Date.now() - 86400000);
 const uploadcheckinschema = Yup.object({
     description: Yup
         .string()
@@ -21,6 +22,19 @@ const uploadcheckinschema = Yup.object({
     badgeId: Yup
         .string()
         .required('Badge ID is required'),
+    giveaways_type: Yup
+        .string()
+        .required('Giveaways type is required'),
+    required_tokens: Yup.number()
+        .when('giveaways_type', {
+            is: 'Misc',
+            then: (schema) => schema.required("Token is required"),
+            otherwise: (schema) => schema.notRequired()
+        }),
+    //expires date must be equal or after today
+    expires_date: Yup.date()
+        .min(yesterday, "Expiry date must be today or later")
+        .notRequired(),
 });
 
 

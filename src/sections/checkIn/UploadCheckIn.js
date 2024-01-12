@@ -1,8 +1,6 @@
 import {
     Unstable_Grid2 as Grid,
     Typography,
-    Paper,
-    Button,
     TextField,
     Snackbar,
     Alert,
@@ -10,7 +8,6 @@ import {
     CircularProgress
 } from '@mui/material';
 import { useFormik } from 'formik';
-import UserPlusIcon from '@heroicons/react/24/outline/PaperClipIcon';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadCheckin } from 'src/api/checkin/useCheckin';
@@ -40,8 +37,11 @@ function UploadCheckIn(props) {
             description: '',
             longitude: '',
             latitude: '',
-            media: null,
+            giveaways_type: '',
+            required_tokens: '',
+            expires_date: '',
             badgeId: '',
+            media: null,
             submit: null
         },
         validationSchema: uploadcheckinschema,
@@ -55,12 +55,15 @@ function UploadCheckIn(props) {
                     latitude: values.latitude,
                     media: values.media,
                     badgeId: values.badgeId,
+                    giveaways_type: values.giveaways_type,
+                    required_tokens: values.required_tokens,
+                    expires_date: values.expires_date,
                     token: authToken
                 });
 
                 queryClient.removeQueries('checkins');
                 setPostSuccess(true)
-                helpers.resetForm();
+                // helpers.resetForm();
                 handleTabChange('1');
 
             } catch (err) {
@@ -86,24 +89,6 @@ function UploadCheckIn(props) {
                         lg={4}
                         mb={2}
                     >
-                        <Typography variant="subtitle1"
-                            sx={{ textAlign: 'start' }}
-                            color="neutral.4000">
-                            Upload
-                        </Typography>
-                        <Paper sx={{ height: 250, backgroundColor: 'neutral.2000', my: 2 }} />
-                        <Button
-                            variant="contained"
-                            color='warning'
-                            fullWidth  >
-                            <UserPlusIcon style={{ width: '20px', marginRight: '5px' }} />
-                            Attach Badge or 3D Asset
-                        </Button>
-                    </Grid>
-                    <Grid item
-                        xs={12}
-                        sm={6}
-                        lg={4}>
                         <TextField
                             id="title-input"
                             error={!!(formik.touched.media && formik.errors.media)}
@@ -150,40 +135,6 @@ function UploadCheckIn(props) {
                             inputProps={{ style: { color: 'white' } }}
                         />
                         <TextField
-                            label="Latitude"
-                            value={formik.values.latitude}
-                            name="latitude"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.latitude && formik.errors.latitude)}
-                            helperText={formik.touched.latitude && formik.errors.latitude}
-                            type="number"
-                            variant="filled"
-                            fullWidth
-                            sx={{ mb: 6 }}
-                            inputProps={{ style: { color: 'white' } }}
-                        />
-                    </Grid>
-                    <Grid item
-                        xs={12}
-                        sm={6}
-                        lg={4}>
-                        <TextField
-                            label="Description"
-                            value={formik.values.description}
-                            name="description"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.description && formik.errors.description)}
-                            helperText={formik.touched.description && formik.errors.description}
-                            type="text"
-                            multiline
-                            rows={6}
-                            fullWidth
-                            sx={{ mb: 6 }}
-                            inputProps={{ style: { color: 'white' } }}
-                        />
-                        <TextField
                             fullWidth
                             select
                             variant='filled'
@@ -210,6 +161,103 @@ function UploadCheckIn(props) {
                             ))}
 
                         </TextField>
+                    </Grid>
+                    <Grid item
+                        xs={12}
+                        sm={6}
+                        lg={4}>
+
+                        <TextField
+                            label="Latitude"
+                            value={formik.values.latitude}
+                            name="latitude"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.latitude && formik.errors.latitude)}
+                            helperText={formik.touched.latitude && formik.errors.latitude}
+                            type="number"
+                            variant="filled"
+                            fullWidth
+                            sx={{ mb: 6 }}
+                            inputProps={{ style: { color: 'white' } }}
+                        />
+                        <TextField
+                            fullWidth
+                            select
+                            variant='filled'
+                            name='giveaways_type'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.giveaways_type && formik.errors.giveaways_type)}
+                            helperText={formik.touched.giveaways_type && formik.errors.giveaways_type}
+                            value={formik.values.giveaways_type}
+                            label="Giveaways Type"
+                            id='selectfield'
+                            sx={{ mb: 6 }}
+                        >
+                            <MenuItem value={"Misc"} >Misc</MenuItem>
+                            <MenuItem value={"Free"}>Free</MenuItem>
+                        </TextField>
+                        <TextField
+                            label="Required tokens"
+                            value={formik.values.required_tokens}
+                            type="number"
+                            name="required_tokens"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.required_tokens && formik.errors.required_tokens)}
+                            helperText={formik.touched.required_tokens && formik.errors.required_tokens}
+                            variant="filled"
+                            disabled={formik.values.giveaways_type !== 'Misc'}
+                            fullWidth
+                            sx={{ mb: 6 }}
+                            inputProps={{ style: { color: 'white' } }}
+                        />
+                    </Grid>
+                    <Grid item
+                        xs={12}
+                        sm={6}
+                        lg={4}>
+                        <TextField
+                            label="Description"
+                            value={formik.values.description}
+                            name="description"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.description && formik.errors.description)}
+                            helperText={formik.touched.description && formik.errors.description}
+                            type="text"
+                            multiline
+                            rows={5}
+                            fullWidth
+                            sx={{ mb: 6 }}
+                            inputProps={{ style: { color: 'white' } }}
+                        />
+
+                        <TextField
+                            label="Expiry Date"
+                            value={formik.values.expires_date}
+                            name="expires_date"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.expires_date && formik.errors.expires_date)}
+                            helperText={formik.touched.expires_date && formik.errors.expires_date}
+                            type="date"
+                            variant="filled"
+                            fullWidth
+                            sx={{
+                                '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '2px',
+                                },
+                                mb: 6
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                        />
+
                     </Grid>
 
                 </Grid>

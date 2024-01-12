@@ -37,7 +37,7 @@ function UploadBadge(props) {
             title: '',
             description: '',
             media: null,
-            badges_type: '',
+            giveaways_type: '',
             quantity: '',
             constraint_number: '',
             hashtag: '',
@@ -45,6 +45,7 @@ function UploadBadge(props) {
             age_restricted: false,
             required_tokens: '',
             checkin: '',
+            expires_date: '',
             submit: null
         },
         validationSchema: uploadbadgeschema,
@@ -57,18 +58,19 @@ function UploadBadge(props) {
                     description: values.description,
                     media: values.media,
                     checkin: values.checkin,
-                    badges_type: values.badges_type,
+                    giveaways_type: values.giveaways_type,
                     hashtag: values.hashtag,
                     age_restricted: values.age_restricted,
                     additional_information: values.additional_information,
                     quantity: values.quantity,
                     constraint_number: values.constraint_number,
                     required_tokens: values.required_tokens,
+                    expires_date: values.expires_date,
                     token: authToken,
                 });
 
                 queryClient.resetQueries('badges');
-                helpers.resetForm();
+                // helpers.resetForm();
                 setPostSuccess(true)
                 handleTabChange('1')
 
@@ -135,8 +137,31 @@ function UploadBadge(props) {
                             multiline
                             rows={6}
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
+                        />
+                        <TextField
+                            label="Expiry Date"
+                            value={formik.values.expires_date}
+                            name="expires_date"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.expires_date && formik.errors.expires_date)}
+                            helperText={formik.touched.expires_date && formik.errors.expires_date}
+                            type="date"
+                            variant="filled"
+                            fullWidth
+                            sx={{
+                                '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '2px',
+                                },
+                                mb: 6
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
                         />
                     </Grid>
                     <Grid item
@@ -162,13 +187,13 @@ function UploadBadge(props) {
                             fullWidth
                             select
                             variant='filled'
-                            name='badges_type'
+                            name='giveaways_type'
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
-                            error={!!(formik.touched.badges_type && formik.errors.badges_type)}
-                            helperText={formik.touched.badges_type && formik.errors.badges_type}
-                            value={formik.values.badges_type}
-                            label="Badge Type"
+                            error={!!(formik.touched.giveaways_type && formik.errors.giveaways_type)}
+                            helperText={formik.touched.giveaways_type && formik.errors.giveaways_type}
+                            value={formik.values.giveaways_type}
+                            label="Givaways Type"
                             id='selectfield'
                             sx={{ mb: 6 }}
                         >
@@ -179,6 +204,7 @@ function UploadBadge(props) {
                             <MenuItem value={'Follower'}>Follower</MenuItem>
                             <MenuItem value={'Followings'}>Followings</MenuItem>
                             <MenuItem value={'Creations'}>Creations</MenuItem>
+                            <MenuItem value={'CheckInRewardedBadge'}>CheckInRewardedBadge</MenuItem>
                             <MenuItem value={'Misc'}>Misc</MenuItem>
                             <MenuItem value={'Free'}>Free</MenuItem>
                         </TextField>
@@ -257,7 +283,7 @@ function UploadBadge(props) {
                             error={!!(formik.touched.quantity && formik.errors.quantity)}
                             helperText={formik.touched.quantity && formik.errors.quantity}
                             variant="filled"
-                            disabled={formik.values.badges_type !== 'Misc'}
+                            disabled={formik.values.giveaways_type !== 'Misc'}
                             fullWidth
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
@@ -272,7 +298,7 @@ function UploadBadge(props) {
                             error={!!(formik.touched.required_tokens && formik.errors.required_tokens)}
                             helperText={formik.touched.required_tokens && formik.errors.required_tokens}
                             variant="filled"
-                            disabled={formik.values.badges_type !== 'Misc'}
+                            disabled={formik.values.giveaways_type !== 'Misc'}
                             fullWidth
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
@@ -287,7 +313,7 @@ function UploadBadge(props) {
                             error={!!(formik.touched.constraint_number && formik.errors.constraint_number)}
                             helperText={formik.touched.constraint_number && formik.errors.constraint_number}
                             variant="filled"
-                            disabled={formik.values.badges_type !== 'Follower' && formik.values.badges_type !== 'Followings' && formik.values.badges_type !== 'Creations'}
+                            disabled={formik.values.giveaways_type !== 'Follower' && formik.values.giveaways_type !== 'Followings' && formik.values.giveaways_type !== 'Creations'}
                             fullWidth
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}

@@ -50,8 +50,13 @@ const UploadCheckin = async ({
     latitude,
     media,
     badgeId,
+    giveaways_type,
+    required_tokens,
+    expires_date,
     token,
 }) => {
+
+
     try {
         const formData = new FormData();
         formData.append('title', title);
@@ -62,6 +67,10 @@ const UploadCheckin = async ({
         formData.append('latitude', latitude);
         formData.append('media', media); // Assuming media is a File object
         formData.append('reward_badge', badgeId);
+        formData.append('giveaways_type', giveaways_type);
+        if (giveaways_type === 'Misc') formData.append('required_tokens', required_tokens);
+        formData.append('expires_date', expires_date ? new Date(expires_date).toISOString() : '');
+
 
         const response = await axios.post(`/api/checkin/`, formData, {
             headers: {
@@ -73,7 +82,7 @@ const UploadCheckin = async ({
         return response.data;
 
     } catch (error) {
-        throw new Error('Checkin upload failed !');
+        throw new Error(error?.response?.data?.reward_badge[0] || error.message || 'Checkin upload failed !');
     }
 };
 
