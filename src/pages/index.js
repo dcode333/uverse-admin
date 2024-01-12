@@ -2,18 +2,17 @@ import Head from 'next/head';
 import { Box, Container, Tab, Unstable_Grid2 as Grid } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import FeaturedAssets from '../sections/overview/featuredAssets'
+import Library from 'src/sections/library3d/Library'
 import TrendingUsers from '../sections/overview/trendingUsers'
 import Analytics from '../sections/user/Anylatics'
 import { useAuth } from 'src/hooks/use-auth';
 import React from 'react';
 
-const now = new Date();
 
 const Page = () => {
 
   const [value, setValue] = React.useState('1');
-  const { user, authToken } = useAuth();
+  const { authToken } = useAuth();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -53,38 +52,11 @@ const Page = () => {
             </TabList>
           </Box>
           <TabPanel value="1">
-            <FeaturedAssets items={[
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-              {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              }, {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              }, {
-                title: "UVRSE Carlost",
-                description: 'Neptune Work'
-              },
-            ]} />
+
+            <Library
+              authToken={authToken}
+            />
+
           </TabPanel>
           <TabPanel value="2">
             <TrendingUsers data={[
