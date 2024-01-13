@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Skeleton from '../../components/skeleton'
 import FailedToFetch from '../../components/fetchfail'
 import { useBadges } from 'src/api/badge/useBadge';
+import Link from 'next/link';
 
 function Badges(props) {
 
@@ -28,27 +29,30 @@ function Badges(props) {
                     xs={12}
                     sm={6}
                     md={3}>
-                    <Card sx={{ backgroundColor: 'neutral.3000', m: 1, borderRadius: 1 }}>
-                        <CardMedia
-                            sx={{ height: 200 }}
-                            image={item.media ? item.media : "/assets/errors/error-404.png"}
-                            title="Check-in"
-                        />
-                        <CardContent>
-                            <Typography
-                                gutterBottom
-                                variant="body1"
-                                color={'neutral.4000'}
-                                component="div">
-                                {item.title}
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                color="text.secondary">
-                                {item.description}
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <Link href={`/badges/${item.id}`}
+                        style={{ textDecoration: 'none' }}>
+                        <Card sx={{ backgroundColor: 'neutral.3000', m: 1, borderRadius: 1 }}>
+                            <CardMedia
+                                sx={{ height: 200 }}
+                                image={item.media ? item.media : "/assets/errors/error-404.png"}
+                                title="Check-in"
+                            />
+                            <CardContent>
+                                <Typography
+                                    gutterBottom
+                                    variant="body1"
+                                    color={'neutral.4000'}
+                                    component="div">
+                                    {item.title}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    color="text.secondary">
+                                    {item.description}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Link>
                 </Grid>
             ))}
         </Grid>

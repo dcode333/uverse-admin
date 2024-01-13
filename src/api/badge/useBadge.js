@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchBadgeTitle = async ({ token }) => {
     try {
-        const response = await axios.get(`/api/badge/`, {
+        const response = await axios.get(`/api/badge/?type=CheckInRewardedBadge`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -14,6 +14,22 @@ const fetchBadgeTitle = async ({ token }) => {
     } catch (error) {
         console.log(error.message)
         throw new Error(error.message || 'Fetch Badges title Failed');
+    }
+};
+
+
+const fetchBadge = async ({ token, badgeId }) => {
+    try {
+        const response = await axios.get(`/api/badge/${badgeId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Fetch Badge Failed');
     }
 };
 
@@ -76,7 +92,7 @@ const UploadBadge = async ({
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
             },
-        }); 
+        });
 
         return response.data;
 
@@ -103,7 +119,6 @@ const useUploadBadge = () => {
 };
 
 
-
 const useBadges = (token) => {
     return useQuery({
         queryKey: ['badges'],
@@ -113,4 +128,13 @@ const useBadges = (token) => {
     })
 };
 
-export { useBadgeTitle, useBadges, useUploadBadge };
+const useBadge = ({ token, badgeId }) => {
+    return useQuery({
+        queryKey: ['badge', badgeId],
+        queryFn: () => fetchBadge({ token, badgeId }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+};
+
+export { useBadgeTitle, useBadges, useUploadBadge, useBadge };

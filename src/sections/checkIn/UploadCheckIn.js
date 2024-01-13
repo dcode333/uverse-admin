@@ -197,6 +197,7 @@ function UploadCheckIn(props) {
                         >
                             <MenuItem value={"Misc"} >Misc</MenuItem>
                             <MenuItem value={"Free"}>Free</MenuItem>
+                            <MenuItem value={"BadgeRewardedCheckIn"}>BadgeRewardedCheckIn</MenuItem>
                         </TextField>
                         <TextField
                             label="Required tokens"

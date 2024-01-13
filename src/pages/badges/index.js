@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import { Box, Container, Tab, Unstable_Grid2 as Grid, Typography, Paper, TextField, Button } from '@mui/material';
+import { Box, Container, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
+
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import Anylatics from '../sections/badges/Analytics'
+import Anylatics from '../../sections/badges/Analytics'
 import BadgeList from 'src/sections/badges/BadgeList';
 import { useAuth } from 'src/hooks/use-auth';
 import UploadBadge from 'src/sections/badges/UploadBadge';
@@ -11,8 +12,8 @@ import UploadBadge from 'src/sections/badges/UploadBadge';
 
 const Page = () => {
 
-    const [value, setValue] = React.useState('1');
     const { authToken } = useAuth();
+    const [value, setValue] = React.useState('1');
     const handleTabChange = (val) => setValue(val);
     const handleChange = (event, newValue) => setValue(newValue);
 
@@ -31,7 +32,6 @@ const Page = () => {
             }}
         >
             <Container maxWidth="xl">
-
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'neutral.2000' }}>
                         <TabList
@@ -64,9 +64,7 @@ const Page = () => {
                                     Badges
                                 </Typography>
                             </Box>
-                            <BadgeList
-                                authToken={authToken}
-                            />
+                            <BadgeList authToken={authToken} />
                         </>
                     </TabPanel>
                     <TabPanel value="2">
