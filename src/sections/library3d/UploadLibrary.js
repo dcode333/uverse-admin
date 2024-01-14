@@ -125,7 +125,7 @@ function UploadLibrary(props) {
                             sx={{ mb: 6 }}
                             inputProps={{
                                 style: { color: 'white' },
-                                accept: '.obj, .stl, .fbx, .glb, .gltf'
+                                // accept: '.obj, .stl, .fbx, .glb, .gltf'
                             }}
                             InputLabelProps={{ shrink: true, }}
                         />
@@ -210,7 +210,7 @@ function UploadLibrary(props) {
                             select
                             variant='filled'
                             name='locked_content'
-                            disabled={isLoading || formik.values.is_locked}
+                            disabled={isLoading || !formik.values.is_locked}
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             error={!!(formik.touched.locked_content && formik.errors.locked_content)}

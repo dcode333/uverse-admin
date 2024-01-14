@@ -12,7 +12,7 @@ const uploadlibraryschema = Yup.object({
     is_locked: Yup.boolean().required('Is Locked is required'),
     locked_content: Yup.string()
         .when('is_locked', {
-            is: false,
+            is: true,
             then: (schema) => schema.required("Locked Content is required"),
             otherwise: (schema) => schema.notRequired()
         }),

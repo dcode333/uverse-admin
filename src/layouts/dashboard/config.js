@@ -51,7 +51,7 @@ export const items = [
   },
   {
     title: 'Check Ins',
-    path: '/checkin',
+    path: '/checkins',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />

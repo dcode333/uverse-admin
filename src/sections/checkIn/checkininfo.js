@@ -6,16 +6,16 @@ import CommentIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
 import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import SavedIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import QRcode from 'react-qr-code';
-import { useBadge } from 'src/api/badge/useBadge';
+import { useCheckindetail } from 'src/api/checkin/useCheckin';
 import { useAuth } from 'src/hooks/use-auth';
 import FailedToFetch from 'src/components/fetchfail';
 
 
 
 const placeholder = '/assets/avatars/avatarmed.png'
-function Profileinfo({ badgeId }) {
+function Profileinfo({ checkinId }) {
     const { authToken } = useAuth();
-    const { data, isLoading, isError } = useBadge({ token: authToken, badgeId });
+    const { data, isLoading, isError } = useCheckindetail({ token: authToken, checkinId });
 
     if (isError) return <FailedToFetch />
 
@@ -27,7 +27,7 @@ function Profileinfo({ badgeId }) {
                 lg={12}
             >
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 1 }}>
-                    {isLoading ?
+                    {isLoading || !data ?
                         <Skeleton
                             variant="rectangular"
                             width={'100%'}
@@ -117,7 +117,7 @@ function Profileinfo({ badgeId }) {
                 lg={6}
             >
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 1 }}>
-                    {isLoading ?
+                    {isLoading || !data ?
                         <Skeleton
                             variant="rectangular"
                             width={'100%'}
@@ -284,7 +284,7 @@ function Profileinfo({ badgeId }) {
                 lg={6}
             >
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 1 }}>
-                    {isLoading ?
+                    {isLoading || !data ?
                         <Skeleton
                             variant="rectangular"
                             width={'100%'}

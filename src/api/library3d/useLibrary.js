@@ -37,7 +37,7 @@ const UploadLibrary = async ({
         formData.append('title', title);
         formData.append('description', description);
         formData.append('media', media);
-        if (!is_locked) formData.append('locked_content', locked_content);
+        if (is_locked) formData.append('locked_content', locked_content);
         formData.append('hashtag', hashtag);
         formData.append('is_locked', is_locked);
         formData.append('subtype', subtype);

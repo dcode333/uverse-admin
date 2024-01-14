@@ -15,6 +15,24 @@ const fetchAllCheckins = async ({ token }) => {
     }
 };
 
+const fetchCheckin = async ({ token, checkinId }) => {
+    try {
+
+        const response = await axios.get(`/api/checkin/${checkinId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Fetch Checkin Failed');
+    }
+};
+
+
+
 const fetchCheckinTitle = async ({ token }) => {
     try {
         const response = await axios.get(`/api/checkin/`, {
@@ -105,6 +123,15 @@ const useCheckin = (token) => {
     })
 };
 
+const useCheckindetail = ({ token, checkinId }) => {
+    return useQuery({
+        queryKey: ['checkindetail', checkinId],
+        queryFn: () => fetchCheckin({ token, checkinId }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+};
+
 const useUploadCheckin = () => {
     return useMutation({
         mutationFn: UploadCheckin,
@@ -112,4 +139,4 @@ const useUploadCheckin = () => {
     })
 };
 
-export { useCheckin, useUploadCheckin, useCheckinTitle };
+export { useCheckin, useUploadCheckin, useCheckinTitle, useCheckindetail };

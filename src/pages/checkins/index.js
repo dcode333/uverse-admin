@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Box, Container, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import Anylatics from '../sections/checkIn/Analytics'
+import Anylatics from '../../sections/checkIn/Analytics'
 import CheckIns from 'src/sections/checkIn/CheckIn';
 import { useAuth } from 'src/hooks/use-auth';
 import UploadCheckIn from 'src/sections/checkIn/UploadCheckIn';

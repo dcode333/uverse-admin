@@ -21,11 +21,11 @@ function Profileinfo({ userId }) {
 
     return (
         <>
-            {data && <Grid container>
+            <Grid container>
                 <Grid item
                     xs={12}
                     md={4}>
-                    {isLoading ?
+                    {isLoading || !data ?
                         <Skeleton
                             variant="rectangular"
                             width="100%"
@@ -61,7 +61,7 @@ function Profileinfo({ userId }) {
                                 </SvgIcon>
                             </Box>
                         </Box>
-                        {isLoading ?
+                        {isLoading || !data ?
                             <Skeleton
                                 variant="rectangular"
                                 width={'100%'}
@@ -219,7 +219,7 @@ function Profileinfo({ userId }) {
                         </Box>
                         <Box sx={{ display: 'flex', my: 2 }}>
 
-                            {checkinLoading ?
+                            {checkinLoading || !checkin ?
                                 <Skeleton
                                     variant="rectangular"
                                     width={'100%'}
@@ -268,7 +268,7 @@ function Profileinfo({ userId }) {
                             </Box>
                         </Box>
                         <Box sx={{ display: 'flex', my: 2, justifyContent: 'center', alignItems: 'center' }}>
-                            {checkinLoading ?
+                            {checkinLoading || !checkin ?
                                 <Skeleton
                                     variant="rectangular"
                                     width={'100%'}
@@ -297,7 +297,7 @@ function Profileinfo({ userId }) {
                         </Box>
                     </Box>
                 </Grid>
-            </Grid >}
+            </Grid >
         </>
 
     )
