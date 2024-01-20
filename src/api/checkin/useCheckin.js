@@ -59,6 +59,20 @@ const fetchCheckinTitle = async ({ token }) => {
     }
 };
 
+const deleteCheckinItem = async ({ token, checkinId }) => {
+    try {
+        const response = await axios.delete(`/api/checkin/${checkinId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Delete Checkin Failed');
+    }
+}
 
 
 const UploadCheckin = async ({
@@ -113,7 +127,6 @@ const useCheckinTitle = (token) => {
     })
 };
 
-
 const useCheckin = (token) => {
     return useQuery({
         queryKey: ['checkins'],
@@ -139,4 +152,11 @@ const useUploadCheckin = () => {
     })
 };
 
-export { useCheckin, useUploadCheckin, useCheckinTitle, useCheckindetail };
+const useDeleteCheckinItem = () => {
+    return useMutation({
+        mutationFn: deleteCheckinItem,
+        mutationKey: ['deletecheckinItem'],
+    })
+}
+
+export { useCheckin, useUploadCheckin, useCheckinTitle, useCheckindetail, useDeleteCheckinItem };

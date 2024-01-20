@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, Box, Modal, Snackbar } from '@mui/material';
 
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 import Skeleton from '../../components/skeleton'
@@ -13,29 +13,35 @@ import FailedToFetch from '../../components/fetchfail'
 import EmptyResponse from '../../components/emptyresponse'
 import { useLibraries, useDeleteLibraryItem } from 'src/api/library3d/useLibrary';
 
-function CheckIn(props) {
+
+
+function Library(props) {
 
     const { authToken } = props;
     const { data: items, isError, isLoading, refetch, isRefetching } = useLibraries(authToken)
+    const { mutateAsync, isPending } = useDeleteLibraryItem()
+
+    const [deleteConfirmationItem, setDeleteConfirmationItem] = useState({});
     const [itemsIntiatedToDelete, setItemsIntiatedToDelete] = useState([]);
     const [deletionFailed, setDeletionFailed] = useState(false)
-    const { mutateAsync, isPending } = useDeleteLibraryItem()
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleModalOpen = ({ id, title }) => { setDeleteConfirmationItem({ id, title }); setOpenModal(true) };
+    const handleModalClose = () => setOpenModal(false);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') return;
         setDeletionFailed(false)
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async () => {
         try {
-            setItemsIntiatedToDelete([...itemsIntiatedToDelete, id])
-            await mutateAsync({ token: authToken, libraryId: id })
+            setOpenModal(false)
+            setItemsIntiatedToDelete([...itemsIntiatedToDelete, deleteConfirmationItem.id])
+            await mutateAsync({ token: authToken, libraryId: deleteConfirmationItem.id })
             refetch()
-        }
-        catch (err) { setDeletionFailed(true) }
+        } catch (err) { setDeletionFailed(true) }
     }
-
-
 
     if (isLoading) return <Skeleton />
     if (isError) return <FailedToFetch />
@@ -66,7 +72,7 @@ function CheckIn(props) {
                                     sx={{ borderRadius: 1, position: 'absolute', top: 5, left: 10, zIndex: 10 }}
                                     color="error"
                                     startIcon={<TrashIcon height={18} />}
-                                    onClick={() => handleDelete(item.id)}
+                                    onClick={() => handleModalOpen({ id: item.id, title: item.title })}
                                 >
                                     Delete
                                 </LoadingButton>
@@ -102,8 +108,52 @@ function CheckIn(props) {
                     Deletion Failed
                 </Alert>
             </Snackbar>
+            <Modal
+                open={openModal}
+                onClose={handleModalClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    bgcolor: 'neutral.3000',
+                    color: 'neutral.4000',
+                    width: 400,
+                    boxShadow: 24,
+                    borderRadius: 1,
+                    p: 4,
+                }}>
+                    <Typography id="modal-modal-title"
+                        variant="h6"
+                        component="h2">
+                        {` Do you want to delete "${deleteConfirmationItem.title}" Library ?`}
+                    </Typography>
+                    <Box sx={{ display: 'flex' }}>
+                        <LoadingButton
+                            variant="contained"
+                            size='small'
+                            sx={{ borderRadius: 1, mr: 2, my: 3 }}
+                            color="error"
+                            onClick={handleDelete}
+                        >
+                            Delete
+                        </LoadingButton>
+                        <LoadingButton
+                            variant="contained"
+                            size='small'
+                            sx={{ borderRadius: 1, my: 3, bgcolor: 'gray' }}
+                            onClick={() => handleModalClose()}
+                        >
+                            Cancel
+                        </LoadingButton>
+                    </Box>
+                </Box>
+            </Modal>
         </>
     );
 }
 
-export default CheckIn;
+export default Library;
