@@ -17,6 +17,22 @@ const fetchAllLibraries = async ({ token }) => {
     }
 };
 
+const deleteLibraryItem = async ({ token, libraryId }) => {
+
+    try {
+        const response = await axios.delete(`/api/library/${libraryId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Delete Library Failed');
+    }
+};
+
 const UploadLibrary = async ({
     title,
     description,
@@ -80,4 +96,12 @@ const useLibraries = (token) => {
     })
 };
 
-export { useLibraries, useUploadLibrary };
+const useDeleteLibraryItem = () => {
+    return useMutation({
+        mutationFn: deleteLibraryItem,
+        mutationKey: ['deletelibraryItem'],
+    })
+}
+
+
+export { useLibraries, useUploadLibrary, useDeleteLibraryItem };

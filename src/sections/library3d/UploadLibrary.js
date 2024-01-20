@@ -23,7 +23,7 @@ import { useQueryClient } from '@tanstack/react-query';
 function UploadLibrary(props) {
 
     const { authToken, handleTabChange } = props;
-    const { data, isLoading } = useBadgeTitle(authToken);
+    const { data, isLoading } = useBadgeTitle(authToken);   
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadLibrary();
     const [postSuccess, setPostSuccess] = useState(false)

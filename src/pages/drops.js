@@ -68,19 +68,6 @@ const Page = () => {
                                 >
                                     Badges
                                 </Typography>
-                                {/* <Box width={'40'}>
-
-                                    <ToggleButtonGroup
-                                        color="primary"
-                                        sx={{ justifySelf: 'center', height: '40px' }}
-                                        value={alignment}
-                                        onChange={handleSwitchChange}
-                                        aria-label="Platform"
-                                    >
-                                        <ToggleButton  value="1">All Check Ins</ToggleButton>
-                                        <ToggleButton value="2">User specific</ToggleButton>
-                                    </ToggleButtonGroup>
-                                </Box> */}
                             </Box>
                             <BadgeList
                                 items={[
@@ -151,7 +138,8 @@ const Page = () => {
                             <Grid item
                                 xs={12}
                                 sm={6}
-                                lg={4}>
+                                lg={6}
+                            >
                                 <TextField
                                     id="title-input"
                                     label="Title"
@@ -172,6 +160,23 @@ const Page = () => {
                                     sx={{ mb: 6 }}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
+
+                            </Grid>
+                            <Grid item
+                                xs={12}
+                                sm={6}
+                                lg={6}
+                            >
+                                <TextField
+                                    id="title-input"
+                                    label="Required Tokens"
+                                    type="text"
+                                    autoComplete="current-password"
+                                    variant="filled"
+                                    fullWidth
+                                    sx={{ mb: 6 }}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
                                 <TextField
                                     id="title-input"
                                     label="Linked Creation"
@@ -180,29 +185,6 @@ const Page = () => {
                                     variant="filled"
                                     fullWidth
                                     sx={{ mb: 6 }}
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                            </Grid>
-                            <Grid item
-                                xs={12}
-                                sm={6}
-                                lg={4}>
-                                <TextField
-                                    id="description-input"
-                                    label="Description"
-                                    multiline
-                                    rows={6}
-                                    fullWidth
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                                <TextField
-                                    id="title-input"
-                                    label="Required Tokens"
-                                    type="text"
-                                    autoComplete="current-password"
-                                    variant="filled"
-                                    fullWidth
-                                    sx={{ my: 5 }}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
                             </Grid>

@@ -30,7 +30,6 @@ const Page = () => {
             }}
         >
             <Container maxWidth="xl">
-
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 2, borderColor: 'neutral.2000' }}>
                         <TabList
@@ -63,9 +62,7 @@ const Page = () => {
                                 </Typography>
                             </Box>
 
-                            <Library
-                                authToken={authToken}
-                            />
+                            <Library authToken={authToken} />
                         </>
                     </TabPanel>
 
@@ -76,7 +73,6 @@ const Page = () => {
                         />
                     </TabPanel>
                 </TabContext>
-
             </Container>
         </Box >
     </>
