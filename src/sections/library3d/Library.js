@@ -145,7 +145,7 @@ function Library(props) {
                             variant="contained"
                             size='small'
                             sx={{ borderRadius: 1, my: 3, bgcolor: 'gray' }}
-                            onClick={() => handleModalClose()}
+                            onClick={handleModalClose}
                         >
                             Cancel
                         </LoadingButton>

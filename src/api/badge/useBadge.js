@@ -50,6 +50,23 @@ const fetchAllBadges = async ({ token }) => {
     }
 };
 
+
+const deleteBadgeItem = async ({ token, badgeId }) => {
+    try {
+        const response = await axios.delete(`/api/badge/${badgeId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Delete Badge Failed');
+    }
+}
+
+
 const UploadBadge = async ({
     title,
     description,
@@ -137,4 +154,11 @@ const useBadge = ({ token, badgeId }) => {
     })
 };
 
-export { useBadgeTitle, useBadges, useUploadBadge, useBadge };
+const useDeleteBadgeItem = () => {
+    return useMutation({
+        mutationFn: deleteBadgeItem,
+        mutationKey: ['deletebadgeItem'],
+    })
+}
+
+export { useBadgeTitle, useBadges, useUploadBadge, useBadge, useDeleteBadgeItem };
