@@ -100,53 +100,25 @@ function UploadLibrary(props) {
                         lg={4}>
 
                         <TextField
-                            label="Title"
-                            value={formik.values.title}
-                            name="title"
+                            label="Name"
+                            value={formik.values.name}
+                            name="name"
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
-                            error={!!(formik.touched.title && formik.errors.title)}
-                            helperText={formik.touched.title && formik.errors.title}
+                            error={!!(formik.touched.name && formik.errors.name)}
+                            helperText={formik.touched.name && formik.errors.name}
                             type="text"
                             variant="filled"
                             fullWidth
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
-
-                        <TextField
-                            fullWidth
-                            select
-                            variant='filled'
-                            name='locked_content'
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.locked_content && formik.errors.locked_content)}
-                            helperText={formik.touched.locked_content && formik.errors.locked_content}
-                            value={formik.values.locked_content}
-                            label="Locked Content"
-                            id='selectfield'
-                            sx={{ mb: 6 }}
-                        >
-                            <MenuItem value={''} >
-                                None
-                            </MenuItem>
-                            {data?.map((item, i) => (
-                                <MenuItem
-                                    value={item.id}
-                                    key={i}>
-                                    {item.label}
-                                </MenuItem>
-                            ))}
-
-                        </TextField>
                     </Grid>
 
                     <Grid item
                         xs={12}
                         sm={6}
                         lg={4}>
-
 
                     </Grid>
 
