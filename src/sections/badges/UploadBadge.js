@@ -7,13 +7,15 @@ import {
     MenuItem,
     CircularProgress,
 } from '@mui/material';
+import { useState } from 'react';
 import { useFormik } from 'formik';
+import { useQueryClient } from '@tanstack/react-query';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useCheckinTitle } from 'src/api/checkin/useCheckin';
 import { useUploadBadge } from 'src/api/badge/useBadge';
-import { useState } from 'react';
 import { uploadbadgeschema } from 'src/schemas/badge';
-import { useQueryClient } from '@tanstack/react-query';
+import { extractHashtags } from 'src/utils/extractHashtags';
 
 
 //Reset media/badgeId -pending
@@ -40,7 +42,6 @@ function UploadBadge(props) {
             giveaways_type: '',
             quantity: '',
             constraint_number: '',
-            hashtag: '',
             additional_information: '',
             age_restricted: false,
             required_tokens: '',
@@ -53,13 +54,15 @@ function UploadBadge(props) {
 
             try {
 
+                const hashtags = extractHashtags(values.description);
+
                 await mutateAsync({
                     title: values.title,
                     description: values.description,
                     media: values.media,
                     checkin: values.checkin,
                     giveaways_type: values.giveaways_type,
-                    hashtag: values.hashtag,
+                    hashtag: hashtags,
                     age_restricted: values.age_restricted,
                     additional_information: values.additional_information,
                     quantity: values.quantity,
@@ -140,29 +143,6 @@ function UploadBadge(props) {
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
-                        <TextField
-                            label="Expiry Date"
-                            value={formik.values.expires_date}
-                            name="expires_date"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.expires_date && formik.errors.expires_date)}
-                            helperText={formik.touched.expires_date && formik.errors.expires_date}
-                            type="date"
-                            variant="filled"
-                            fullWidth
-                            sx={{
-                                '& input[type="date"]::-webkit-calendar-picker-indicator': {
-                                    backgroundColor: '#ffffff',
-                                    borderRadius: '2px',
-                                },
-                                mb: 6
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                            InputLabelProps={{
-                                shrink: true
-                            }}
-                        />
                     </Grid>
                     <Grid item
                         xs={12}
@@ -210,20 +190,6 @@ function UploadBadge(props) {
                         </TextField>
 
                         <TextField
-                            label="hashtags"
-                            value={formik.values.hashtag}
-                            type="text"
-                            name="hashtag"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.hashtag && formik.errors.hashtag)}
-                            helperText={formik.touched.hashtag && formik.errors.hashtag}
-                            variant="filled"
-                            fullWidth
-                            sx={{ mb: 6 }}
-                            inputProps={{ style: { color: 'white' } }}
-                        />
-                        <TextField
                             fullWidth
                             select
                             variant='filled'
@@ -240,6 +206,28 @@ function UploadBadge(props) {
                             <MenuItem value={true} >Age Restricted</MenuItem>
                             <MenuItem value={false}>Not Age Restricted</MenuItem>
                         </TextField>
+                        <TextField
+                            label="Expiry Date"
+                            value={formik.values.expires_date}
+                            name="expires_date"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.expires_date && formik.errors.expires_date)}
+                            helperText={formik.touched.expires_date && formik.errors.expires_date}
+                            type="date"
+                            variant="filled"
+                            fullWidth
+                            sx={{
+                                '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '2px',
+                                }, mb: 6
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                        />
                     </Grid>
                     <Grid item
                         xs={12}
