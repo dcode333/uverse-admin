@@ -90,7 +90,7 @@ const UploadBadge = async ({
         formData.append('type', 'badge');
         formData.append('subtype', 'BADGE');
         formData.append('media', media); // Assuming media is a File object
-        formData.append('checkIn', checkin ? checkin : '');
+        formData.append('checkin', checkin ? checkin : '');
         formData.append('giveaways_type', giveaways_type);
         formData.append('expires_date', expires_date ? new Date(expires_date).toISOString() : '');
         hashtags.forEach((hashtag, index) => {

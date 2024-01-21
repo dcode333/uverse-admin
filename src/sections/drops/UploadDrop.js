@@ -14,7 +14,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadLibrary } from 'src/api/library3d/useLibrary';
-import { uploadlibraryschema } from 'src/schemas/library';
+import { uploadDropSchema } from 'src/schemas/drop';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
 
@@ -35,32 +35,21 @@ function UploadLibrary(props) {
 
     const formik = useFormik({
         initialValues: {
-            title: '',
+            name: '',
             description: '',
-            locked_content: '',
             submit: null
         },
-        validationSchema: uploadlibraryschema,
+        validationSchema: uploadDropSchema,
         onSubmit: async (values, helpers) => {
 
             try {
 
                 const hashtags = extractHashtags(values.description);
 
-                await mutateAsync({
-                    title: values.title,
-                    description: values.description,
-                    media: values.media,
-                    locked_content: values.locked_content,
-                    hashtags: hashtags,
-                    is_locked: values.is_locked,
-                    subtype: values.subtype,
-                    category: values.category,
-                    token: authToken,
-                    threeD_file: values.threeD_file,
-                    width: width,
-                    length: height
-                });
+                // await mutateAsync({
+                //     name: values.name,
+                //     description: values.description,
+                // });
 
                 queryClient.resetQueries('libraries');
                 // helpers.resetForm();
