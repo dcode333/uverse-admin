@@ -117,7 +117,7 @@ const UploadBadge = async ({
 
     } catch (error) {
 
-        throw new Error(error?.response?.data?.checkIn[0] || error.message || 'Badge upload failed !');
+        throw new Error(error?.response?.data?.checkin[0] || error.message || 'Badge upload failed !');
     }
 };
 
