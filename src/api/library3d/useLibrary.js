@@ -38,7 +38,7 @@ const UploadLibrary = async ({
     description,
     media,
     locked_content,
-    hashtag,
+    hashtags,
     is_locked,
     subtype,
     category,
@@ -54,7 +54,9 @@ const UploadLibrary = async ({
         formData.append('description', description);
         formData.append('media', media);
         if (is_locked) formData.append('locked_content', locked_content);
-        formData.append('hashtag', hashtag);
+        hashtags.forEach((hashtag, index) => {
+            formData.append(`hashtags[${index}]`, hashtag);
+        });
         formData.append('is_locked', is_locked);
         formData.append('subtype', subtype);
         formData.append('category', category);

@@ -8,12 +8,14 @@ import {
     CircularProgress
 } from '@mui/material';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useQueryClient } from '@tanstack/react-query';
+
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadCheckin } from 'src/api/checkin/useCheckin';
 import { uploadcheckinschema } from 'src/schemas/checkin';
-import { useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { extractHashtags } from 'src/utils/extractHashtags';
 
 
 //Reset media/badgeId -pending
@@ -48,11 +50,14 @@ function UploadCheckIn(props) {
         onSubmit: async (values, helpers) => {
 
             try {
+                const hashtags = extractHashtags(values.description);
+
                 await mutateAsync({
                     title: values.title,
                     description: values.description,
                     longitude: values.longitude,
                     latitude: values.latitude,
+                    hashtags: hashtags,
                     media: values.media,
                     badgeId: values.badgeId,
                     giveaways_type: values.giveaways_type,

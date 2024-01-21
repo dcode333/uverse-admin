@@ -6,7 +6,6 @@ const uploadlibraryschema = Yup.object({
     description: Yup.string().required('Description is required'),
     media: Yup.mixed().required('Media is required'),
     threeD_file: Yup.mixed().required('3D File is required'),
-    hashtag: Yup.string().required('Hashtag is required'),
     subtype: Yup.string().required('Subtype is required'),
     category: Yup.string().required('Category is required'),
     is_locked: Yup.boolean().required('Is Locked is required'),

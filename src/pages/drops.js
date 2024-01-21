@@ -1,26 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import { Box, Container, Tab, Unstable_Grid2 as Grid, Typography, Paper, TextField, Button } from '@mui/material';
+import { Box, Container, Tab, Unstable_Grid2 as Grid, Typography, TextField, Button } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import Anylatics from '../sections/badges/Analytics'
-import BadgeList from 'src/sections/badges/BadgeList';
-import UserPlusIcon from '@heroicons/react/24/outline/PaperClipIcon';
 
 const now = new Date();
 
 const Page = () => {
 
     const [value, setValue] = React.useState('1');
-
-    const [alignment, setAlignment] = React.useState('1');
-
-    const handleSwitchChange = (event, newAlignment) => {
-        setAlignment(alignment === '1' ? '2' : '1');
-    };
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const handleChange = (event, newValue) => setValue(newValue);
 
     return <>
         <Head>
@@ -69,67 +58,9 @@ const Page = () => {
                                     Badges
                                 </Typography>
                             </Box>
-                            <BadgeList
-                                items={[
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                    {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    }, {
-                                        title: "UVRSE Carlost",
-                                        description: 'Neptune Work'
-                                    },
-                                ]} />
                         </>
                     </TabPanel>
                     <TabPanel value="3">
-                        {/* <Anylatics /> */}
                     </TabPanel>
 
                     <TabPanel value="1">

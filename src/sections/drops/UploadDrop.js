@@ -15,7 +15,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadLibrary } from 'src/api/library3d/useLibrary';
 import { uploadlibraryschema } from 'src/schemas/library';
-import { getImageDimensions } from 'src/utils/get-image-dimensions';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
 
@@ -38,11 +37,6 @@ function UploadLibrary(props) {
         initialValues: {
             title: '',
             description: '',
-            media: null,
-            threeD_file: null,
-            subtype: '',
-            category: '',
-            is_locked: false,
             locked_content: '',
             submit: null
         },
@@ -52,7 +46,6 @@ function UploadLibrary(props) {
             try {
 
                 const hashtags = extractHashtags(values.description);
-                const { width, height } = await getImageDimensions(values.media);
 
                 await mutateAsync({
                     title: values.title,
@@ -60,7 +53,7 @@ function UploadLibrary(props) {
                     media: values.media,
                     locked_content: values.locked_content,
                     hashtags: hashtags,
-                    is_locked: values.is_locked, 
+                    is_locked: values.is_locked,
                     subtype: values.subtype,
                     category: values.category,
                     token: authToken,
@@ -96,41 +89,6 @@ function UploadLibrary(props) {
                         lg={4}
                         mb={2}
                     >
-                        <TextField
-                            id="media-input"
-                            error={!!(formik.touched.media && formik.errors.media)}
-                            helperText={formik.touched.media && formik.errors.media}
-                            name="media"
-                            onBlur={formik.handleBlur}
-                            onChange={async (event) => formik.setFieldValue('media', event.currentTarget.files[0])}
-                            type="file"
-                            label="Media"
-                            variant="outlined"
-                            fullWidth
-                            sx={{ mb: 6 }}
-                            inputProps={{ style: { color: 'white' }, accept: 'image/*' }}
-                            InputLabelProps={{ shrink: true, }}
-                        />
-
-                        <TextField
-                            id="3dfile-input"
-                            error={!!(formik.touched.threeD_file && formik.errors.threeD_file)}
-                            helperText={formik.touched.threeD_file && formik.errors.threeD_file}
-                            name="threeD_file"
-                            onBlur={formik.handleBlur}
-                            onChange={(event) => formik.setFieldValue('threeD_file', event.currentTarget.files[0])}
-                            type="file"
-                            label="3D File"
-                            variant="outlined"
-                            fullWidth
-                            sx={{ mb: 6 }}
-                            inputProps={{
-                                style: { color: 'white' },
-                                // accept: '.obj, .stl, .fbx, .glb, .gltf'
-                            }}
-                            InputLabelProps={{ shrink: true, }}
-                        />
-
                         <TextField
                             label="Description"
                             value={formik.values.description}
@@ -171,26 +129,7 @@ function UploadLibrary(props) {
                             fullWidth
                             select
                             variant='filled'
-                            name='is_locked'
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.is_locked && formik.errors.is_locked)}
-                            helperText={formik.touched.is_locked && formik.errors.is_locked}
-                            value={formik.values.is_locked}
-                            label="Content Lock"
-                            id='selectfield'
-                            sx={{ mb: 6 }}
-                        >
-                            <MenuItem value={true} >Content Locked</MenuItem>
-                            <MenuItem value={false}>Content Unlocked</MenuItem>
-                        </TextField>
-
-                        <TextField
-                            fullWidth
-                            select
-                            variant='filled'
                             name='locked_content'
-                            disabled={isLoading || !formik.values.is_locked}
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             error={!!(formik.touched.locked_content && formik.errors.locked_content)}
@@ -218,42 +157,6 @@ function UploadLibrary(props) {
                         xs={12}
                         sm={6}
                         lg={4}>
-
-                        <TextField
-                            fullWidth
-                            select
-                            variant='filled'
-                            name='category'
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.category && formik.errors.category)}
-                            helperText={formik.touched.category && formik.errors.category}
-                            value={formik.values.category}
-                            label="Category"
-                            id='selectfield'
-                            sx={{ mb: 6 }}
-                        >
-                            <MenuItem value={'3D_ASSET'} >3D_ASSET</MenuItem>
-                            <MenuItem value={'FACE_FILTER'}>FACE_FILTER</MenuItem>
-                        </TextField>
-
-                        <TextField
-                            fullWidth
-                            select
-                            variant='filled'
-                            name='subtype'
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            error={!!(formik.touched.subtype && formik.errors.subtype)}
-                            helperText={formik.touched.subtype && formik.errors.subtype}
-                            value={formik.values.subtype}
-                            label="Subtype"
-                            id='selectfield'
-                            sx={{ mb: 6 }}
-                        >
-                            <MenuItem value={'3D'} >3D</MenuItem>
-                            <MenuItem value={'AR'}>AR</MenuItem>
-                        </TextField>
 
 
                     </Grid>

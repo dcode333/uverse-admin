@@ -74,7 +74,7 @@ const UploadBadge = async ({
     checkin,
     token,
     giveaways_type,
-    hashtag,
+    hashtags,
     age_restricted,
     additional_information,
     quantity,
@@ -93,7 +93,9 @@ const UploadBadge = async ({
         formData.append('checkIn', checkin ? checkin : '');
         formData.append('giveaways_type', giveaways_type);
         formData.append('expires_date', expires_date ? new Date(expires_date).toISOString() : '');
-        formData.append('hashtag', hashtag);
+        hashtags.forEach((hashtag, index) => {
+            formData.append(`hashtags[${index}]`, hashtag);
+        });
         formData.append('age_restricted', age_restricted);
         formData.append('additional_information', additional_information);
         if (giveaways_type === 'Misc') {

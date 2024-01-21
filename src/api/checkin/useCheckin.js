@@ -83,6 +83,7 @@ const UploadCheckin = async ({
     media,
     badgeId,
     giveaways_type,
+    hashtags,
     required_tokens,
     expires_date,
     token,
@@ -93,6 +94,9 @@ const UploadCheckin = async ({
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
+        hashtags.forEach((hashtag, index) => {
+            formData.append(`hashtags[${index}]`, hashtag);
+        });
         formData.append('type', 'checkin');
         formData.append('subtype', 'CHECKIN');
         formData.append('longitude', longitude);

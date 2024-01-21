@@ -62,7 +62,7 @@ function UploadBadge(props) {
                     media: values.media,
                     checkin: values.checkin,
                     giveaways_type: values.giveaways_type,
-                    hashtag: hashtags,
+                    hashtags: hashtags,
                     age_restricted: values.age_restricted,
                     additional_information: values.additional_information,
                     quantity: values.quantity,
