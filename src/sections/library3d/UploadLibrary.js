@@ -25,7 +25,7 @@ import { extractHashtags } from 'src/utils/extractHashtags';
 function UploadLibrary(props) {
 
     const { authToken, handleTabChange } = props;
-    const { data, isLoading } = useBadgeTitle(authToken);
+    const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'CheckInRewardedBadge' });
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadLibrary();
     const [postSuccess, setPostSuccess] = useState(false)
@@ -60,7 +60,7 @@ function UploadLibrary(props) {
                     media: values.media,
                     locked_content: values.locked_content,
                     hashtags: hashtags,
-                    is_locked: values.is_locked, 
+                    is_locked: values.is_locked,
                     subtype: values.subtype,
                     category: values.category,
                     token: authToken,

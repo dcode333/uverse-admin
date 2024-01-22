@@ -24,7 +24,7 @@ import { extractHashtags } from 'src/utils/extractHashtags';
 function UploadCheckIn(props) {
 
     const { authToken, handleTabChange } = props;
-    const { data, isLoading } = useBadgeTitle(authToken);
+    const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'CheckInRewardedBadge' });
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadCheckin();
     const [postSuccess, setPostSuccess] = useState(false)

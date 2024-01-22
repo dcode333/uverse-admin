@@ -14,6 +14,20 @@ const fetchUsers = async ({ token }) => {
     }
 };
 
+const fetchUsersTitle = async ({ token }) => {
+    try {
+        const response = await axios.get(`/api/get-all-users/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        return response.data?.results?.filter(({ id, username }) => id && username).map(({ id, username }) => ({ id, label: username }));
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Fetch Users Failed');
+    }
+}
+
 const fetchUserProfile = async ({ token, userId }) => {
     try {
         const response = await axios.get(`/api/getuserprofile/${userId}/`, {
@@ -46,4 +60,13 @@ const useUsers = (token) => {
     })
 };
 
-export { useUsers, useUserProfile };
+const useUsersTitle = ({ token }) => {
+    return useQuery({
+        queryKey: ['userstitle'],
+        queryFn: () => fetchUsersTitle({ token }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+}
+
+export { useUsers, useUserProfile, useUsersTitle };

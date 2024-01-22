@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-const fetchBadgeTitle = async ({ token }) => {
+const fetchBadgeTitle = async ({ token, type }) => {
     try {
-        const response = await axios.get(`/api/badge/?type=CheckInRewardedBadge`, {
+        const response = await axios.get(`/api/badge/?type=${type}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -121,10 +121,10 @@ const UploadBadge = async ({
     }
 };
 
-const useBadgeTitle = (token) => {
+const useBadgeTitle = ({ token, type }) => {
     return useQuery({
         queryKey: ['badgestitle'],
-        queryFn: () => fetchBadgeTitle({ token }),
+        queryFn: () => fetchBadgeTitle({ token, type }),
         staleTime: Infinity,
         refetchOnMount: false,
     })

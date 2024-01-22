@@ -4,18 +4,21 @@ import {
     TextField,
     Snackbar,
     Alert,
-    MenuItem,
     CircularProgress,
+    Autocomplete,
+    Chip,
+    Box
 } from '@mui/material';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { useFormik } from 'formik';
 import { useQueryClient } from '@tanstack/react-query';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useBadgeTitle } from 'src/api/badge/useBadge';
-import { useUploadLibrary } from 'src/api/library3d/useLibrary';
+import { useInterests } from 'src/api/drops/useDrops';
+import { useUsersTitle } from 'src/api/users/useUsers';
+import { useUploadDrop } from 'src/api/drops/useDrops';
 import { uploadDropSchema } from 'src/schemas/drop';
-import { extractHashtags } from 'src/utils/extractHashtags';
 
 
 
@@ -23,10 +26,12 @@ import { extractHashtags } from 'src/utils/extractHashtags';
 
 function UploadLibrary(props) {
 
-    const { authToken, handleTabChange } = props;
-    const { data, isLoading } = useBadgeTitle(authToken);
     const queryClient = useQueryClient();
-    const { mutateAsync, isPending } = useUploadLibrary();
+    const { authToken, handleTabChange } = props;
+    const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'Misc' });
+    const { data: interests, isLoading: interestsLoading } = useInterests({ token: authToken });
+    const { data: users, isLoading: usersLoading } = useUsersTitle({ token: authToken });
+    const { mutateAsync, isPending } = useUploadDrop();
     const [postSuccess, setPostSuccess] = useState(false)
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') return;
@@ -37,6 +42,10 @@ function UploadLibrary(props) {
         initialValues: {
             name: '',
             description: '',
+            badges_to_be_assigned: '',
+            badges_filter: '',
+            interests_filter: '',
+            users_ids: '',
             submit: null
         },
         validationSchema: uploadDropSchema,
@@ -44,17 +53,20 @@ function UploadLibrary(props) {
 
             try {
 
-                const hashtags = extractHashtags(values.description);
+                await mutateAsync({
+                    token: authToken,
+                    name: values.name,
+                    description: values.description,
+                    badges_to_be_assigned: values.badges_to_be_assigned,
+                    badges_filter: values.badges_filter,
+                    interests_filter: values.interests_filter,
+                    users_ids: values.users_ids,
+                });
 
-                // await mutateAsync({
-                //     name: values.name,
-                //     description: values.description,
-                // });
-
-                queryClient.resetQueries('libraries');
-                // helpers.resetForm();
+                // queryClient.resetQueries('libraries');
+                helpers.resetForm();
                 setPostSuccess(true)
-                handleTabChange('1')
+                // handleTabChange('1')
 
             } catch (err) {
                 helpers.setStatus({ success: false });
@@ -76,7 +88,6 @@ function UploadLibrary(props) {
                         xs={12}
                         sm={6}
                         lg={4}
-                        mb={2}
                     >
                         <TextField
                             label="Description"
@@ -93,6 +104,57 @@ function UploadLibrary(props) {
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
+
+
+                        <Autocomplete
+                            multiple
+                            id='selectfield'
+                            options={users || []}
+                            disabled={usersLoading}
+                            onBlur={formik.handleBlur}
+                            onChange={
+                                (e, value) => {
+                                    formik.setFieldValue('users_ids', value.map(item => item.id))
+                                }
+                            }
+                            getOptionLabel={(option) => option.label}
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            // defaultValue={[{}]}
+                            filterSelectedOptions
+                            renderTags={(value, getTagProps) =>
+                                value.map((option, index) => (
+                                    <Chip
+                                        key={index}
+                                        variant="outlined"
+                                        label={option.label}
+                                        sx={{ color: 'white', m: 0.5 }}
+                                    />
+                                ))
+                            }
+
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Users"
+                                    placeholder=""
+                                    error={!!(formik.touched.users_ids && formik.errors.users_ids)}
+                                    helpertext={formik.touched.users_ids && formik.errors.users_ids}
+                                    name='users_ids'
+                                    inputProps={
+                                        { ...params.inputProps, style: { color: 'white' } }
+                                    }
+                                />
+                            )}
+                        />
+                        <Typography
+                            color="error"
+                            variant="caption"
+                        >
+                            {formik.touched.users_ids && formik.errors.users_ids}
+                        </Typography>
+                        <Box sx={{ mb: 6 }} />
+
+
                     </Grid>
                     <Grid item
                         xs={12}
@@ -113,6 +175,54 @@ function UploadLibrary(props) {
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
+                        <Autocomplete
+                            multiple
+                            id='selectfield'
+                            options={data || []}
+                            disabled={isLoading}
+                            onBlur={formik.handleBlur}
+                            onChange={
+                                (e, value) => {
+                                    formik.setFieldValue('badges_to_be_assigned', value.map(item => item.id))
+                                }
+                            }
+                            getOptionLabel={(option) => option.label}
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            // defaultValue={[{}]}
+                            filterSelectedOptions
+                            renderTags={(value, getTagProps) =>
+                                value.map((option, index) => (
+                                    <Chip
+                                        key={index}
+                                        variant="outlined"
+                                        label={option.label}
+                                        sx={{ color: 'white', m: 0.5 }}
+                                    />
+                                ))
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Badges to assign"
+                                    placeholder=""
+                                    error={!!(formik.touched.badges_to_be_assigned && formik.errors.badges_to_be_assigned)}
+                                    helpertext={formik.touched.badges_to_be_assigned && formik.errors.badges_to_be_assigned}
+                                    name='badges_to_be_assigned'
+                                    inputProps={
+                                        { ...params.inputProps, style: { color: 'white' } }
+                                    }
+                                />
+                            )}
+                        />
+
+                        <Typography
+                            color="error"
+                            variant="caption"
+                        >
+                            {formik.touched.badges_to_be_assigned && formik.errors.badges_to_be_assigned}
+                        </Typography>
+                        <Box sx={{ mb: 6 }} />
+
                     </Grid>
 
                     <Grid item
@@ -120,6 +230,100 @@ function UploadLibrary(props) {
                         sm={6}
                         lg={4}>
 
+                        <Autocomplete
+                            multiple
+                            id='selectfield'
+                            options={data || []}
+                            disabled={isLoading}
+                            onBlur={formik.handleBlur}
+                            onChange={
+                                (e, value) => {
+                                    formik.setFieldValue('badges_filter', value.map(item => item.id))
+                                }
+                            }
+                            getOptionLabel={(option) => option.label}
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            // defaultValue={[{}]}
+                            filterSelectedOptions
+                            renderTags={(value, getTagProps) =>
+                                value.map((option, index) => (
+                                    <Chip
+                                        key={index}
+                                        variant="outlined"
+                                        label={option.label}
+                                        sx={{ color: 'white', m: 0.5 }}
+                                    />
+                                ))
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Badges filter"
+                                    placeholder=""
+                                    error={!!(formik.touched.badges_filter && formik.errors.badges_filter)}
+                                    helpertext={formik.touched.badges_filter && formik.errors.badges_filter}
+                                    name='badges_filter'
+                                    inputProps={
+                                        { ...params.inputProps, style: { color: 'white' } }
+                                    }
+                                />
+                            )}
+                        />
+                        <Typography
+                            color="error"
+                            variant="caption"
+                        >
+                            {formik.touched.badges_filter && formik.errors.badges_filter}
+                        </Typography>
+                        <Box sx={{ mb: 6 }} />
+
+                        <Autocomplete
+                            multiple
+                            id='selectfield'
+                            options={interests || []}
+                            disabled={interestsLoading}
+                            onBlur={formik.handleBlur}
+                            onChange={
+                                (e, value) => {
+                                    formik.setFieldValue('interests_filter', value.map(item => item.id))
+                                }
+                            }
+                            getOptionLabel={(option) => option.label}
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            // defaultValue={[{}]}
+                            filterSelectedOptions
+                            renderTags={(value, getTagProps) =>
+                                value.map((option, index) => (
+                                    <Chip
+                                        key={index}
+                                        variant="outlined"
+                                        label={option.label}
+                                        sx={{ color: 'white', m: 0.5 }}
+                                    />
+                                ))
+                            }
+
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Interests"
+                                    placeholder=""
+                                    error={!!(formik.touched.interests_filter && formik.errors.interests_filter)}
+                                    helpertext={formik.touched.interests_filter && formik.errors.interests_filter}
+                                    name='interests_filter'
+                                    inputProps={
+                                        { ...params.inputProps, style: { color: 'white' } }
+                                    }
+                                />
+                            )}
+                        />
+                        <Typography
+                            color="error"
+                            variant="caption"
+                        >
+                            {formik.touched.interests_filter && formik.errors.interests_filter}
+                        </Typography>
+                        <Box sx={{ mb: 6 }} />
                     </Grid>
 
                 </Grid>
@@ -141,7 +345,7 @@ function UploadLibrary(props) {
                             sx={{ color: 'neutral.1000' }}
                             size={30} />
                     }
-                    loading={isPending || isLoading}
+                    loading={isPending || isLoading || interestsLoading || usersLoading}
                 >
                     CREATE
                 </LoadingButton>
