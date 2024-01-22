@@ -4,7 +4,7 @@ import { Box, Container, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import CheckinInformation from '../../../sections/checkIn/Checkininfo'
+import CheckinInformation from '../../../sections/checkIn/checkininfo'
 import React from 'react';
 
 

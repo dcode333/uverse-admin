@@ -4,7 +4,7 @@ import { Box, Container, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import BadgeInformation from '../../../sections/badges/Badgeinfo'
+import BadgeInformation from '../../../sections/badges/badgeinfo'
 import React from 'react';
 
 
