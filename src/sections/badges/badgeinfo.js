@@ -13,7 +13,7 @@ import FailedToFetch from 'src/components/fetchfail';
 
 
 const placeholder = '/assets/avatars/avatarmed.png'
-function Profileinfo({ badgeId }) {
+function BadgeInfo({ badgeId }) {
     const { authToken } = useAuth();
     const { data, isLoading, isError } = useBadge({ token: authToken, badgeId });
 
@@ -308,7 +308,7 @@ function Profileinfo({ badgeId }) {
     )
 }
 
-export default Profileinfo
+export default BadgeInfo
 
 const styles = {
     statsCard: { padding: '30px', mx: 2, textAlign: 'center', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.4000' },

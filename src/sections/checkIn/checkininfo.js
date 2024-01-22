@@ -13,7 +13,7 @@ import FailedToFetch from 'src/components/fetchfail';
 
 
 const placeholder = '/assets/avatars/avatarmed.png'
-function Profileinfo({ checkinId }) {
+function CheckinInfo({ checkinId }) {
     const { authToken } = useAuth();
     const { data, isLoading, isError } = useCheckindetail({ token: authToken, checkinId });
 
@@ -308,7 +308,7 @@ function Profileinfo({ checkinId }) {
     )
 }
 
-export default Profileinfo
+export default CheckinInfo
 
 const styles = {
     statsCard: { padding: '30px', mx: 2, textAlign: 'center', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.4000' },
