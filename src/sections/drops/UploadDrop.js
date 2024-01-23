@@ -9,15 +9,15 @@ import {
     Chip,
     Box
 } from '@mui/material';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useQueryClient } from '@tanstack/react-query';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useBadgeTitle } from 'src/api/badge/useBadge';
-import { useInterests } from 'src/api/drops/useDrops';
+import { useInterests } from 'src/api/drops/usegetDrops';
 import { useUsersTitle } from 'src/api/users/useUsers';
-import { useUploadDrop } from 'src/api/drops/useDrops';
+import { useUploadDrop } from 'src/api/drops/usecreateDrops';
 import { uploadDropSchema } from 'src/schemas/drop';
 
 
@@ -63,10 +63,10 @@ function UploadLibrary(props) {
                     users_ids: values.users_ids,
                 });
 
-                // queryClient.resetQueries('libraries');
-                helpers.resetForm();
+                queryClient.resetQueries('drops');
+                // helpers.resetForm();
                 setPostSuccess(true)
-                // handleTabChange('1')
+                handleTabChange('1')
 
             } catch (err) {
                 helpers.setStatus({ success: false });

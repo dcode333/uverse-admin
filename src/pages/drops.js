@@ -5,9 +5,9 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import UploadDrop from 'src/sections/drops/UploadDrop';
+import Drops from 'src/sections/drops/Drops';
 import { useAuth } from 'src/hooks/use-auth';
 
-const now = new Date();
 
 const Page = () => {
 
@@ -63,6 +63,7 @@ const Page = () => {
                                     Badges
                                 </Typography>
                             </Box>
+                            <Drops authToken={authToken} />
                         </>
                     </TabPanel>
                     <TabPanel value="2">
