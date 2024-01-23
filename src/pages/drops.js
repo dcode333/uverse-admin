@@ -60,7 +60,7 @@ const Page = () => {
                                     sx={{ textAlign: 'start', my: 2 }}
                                     color="neutral.4000"
                                 >
-                                    Badges
+                                    Drops
                                 </Typography>
                             </Box>
                             <Drops authToken={authToken} />
