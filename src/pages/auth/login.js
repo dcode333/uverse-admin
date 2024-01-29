@@ -101,37 +101,30 @@ const Page = () => {
           }}
         >
           <div>
-            <Box
+            <Stack
               spacing={1}
-              sx={{ mb: 3, textAlign: 'center' }}
+              sx={{ mb: 3 }}
             >
-              <Box sx={{ p: 2, alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
-                <img
-                  alt=""
-                  src="/assets/logos/sublogoblack.png"
-                  height={'40px'}
-
-                />
-                {/* <img
-              alt=""
-              src="/assets/logos/sublogo.png"
-              width="200"
-              height="30"
-              style={{ marginTop: '10px' }}
-            /> */}
-
-              </Box>
-
-              <Typography variant="h4" >
-                Join the testing Community Today !
+              <Typography variant="h4">
+                Login
               </Typography>
               {/* <Typography
-                color="textSecondary"
+                color="text.secondary"
                 variant="body2"
               >
-                Sign in to your account to continue
+                Don&apos;t have an account?
+                &nbsp;
+                <Link
+                  component={NextLink}
+                  href="/auth/register"
+                  underline="hover"
+                  variant="subtitle2"
+                >
+                  Register
+                </Link>
               </Typography> */}
-            </Box>
+              
+            </Stack>
             <Tabs
               onChange={handleMethodChange}
               sx={{ mb: 3 }}

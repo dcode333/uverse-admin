@@ -23,7 +23,7 @@ export const Layout = (props) => {
 
         <Grid
           xs={12}
-          lg={8}
+          lg={6}
           sx={{
             alignItems: 'center',
             background: 'black',
@@ -31,29 +31,29 @@ export const Layout = (props) => {
             display: 'flex',
             justifyContent: 'center',
             '& img': {
-              width: '100%',
+              maxWidth: '100%'
             }
           }}
         >
-          <Box sx={{ p: 0, alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ p: 10, alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
             <img
               alt=""
-              src="/assets/Home.png"
+              src="/assets/logos/AppIcon.png"
 
             />
-            {/* <img
+            <img
               alt=""
               src="/assets/logos/sublogo.png"
               width="200"
               height="30"
               style={{ marginTop: '10px' }}
-            /> */}
+            />
 
           </Box>
         </Grid>
         <Grid
           xs={12}
-          lg={4}
+          lg={6}
           sx={{
             backgroundColor: 'background.paper',
             display: 'flex',
