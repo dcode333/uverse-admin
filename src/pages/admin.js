@@ -20,7 +20,7 @@ const Page = () => {
   return <>
     <Head>
       <title>
-        Home | UVRSE
+        UVRSE
       </title>
     </Head>
     <Box
