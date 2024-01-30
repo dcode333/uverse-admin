@@ -59,7 +59,7 @@ function UploadCheckIn(props) {
                     latitude: values.latitude,
                     hashtags: hashtags,
                     media: values.media,
-                    badgeId: values.badgeId,
+                    badgeId: values.badgeId ? values.badgeId : null,
                     giveaways_type: values.giveaways_type,
                     required_tokens: values.required_tokens,
                     expires_date: values.expires_date,

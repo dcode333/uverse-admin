@@ -12,7 +12,7 @@ const fetchDrops = async ({ token }) => {
         return response.data;
 
     } catch (error) {
-console.log(error)
+
         throw new Error(error.message || 'Fetch Drops Failed');
     }
 };

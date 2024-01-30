@@ -18,12 +18,7 @@ const uploadbadgeschema = Yup.object({
             otherwise: (schema) => schema.notRequired()
         })
     ,
-    quantity: Yup.number()
-        .when('giveaways_type', {
-            is: 'Misc',
-            then: (schema) => schema.required("Quantity is required"),
-            otherwise: (schema) => schema.notRequired()
-        }),
+    quantity: Yup.number().notRequired(),
     required_tokens: Yup.number()
         .when('giveaways_type', {
             is: 'Misc',

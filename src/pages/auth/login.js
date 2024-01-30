@@ -31,7 +31,7 @@ const Page = () => {
   const { isAuthenticated } = useAuthContext();
 
   useEffect(() => {
-    if (isAuthenticated) router.replace('/');
+    if (isAuthenticated) router.replace('/admin');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -57,7 +57,7 @@ const Page = () => {
         const data = await mutateAsync({ email: values.email, password: values.password });
         values.submit = null;
         await auth.signIn(data);
-        router.replace('/');
+        router.replace('/admin');
       } catch (err) {
         reset();
         helpers.setStatus({ success: false });

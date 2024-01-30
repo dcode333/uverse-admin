@@ -99,7 +99,7 @@ const UploadBadge = async ({
         formData.append('age_restricted', age_restricted);
         formData.append('additional_information', additional_information);
         if (giveaways_type === 'Misc') {
-            formData.append('quantity', quantity);
+            formData.append('quantity', quantity ? quantity : '');
             formData.append('required_tokens', required_tokens);
         }
         if (giveaways_type === 'Follower' || giveaways_type === 'Followings' || giveaways_type === 'Creations')
