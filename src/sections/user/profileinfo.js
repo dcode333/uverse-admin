@@ -8,6 +8,7 @@ import CommentIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
 import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
 import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import SavedIcon from '@heroicons/react/24/outline/BookmarkIcon';
+
 import Link from 'next/link';
 import { useUserProfile } from 'src/api/users/useUsers';
 import { useUserCheckin } from 'src/api/checkin/useUserCheckin';

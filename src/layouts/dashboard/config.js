@@ -9,7 +9,8 @@ import XCircleIcon from '@heroicons/react/24/solid/ViewColumnsIcon';
 import QRIcon from '@heroicons/react/24/solid/QrCodeIcon';
 import SettingIcon from '@heroicons/react/24/outline/Cog6ToothIcon';
 import LogoutIcon from '@heroicons/react/24/solid/ArrowRightOnRectangleIcon';
-
+import Brands from '@heroicons/react/24/solid/PresentationChartBarIcon';
+import Districts from '@heroicons/react/24/solid/RectangleGroupIcon';
 import { SvgIcon } from '@mui/material';
 
 export const items = [
@@ -91,6 +92,24 @@ export const items = [
     icon: (
       <SvgIcon fontSize="small">
         <QRIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Brands',
+    path: '/brands',
+    icon: (
+      <SvgIcon fontSize="small">
+        <Brands />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Districts',
+    path: '/districts',
+    icon: (
+      <SvgIcon fontSize="small">
+        <Districts />
       </SvgIcon>
     )
   }
