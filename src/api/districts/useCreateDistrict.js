@@ -66,7 +66,7 @@ const addBrandToDistrict = async ({
         return response.data;
 
     } catch (error) {
-        console.log(error)
+
         throw new Error(error.message || 'Add Brand to district failed !');
     }
 };

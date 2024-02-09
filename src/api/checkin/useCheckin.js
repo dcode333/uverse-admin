@@ -82,6 +82,7 @@ const UploadCheckin = async ({
     latitude,
     media,
     badgeId,
+    category,
     giveaways_type,
     hashtags,
     required_tokens,
@@ -99,6 +100,7 @@ const UploadCheckin = async ({
         });
         formData.append('type', 'checkin');
         formData.append('subtype', 'CHECKIN');
+        formData.append('category', category);
         formData.append('longitude', longitude);
         formData.append('latitude', latitude);
         formData.append('media', media); // Assuming media is a File object

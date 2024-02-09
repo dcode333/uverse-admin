@@ -6,6 +6,7 @@ const uploadbadgeschema = Yup.object({
     description: Yup.string().required('Description is required'),
     media: Yup.mixed().required('Media is required'),
     giveaways_type: Yup.string().required('Badges type is required'),
+    category: Yup.string().required('Category is required'),
     additional_information: Yup.string().required('Additional information is required'),
     age_restricted: Yup.boolean().required('Age restricted is required'),
     expires_date: Yup.date()

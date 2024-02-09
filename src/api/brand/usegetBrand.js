@@ -9,7 +9,7 @@ const fetchApprovedBrands = async ({ token }) => {
                 Authorization: `Bearer ${token}`,
             },
             params: {
-                status: 'approved'
+                status: 'Approved'
             }
         });
 
@@ -29,7 +29,7 @@ const fetchPendingBrands = async ({ token }) => {
                 Authorization: `Bearer ${token}`,
             },
             params: {
-                status: 'pending'
+                status: 'Pending'
             }
         });
 
@@ -49,7 +49,7 @@ const fetchBrandsForDistrict = async ({ token }) => {
                 Authorization: `Bearer ${token}`,
             },
             params: {
-                status: 'approved'
+                status: 'Approved'
             }
         });
        

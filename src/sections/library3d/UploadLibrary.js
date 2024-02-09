@@ -15,6 +15,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadLibrary } from 'src/api/library3d/useLibrary';
 import { uploadlibraryschema } from 'src/schemas/library';
+import { useCategories } from 'src/api/shared/usegetCategory';
 import { getImageDimensions } from 'src/utils/get-image-dimensions';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
@@ -26,6 +27,7 @@ function UploadLibrary(props) {
 
     const { authToken, handleTabChange } = props;
     const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'CheckInRewardedBadge' });
+    const { data: categories, isLoading: categoriesLoading } = useCategories({ token: authToken });
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadLibrary();
     const [postSuccess, setPostSuccess] = useState(false)
@@ -42,6 +44,7 @@ function UploadLibrary(props) {
             threeD_file: null,
             subtype: '',
             category: '',
+            subcategory: '',
             is_locked: false,
             locked_content: '',
             submit: null
@@ -63,6 +66,7 @@ function UploadLibrary(props) {
                     is_locked: values.is_locked,
                     subtype: values.subtype,
                     category: values.category,
+                    subcategory: values.subcategory,
                     token: authToken,
                     threeD_file: values.threeD_file,
                     width: width,
@@ -212,6 +216,33 @@ function UploadLibrary(props) {
                             ))}
 
                         </TextField>
+
+                        <TextField
+                            fullWidth
+                            select
+                            variant='filled'
+                            name='subcategory'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.subcategory && formik.errors.subcategory)}
+                            helperText={formik.touched.subcategory && formik.errors.subcategory}
+                            value={formik.values.subcategory}
+                            label="Subcategory"
+                            id='selectfield'
+                            sx={{ mb: 6 }}
+                        >
+                            <MenuItem value={''} >
+                                None
+                            </MenuItem>
+                            {categories?.map((item, i) => (
+                                <MenuItem
+                                    value={item.id}
+                                    key={i}>
+                                    {item.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
                     </Grid>
 
                     <Grid item

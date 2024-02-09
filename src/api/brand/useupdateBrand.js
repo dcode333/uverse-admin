@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const brandApproval = async ({ token, brandId, status }) => {
     try {
-        // console.log()
+       
         const response = await axios.put(`/api/approve-decline-brand/${brandId}/?status=${status}`, {
             headers: {
                 Authorization: `Bearer ${token}`,

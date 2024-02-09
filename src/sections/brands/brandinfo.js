@@ -43,6 +43,7 @@ function BadgeInfo({ brandId }) {
     const [approvalConfirmation, setApprovelConfirmation] = useState('')
     const { mutateAsync, isPending } = useApproveBrand();
     const { data, isLoading, isError } = useBrandDetail({ token: authToken, brandId });
+    
     const handleModalClose = () => setOpenModal(false);
     const handleModalOpen = () => setOpenModal(true);
     const handleApprovalConfirmation = (status) => {
@@ -171,7 +172,7 @@ function BadgeInfo({ brandId }) {
                                                 variant="contained"
                                                 size='small'
                                                 sx={{ borderRadius: 1, my: 1, bgcolor: 'green', width: 90 }}
-                                                onClick={() => handleApprovalConfirmation('approve')}
+                                                onClick={() => handleApprovalConfirmation('Approve')}
                                                 loading={isPending}
                                                 loadingIndicator={
                                                     <CircularProgress
@@ -186,7 +187,7 @@ function BadgeInfo({ brandId }) {
                                                 size='small'
                                                 loading={isPending}
                                                 sx={{ borderRadius: 1, my: 1, bgcolor: 'red', width: 90 }}
-                                                onClick={() => handleApprovalConfirmation('decline')}
+                                                onClick={() => handleApprovalConfirmation('Decline')}
                                                 loadingIndicator={
                                                     <CircularProgress
                                                         sx={{ color: 'neutral.1000' }}

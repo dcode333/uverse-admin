@@ -42,6 +42,7 @@ const UploadLibrary = async ({
     is_locked,
     subtype,
     category,
+    subcategory,
     token,
     threeD_file,
     width,
@@ -60,6 +61,7 @@ const UploadLibrary = async ({
         formData.append('is_locked', is_locked);
         formData.append('subtype', subtype);
         formData.append('category', category);
+        formData.append('subcategory', subcategory);
         formData.append('threeD_file', threeD_file);
         formData.append('width', width);
         formData.append('length', length);

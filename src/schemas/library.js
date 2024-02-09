@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 const uploadlibraryschema = Yup.object({
     title: Yup.string().required('Title is required'),
     description: Yup.string().required('Description is required'),
+    subcategory: Yup.string().required('Subcategory is required'),
     media: Yup.mixed().required('Media is required'),
     threeD_file: Yup.mixed().required('3D File is required'),
     subtype: Yup.string().required('Subtype is required'),

@@ -14,6 +14,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useCheckinTitle } from 'src/api/checkin/useCheckin';
 import { useUploadBadge } from 'src/api/badge/useBadge';
+import { useCategories } from 'src/api/shared/usegetCategory';
 import { uploadbadgeschema } from 'src/schemas/badge';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
@@ -26,6 +27,7 @@ function UploadBadge(props) {
 
     const { authToken, handleTabChange } = props;
     const { data, isLoading } = useCheckinTitle(authToken);
+    const { data: categories, isLoading: categoriesLoading } = useCategories({ token: authToken });
     const queryClient = useQueryClient();
     const { mutateAsync, isPending } = useUploadBadge();
     const [postSuccess, setPostSuccess] = useState(false)
@@ -42,6 +44,7 @@ function UploadBadge(props) {
             giveaways_type: '',
             quantity: '',
             constraint_number: '',
+            category: '',
             additional_information: '',
             age_restricted: false,
             required_tokens: '',
@@ -62,6 +65,7 @@ function UploadBadge(props) {
                     media: values.media,
                     checkin: values.checkin,
                     giveaways_type: values.giveaways_type,
+                    category: values.category,
                     hashtags: hashtags,
                     age_restricted: values.age_restricted,
                     additional_information: values.additional_information,
@@ -143,6 +147,33 @@ function UploadBadge(props) {
                             sx={{ mb: 6 }}
                             inputProps={{ style: { color: 'white' } }}
                         />
+                        <TextField
+                            fullWidth
+                            select
+                            variant='filled'
+                            name='category'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            error={!!(formik.touched.category && formik.errors.category)}
+                            helperText={formik.touched.category && formik.errors.category}
+                            value={formik.values.category}
+                            label="Category"
+                            id='selectfield'
+                            disabled={categoriesLoading}
+                            sx={{ mb: 6 }}
+                        >
+                            <MenuItem value={''} >
+                                None
+                            </MenuItem>
+                            {categories?.map((item, i) => (
+                                <MenuItem
+                                    value={item.id}
+                                    key={i}>
+                                    {item.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
                     </Grid>
                     <Grid item
                         xs={12}

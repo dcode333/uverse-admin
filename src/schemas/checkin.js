@@ -22,6 +22,9 @@ const uploadcheckinschema = Yup.object({
     badgeId: Yup
         .string()
         .notRequired(),
+    category: Yup
+        .string()
+        .required('Category is required'),
     giveaways_type: Yup
         .string()
         .required('Giveaways type is required'),
