@@ -41,6 +41,25 @@ const fetchPendingBrands = async ({ token }) => {
     }
 };
 
+const fetchDeclinedBrands = async ({ token }) => {
+    try {
+
+        const response = await axios.get(`/api/all-brand/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            params: {
+                status: 'Declined'
+            }
+        });
+
+        return response.data;
+
+    } catch (error) {
+
+        throw new Error(error.message || 'Fetch Brands Failed');
+    }
+};
 
 const fetchBrandsForDistrict = async ({ token }) => {
     try {
@@ -52,7 +71,7 @@ const fetchBrandsForDistrict = async ({ token }) => {
                 status: 'Approved'
             }
         });
-       
+
         return response.data?.results.map(({ brand_profile }) => ({ id: brand_profile.id, label: brand_profile.title }));
 
     } catch (error) {
@@ -96,6 +115,15 @@ const usePendingBrand = ({ token }) => {
     })
 }
 
+const useDeclinedBrand = ({ token }) => {
+    return useQuery({
+        queryKey: ['declinedbrands'],
+        queryFn: () => fetchDeclinedBrands({ token }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+}
+
 const useBrandDetail = ({ token, brandId }) => {
     return useQuery({
         queryKey: ['brand', brandId],
@@ -119,4 +147,4 @@ const useDistrictBrand = ({ token }) => {
 
 
 
-export { usePendingBrand, useApprovedBrand, useBrandDetail, useDistrictBrand };
+export { usePendingBrand, useApprovedBrand, useBrandDetail, useDistrictBrand, useDeclinedBrand };

@@ -3,6 +3,10 @@ import { LoadingButton } from '@mui/lab';
 import React, { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query';
+import ApprovedIcon from '@heroicons/react/24/solid/CheckCircleIcon';
+import DeclinedIcon from '@heroicons/react/24/solid/XCircleIcon';
+import { SvgIcon } from '@mui/material';
+
 
 import { useBrandDetail } from 'src/api/brand/usegetBrand';
 import { useApproveBrand } from 'src/api/brand/useupdateBrand';
@@ -43,7 +47,7 @@ function BadgeInfo({ brandId }) {
     const [approvalConfirmation, setApprovelConfirmation] = useState('')
     const { mutateAsync, isPending } = useApproveBrand();
     const { data, isLoading, isError } = useBrandDetail({ token: authToken, brandId });
-    
+
     const handleModalClose = () => setOpenModal(false);
     const handleModalOpen = () => setOpenModal(true);
     const handleApprovalConfirmation = (status) => {
@@ -156,6 +160,13 @@ function BadgeInfo({ brandId }) {
                                         color={'neutral.1000'}
                                     >
                                         Brand Profile
+                                        <SvgIcon fontSize="medium"
+                                            style={{ padding: '4px' }}>
+                                            {data?.brand_profile?.status === "Approved" ? < ApprovedIcon color='green' /> :
+                                                data?.brand_profile?.status === "Declined" ? < DeclinedIcon color='red' /> :
+                                                    <></>
+                                            }
+                                        </SvgIcon>
                                     </Typography>
                                     <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'start', justifyContent: 'space-between', p: 2 }} >
                                         <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'start' }} >

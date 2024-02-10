@@ -293,13 +293,19 @@ function CheckinInfo({ checkinId }) {
                         <>
                             <Box sx={{
                                 display: 'flex',
-                                my: 2, p: 10,
+                                my: 2,
+                                py: 10,
+                                px: 1,
                                 bgcolor: 'neutral.2000',
                                 borderRadius: 1,
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
-                                <QRcode value={data ? data.id : 'Dummy QR'} />
+                                <img src={`data:image/png;base64,${data?.qr_code}`}
+                                    alt="QR code"
+                                    width="300"
+                                    height="300"
+                                />
                             </Box>
                         </>}
                 </Box>

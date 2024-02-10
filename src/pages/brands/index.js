@@ -6,6 +6,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import BrandRequests from 'src/sections/brands/brandRequests'
 import ApprovedBrands from 'src/sections/brands/approvedBrands'
+import DeclinedBrands from 'src/sections/brands/declinedBrands'
 import { useAuth } from 'src/hooks/use-auth';
 
 
@@ -47,6 +48,8 @@ const Page = () => {
                                 value="1" />
                             <Tab label="Approved Brands"
                                 value="2" />
+                            <Tab label="Declined Requests"
+                                value="3" />
 
                         </TabList>
                     </Box>
@@ -57,6 +60,10 @@ const Page = () => {
                     <TabPanel value="2">
                         <ApprovedBrands authToken={authToken} />
                     </TabPanel>
+                    <TabPanel value="3">
+                        <DeclinedBrands authToken={authToken} />
+                    </TabPanel>
+
                 </TabContext>
 
             </Container>
