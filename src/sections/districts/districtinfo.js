@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import PlusCircleIcon from '@heroicons/react/24/solid/PlusCircleIcon';
 
 import { useDistrict } from 'src/api/districts/usegetDistricts';
 import { useAddBrandToDistrict } from 'src/api/districts/useCreateDistrict';
@@ -125,7 +124,7 @@ function BadgeInfo({ districtId }) {
                                     <Info field={'Description'}
                                         value={data?.description} />
                                     <Info field={'Total Brands'}
-                                        value={data?.brands.length} />
+                                        value={data?.brands?.length} />
 
 
                                     <Typography variant='h6'
@@ -145,7 +144,7 @@ function BadgeInfo({ districtId }) {
                                                 multiple
                                                 id='selectfield'
                                                 options={filteredBrands || []}
-                                                disabled={isLoading}
+                                                disabled={districtBrandsLoading}
                                                 onBlur={formik.handleBlur}
                                                 onChange={
                                                     (e, value) => {
@@ -155,6 +154,12 @@ function BadgeInfo({ districtId }) {
                                                 getOptionLabel={(option) => option.label}
                                                 isOptionEqualToValue={(option, value) => option.id === value.id}
                                                 // defaultValue={[{}]}
+                                                renderOption={(props, option, { selected }) => (
+                                                    <li {...props}
+                                                        key={option.id}>
+                                                        {option.label}
+                                                    </li>
+                                                )}
                                                 filterSelectedOptions
                                                 renderTags={(value, getTagProps) =>
                                                     value.map((option, index) => (

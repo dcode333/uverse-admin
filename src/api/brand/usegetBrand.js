@@ -72,7 +72,7 @@ const fetchBrandsForDistrict = async ({ token }) => {
             }
         });
 
-        return response.data?.results.map(({ brand_profile }) => ({ id: brand_profile.id, label: brand_profile.title }));
+        return response.data?.results.map((item) => ({ id: item.id, label: item?.brand_profile?.title }));
 
     } catch (error) {
 

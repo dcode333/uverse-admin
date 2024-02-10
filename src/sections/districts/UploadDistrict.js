@@ -158,6 +158,13 @@ function UploadLibrary(props) {
                             getOptionLabel={(option) => option.label}
                             isOptionEqualToValue={(option, value) => option.id === value.id}
                             // defaultValue={[{}]}
+                            renderOption={(props, option, { selected }) => (
+                                <li {...props}
+                                    key={option.id}>
+                                    {option.label}
+                                </li>
+                            )}
+
                             filterSelectedOptions
                             renderTags={(value, getTagProps) =>
                                 value.map((option, index) => (

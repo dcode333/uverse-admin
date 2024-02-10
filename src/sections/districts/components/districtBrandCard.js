@@ -6,7 +6,6 @@ const placeholder = "https://i.pinimg.com/originals/9d/ce/a0/9dcea054669b6e11269
 
 const BrandList = ({ data }) => {
 
-
     return (
         <Grid container
             sx={{ bgcolor: 'neutral.2000', borderRadius: 1 }}>
@@ -22,15 +21,14 @@ const BrandList = ({ data }) => {
                         style={{ textDecoration: 'none' }}> */}
                     <Card sx={{ display: 'flex', borderRadius: 1, border: '0.5px solid gray', m: 1, bgcolor: 'transparent' }}>
                         <CardMedia
-                            sx={{ height: 80, width: 130, alignSelf: 'center', margin: 1.2, borderRadius: '10px', objectFit: 'cover' }}
-
-                            image={item?.cover_pic || placeholder}
+                            sx={{ height: 80, width: 130, alignSelf: 'center', margin: 1.2, borderRadius: '10px', objectFit: 'cover' }} 
+                            image={item.brand_profile?.cover_pic || placeholder}
                             title="brand"
                         />
                         <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                             <CardContent sx={{ color: 'neutral.4000' }}>
                                 <Typography variant="body1">
-                                    {item ? item.title.length <= 8 ? item.title : (item.title.substr(0, 8) + "...") : 'Brand'}
+                                    {item ? item.brand_profile?.title?.length <= 8 ? item.brand_profile?.title : (item.brand_profile?.title?.substr(0, 8) + "...") : 'Brand'}
                                 </Typography>
                                 <Typography variant='caption'
                                     color={'neutral.1000'}>
