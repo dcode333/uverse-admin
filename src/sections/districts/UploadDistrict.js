@@ -7,7 +7,9 @@ import {
     CircularProgress,
     Autocomplete,
     Chip,
-    Box
+    Box,
+    InputAdornment,
+    Button
 } from '@mui/material';
 import { useState } from 'react';
 import { useFormik } from 'formik';
@@ -45,7 +47,7 @@ function UploadLibrary(props) {
         validationSchema: uploadDistrictSchema,
         onSubmit: async (values, helpers) => {
 
-            const medias = Object.values(values.media);
+            // const medias = Object.values(values.media);
 
             try {
 
@@ -54,7 +56,7 @@ function UploadLibrary(props) {
                     title: values.title,
                     description: values.description,
                     brands: values.brands,
-                    media: medias
+                    media: values.media
                 });
 
                 queryClient.resetQueries('districts');
@@ -126,13 +128,39 @@ function UploadLibrary(props) {
                             helperText={formik.touched.media && formik.errors.media}
                             name="media"
                             onBlur={formik.handleBlur}
-                            onChange={(event) => formik.setFieldValue('media', event.currentTarget.files)}
+                            onChange={(event) => {
+
+                                const existingImages = formik.values.media || []
+                                const newimgs = Object.values(event.target.files)
+                                formik.setFieldValue('media', [...existingImages, ...newimgs])
+
+                            }}
                             type="file"
                             label="Media"
                             variant="outlined"
                             fullWidth
                             sx={{ mb: 6 }}
-                            inputProps={{ style: { color: 'white' }, accept: 'image/*', multiple: true }}
+                            inputProps={{
+                                style: { color: 'white' }, accept: 'image/*', multiple: true,
+
+                            }}
+
+                            InputProps={{
+                                endAdornment: <InputAdornment position='end' >
+                                    <Button
+                                        onClick={() => formik.setFieldValue('media', '')}
+                                        sx={{ color: 'neutral.5000' }}>
+                                        Clear
+                                    </Button>
+                                </InputAdornment>,
+                                startAdornment: <InputAdornment position='start' >
+                                    <Typography variant='body2'
+                                        mr={2}>
+                                        {formik.values.media?.length || 0} Images
+                                    </Typography>
+                                </InputAdornment>
+
+                            }}
                             InputLabelProps={{ shrink: true, }}
                         />
 
