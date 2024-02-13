@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchUserCheckins = async ({ token, userId }) => {
     try {
-        const response = await axios.get(`/api/getusercheckins/?user_id=${userId}`, {
+        const response = await axios.get(`/api/getusercheckins/${userId}/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

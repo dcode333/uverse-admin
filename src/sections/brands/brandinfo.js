@@ -183,7 +183,7 @@ function BadgeInfo({ brandId }) {
                                                 variant="contained"
                                                 size='small'
                                                 sx={{ borderRadius: 1, my: 1, bgcolor: 'green', width: 90 }}
-                                                onClick={() => handleApprovalConfirmation('Approve')}
+                                                onClick={() => handleApprovalConfirmation('Approved')}
                                                 loading={isPending}
                                                 loadingIndicator={
                                                     <CircularProgress
@@ -198,7 +198,7 @@ function BadgeInfo({ brandId }) {
                                                 size='small'
                                                 loading={isPending}
                                                 sx={{ borderRadius: 1, my: 1, bgcolor: 'red', width: 90 }}
-                                                onClick={() => handleApprovalConfirmation('Decline')}
+                                                onClick={() => handleApprovalConfirmation('Declined')}
                                                 loadingIndicator={
                                                     <CircularProgress
                                                         sx={{ color: 'neutral.1000' }}
@@ -280,10 +280,10 @@ function BadgeInfo({ brandId }) {
                             variant="contained"
                             size='small'
                             sx={{ borderRadius: 1, mr: 2, my: 3 }}
-                            color={approvalConfirmation === 'approve' ? 'success' : 'error'}
+                            color={approvalConfirmation === 'Approved' ? 'success' : 'error'}
                             onClick={handleBrandApprovalRequest}
                         >
-                            {approvalConfirmation === 'approve' ? 'Approve' : 'Decline'}
+                            {approvalConfirmation === 'Approved' ? 'Approve' : 'Decline'}
                         </LoadingButton>
                         <LoadingButton
                             variant="contained"

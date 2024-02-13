@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchUserBadges = async ({ token, userId }) => {
     try {
-        const response = await axios.get(`/api/getuserbadges/?user_id=${userId}`, {
+        const response = await axios.get(`/api/getuserbadges/${userId}/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

@@ -3,17 +3,19 @@ import axios from 'axios';
 
 const brandApproval = async ({ token, brandId, status }) => {
     try {
-       
-        const response = await axios.put(`/api/approve-decline-brand/${brandId}/?status=${status}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const response = await axios.put(`/api/approve-decline-brand/${brandId}/?status=${status}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
 
         return response.data;
 
-    } catch (error) {   
-        console.log(error)
+    } catch (error) {
+
         throw new Error(error.message || 'Put Brand approval failed');
     }
 };
