@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { Box, Container, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
+import { useQueryClient } from '@tanstack/react-query';
+
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import Districtlist from 'src/sections/districts/districtlist';
 import { useAuth } from 'src/hooks/use-auth';
@@ -14,6 +16,16 @@ const Page = () => {
     const { authToken } = useAuth();
     const handleTabChange = (val) => setValue(val);
     const handleChange = (event, newValue) => setValue(newValue);
+    const queryClient = useQueryClient();
+    const handleDistrictsRefetch = async () => {
+        await queryClient.refetchQueries({
+            queryKey: ['districts'],
+            type: 'active',
+            exact: true,
+
+        })
+    }
+
 
     return <>
         <Head>
@@ -43,12 +55,14 @@ const Page = () => {
                             }}
                         >
                             <Tab label="Districts"
-                                value="1" />
+                                value="1"
+                                onClick={handleDistrictsRefetch}
+                            />
                             <Tab label="Create District"
                                 value="2" />
                         </TabList>
                     </Box>
-
+                                
                     <TabPanel value="1">
                         <>
                             <Box

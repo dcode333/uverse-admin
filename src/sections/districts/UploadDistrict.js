@@ -59,7 +59,7 @@ function UploadLibrary(props) {
                     media: values.media
                 });
 
-                queryClient.resetQueries('districts');
+                queryClient.removeQueries({ queryKey: ['districts'], exact: true });
                 // // helpers.resetForm();
                 setPostSuccess(true)
                 handleTabChange('1')

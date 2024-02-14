@@ -28,7 +28,7 @@ function UploadLibrary(props) {
 
     const queryClient = useQueryClient();
     const { authToken, handleTabChange } = props;
-    const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'Misc' });
+    const { data, isLoading } = useBadgeTitle({ token: authToken, type: 'misc' });
     const { data: interests, isLoading: interestsLoading } = useInterests({ token: authToken });
     const { data: users, isLoading: usersLoading } = useUsersTitle({ token: authToken });
     const { mutateAsync, isPending } = useUploadDrop();

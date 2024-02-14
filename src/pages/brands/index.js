@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Box, Container, Tab, Unstable_Grid2 as Grid, Typography, TextField, Button } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import BrandRequests from 'src/sections/brands/brandRequests'
@@ -16,6 +17,15 @@ const Page = () => {
     const { authToken } = useAuth();
     // const handleTabChange = (val) => setValue(val);
     const handleChange = (event, newValue) => setValue(newValue);
+    const queryClient = useQueryClient();
+    const handleBrandRequestsRefetch = async () => {
+        await queryClient.refetchQueries({
+            queryKey: ['pendingbrands'],
+            type: 'active',
+            exact: true,
+        })
+    }
+
 
     return <>
         <Head>
@@ -45,6 +55,7 @@ const Page = () => {
                             }}
                         >
                             <Tab label="Brand Requests"
+                                onClick={handleBrandRequestsRefetch}
                                 value="1" />
                             <Tab label="Approved Brands"
                                 value="2" />
