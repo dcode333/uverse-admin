@@ -21,7 +21,7 @@ const BrandList = ({ data }) => {
                         style={{ textDecoration: 'none' }}> */}
                     <Card sx={{ display: 'flex', borderRadius: 1, border: '0.5px solid gray', m: 1, bgcolor: 'transparent' }}>
                         <CardMedia
-                            sx={{ height: 80, width: 130, alignSelf: 'center', margin: 1.2, borderRadius: '10px', objectFit: 'cover' }} 
+                            sx={{ height: 80, width: 130, alignSelf: 'center', margin: 1.2, borderRadius: '10px', objectFit: 'cover' }}
                             image={item.brand_profile?.cover_pic || placeholder}
                             title="brand"
                         />
@@ -35,7 +35,7 @@ const BrandList = ({ data }) => {
                                     User
                                 </Typography>
                                 <Typography variant="body2">
-                                    {item.username ? item.username.length <= 8 ? item.username : (item.username.substr(0, 8) + "...") : 'user'}
+                                    {item?.username ? item.username.length <= 8 ? item.username : (item.username.substr(0, 8) + "...") : 'user'}
                                 </Typography>
                             </CardContent>
                         </Box>

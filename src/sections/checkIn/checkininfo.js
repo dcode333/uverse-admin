@@ -5,10 +5,11 @@ import LikeIcon from '@heroicons/react/24/outline/HandThumbUpIcon';
 import CommentIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
 import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import SavedIcon from '@heroicons/react/24/outline/BookmarkIcon';
-import QRcode from 'react-qr-code';
+
 import { useCheckindetail } from 'src/api/checkin/useCheckin';
 import { useAuth } from 'src/hooks/use-auth';
 import FailedToFetch from 'src/components/fetchfail';
+import { formatDate } from 'src/utils/format-date';
 
 
 
@@ -183,7 +184,7 @@ function CheckinInfo({ checkinId }) {
                                             gutterBottom
                                             fontSize={'12px'}
                                             component="div">
-                                            Additional Information
+                                            Created At
                                         </Typography>
                                     </Box >
                                     <Box sx={{ width: '50%', color: 'neutral.4000' }}>
@@ -191,7 +192,7 @@ function CheckinInfo({ checkinId }) {
                                             gutterBottom
                                             fontSize={'11px'}
                                             component="div">
-                                            {data?.additional_information || 'N/A'}
+                                            {data?.created_at ? formatDate(data?.created_at) : 'N/A'}
                                         </Typography>
                                     </Box >
                                 </Box>
@@ -234,7 +235,7 @@ function CheckinInfo({ checkinId }) {
                                     </Box >
                                 </Box>
 
-                                <Box sx={{ display: 'flex', p: 1 }}>
+                                {/* <Box sx={{ display: 'flex', p: 1 }}>
                                     <Box sx={{ width: '50%', color: 'neutral.5000' }}>
                                         <Typography
                                             gutterBottom
@@ -251,7 +252,7 @@ function CheckinInfo({ checkinId }) {
                                             {data?.hashtag || 'N/A'}
                                         </Typography>
                                     </Box >
-                                </Box>
+                                </Box> */}
 
                                 <Box sx={{ display: 'flex', p: 1 }}>
                                     <Box sx={{ width: '50%', color: 'neutral.5000' }}>

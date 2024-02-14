@@ -12,10 +12,12 @@ const uploadcheckinschema = Yup.object({
         .required('Title is required'),
     longitude: Yup
         .number()
-        .required('Longitude is required'),
+        .required('Longitude is required')
+        .min(1, "Minimum value should 1"),
     latitude: Yup
         .number()
-        .required('Latitude is required'),
+        .required('Latitude is required')
+        .min(1, "Minimum value should 1"),
     media: Yup
         .mixed()
         .required('Media is required'),
@@ -31,7 +33,7 @@ const uploadcheckinschema = Yup.object({
     required_tokens: Yup.number()
         .when('giveaways_type', {
             is: 'Misc',
-            then: (schema) => schema.required("Token is required"),
+            then: (schema) => schema.required("Token is required").min(1, "Minimum value should 1"),
             otherwise: (schema) => schema.notRequired()
         }),
     //expires date must be equal or after today

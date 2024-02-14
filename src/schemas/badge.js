@@ -19,17 +19,17 @@ const uploadbadgeschema = Yup.object({
             otherwise: (schema) => schema.notRequired()
         })
     ,
-    quantity: Yup.number().notRequired(),
+    quantity: Yup.number().nullable().notRequired().min(1),
     required_tokens: Yup.number()
         .when('giveaways_type', {
             is: 'Misc',
-            then: (schema) => schema.required("Token is required"),
+            then: (schema) => schema.required("Token is required").min(1, "Minimum value should 1"),
             otherwise: (schema) => schema.notRequired()
         }),
     constraint_number: Yup.number()
         .when('giveaways_type', {
             is: (val) => val === 'Follower' || val === 'Followings' || val === 'Creations',
-            then: (schema) => schema.required("Quantity is required"),
+            then: (schema) => schema.required("Quantity is required").min(1, "Minimum value should 1"),
             otherwise: (schema) => schema.notRequired()
         }),
 })

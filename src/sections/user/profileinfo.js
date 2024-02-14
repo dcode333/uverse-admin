@@ -252,7 +252,7 @@ function Profileinfo({ userId }) {
                                     sx={{ textAlign: 'start' }}
                                     component="div"
                                     gutterBottom>
-                                    Check Ins
+                                    User Checkins
                                 </Typography>
                             </Box>
                             <Box width={'50%'}
@@ -288,9 +288,22 @@ function Profileinfo({ userId }) {
                                             lg={2}
                                             xl={2}>
                                             <Box sx={styles.review}>
-                                                <img src={item.media || '/assets/checkin.png'}
+                                                <img src={item?.checkin?.media || '/assets/checkin.png'}
                                                     alt="img"
                                                     style={{ width: '5rem', height: '5rem', borderRadius: 0.1 }} />
+                                                <Typography variant="caption"
+                                                    component="div"
+                                                    color={'neutral.5000'}
+                                                    gutterBottom>
+                                                    {item?.checkin?.title}
+                                                </Typography>
+                                                <Typography
+                                                    component="div"
+                                                    color={item?.checkin_used ? 'green' : 'tomato'}
+                                                    sx={{ fontSize: '0.7rem' }}
+                                                    gutterBottom>
+                                                    {item?.checkin_used ? 'Used' : 'Not Used'}
+                                                </Typography>
                                             </Box>
                                         </Grid>
                                     ))}
@@ -309,5 +322,5 @@ export default Profileinfo
 const styles = {
     statsCard: { padding: '30px', mx: 2, textAlign: 'center', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.4000' },
     poststat: { padding: '10px', alignItems: 'center', display: 'flex', justifyContent: 'space-evenly', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.5000' },
-    review: { display: 'flex', justifyContent: 'space-evenly' }
+    review: { display: 'flex', justifyContent: 'space-evenly', flexDirection: 'column', alignItems: 'center' }
 }

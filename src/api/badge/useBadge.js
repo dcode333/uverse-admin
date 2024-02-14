@@ -96,7 +96,7 @@ const UploadBadge = async ({
         formData.append('giveaways_type', giveaways_type);
         formData.append('expires_date', expires_date ? new Date(expires_date).toISOString() : '');
         hashtags.forEach((hashtag, index) => {
-            formData.append(`hashtags[${index}]`, hashtag);
+            formData.append(`hashtags`, hashtag);
         });
         formData.append('age_restricted', age_restricted);
         formData.append('additional_information', additional_information);

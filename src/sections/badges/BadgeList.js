@@ -10,6 +10,7 @@ import { Alert, Box, Modal, Snackbar } from '@mui/material';
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 import Skeleton from '../../components/skeleton'
 import FailedToFetch from '../../components/fetchfail'
+import EmptyResponse from '../../components/emptyresponse'
 import { useBadges, useDeleteBadgeItem } from 'src/api/badge/useBadge';
 import Link from 'next/link';
 
@@ -51,52 +52,54 @@ function Badges(props) {
                 container
                 bgcolor={'neutral.2000'}
                 borderRadius={0.5}>
-                {items?.results.map((item, index) => (
-                    <Grid
-                        item
-                        key={index}
-                        xs={12}
-                        sm={6}
-                        md={3}>
-                        <Card sx={{ backgroundColor: 'neutral.3000', m: 1, borderRadius: 1, position: 'relative' }}>
-                            <LoadingButton
-                                variant="contained"
-                                loading={
-                                    itemsIntiatedToDelete.includes(item.id) ? isPending || isRefetching : false
-                                }
-                                size='small'
-                                sx={{ borderRadius: 1, position: 'absolute', top: 5, left: 10, zIndex: 10 }}
-                                color="error"
-                                startIcon={<TrashIcon height={18} />}
-                                onClick={() => handleModalOpen({ id: item.id, title: item.title })}
-                            >
-                                Delete
-                            </LoadingButton>
-                            <Link href={`/badges/${item.id}`}
-                                style={{ textDecoration: 'none' }}>
-                                <CardMedia
-                                    sx={{ height: 200 }}
-                                    image={item.media ? item.media : "/assets/errors/error-404.png"}
-                                    title="badge"
-                                />
-                                <CardContent>
-                                    <Typography
-                                        gutterBottom
-                                        variant="body1"
-                                        color={'neutral.4000'}
-                                        component="div">
-                                        {item.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary">
-                                        {item.description}
-                                    </Typography>
-                                </CardContent>
-                            </Link>
-                        </Card>
-                    </Grid>
-                ))
+                {items?.results?.length === 0 ?
+                    <EmptyResponse /> :
+                    items?.results.map((item, index) => (
+                        <Grid
+                            item
+                            key={index}
+                            xs={12}
+                            sm={6}
+                            md={3}>
+                            <Card sx={{ backgroundColor: 'neutral.3000', m: 1, borderRadius: 1, position: 'relative' }}>
+                                <LoadingButton
+                                    variant="contained"
+                                    loading={
+                                        itemsIntiatedToDelete.includes(item.id) ? isPending || isRefetching : false
+                                    }
+                                    size='small'
+                                    sx={{ borderRadius: 1, position: 'absolute', top: 5, left: 10, zIndex: 10 }}
+                                    color="error"
+                                    startIcon={<TrashIcon height={18} />}
+                                    onClick={() => handleModalOpen({ id: item.id, title: item.title })}
+                                >
+                                    Delete
+                                </LoadingButton>
+                                <Link href={`/badges/${item.id}`}
+                                    style={{ textDecoration: 'none' }}>
+                                    <CardMedia
+                                        sx={{ height: 200 }}
+                                        image={item.media ? item.media : "/assets/errors/error-404.png"}
+                                        title="badge"
+                                    />
+                                    <CardContent>
+                                        <Typography
+                                            gutterBottom
+                                            variant="body1"
+                                            color={'neutral.4000'}
+                                            component="div">
+                                            {item.title}
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.secondary">
+                                            {item.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Link>
+                            </Card>
+                        </Grid>
+                    ))
                 }
             </Grid >
             <Snackbar open={deletionFailed}
