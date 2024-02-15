@@ -152,10 +152,12 @@ export const AuthProvider = (props) => {
 
   const signIn = async (userInfo) => {
     const { Token: authToken, user } = userInfo;
+  
 
-    if (!user?.is_superuser && !user?.is_staff) {
-      throw new Error('You are not allowed to Login');
-    }
+    if (!user?.profile) throw new Error('You are not allowed to Login !');
+
+    if (!user?.is_superuser && !user?.is_staff) throw new Error('You are not allowed to Login');
+
 
     try {
       window.sessionStorage.setItem('authenticated', authToken);
