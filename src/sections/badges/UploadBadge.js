@@ -15,7 +15,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useCheckinTitle } from 'src/api/checkin/useCheckin';
 import { useUploadBadge } from 'src/api/badge/useBadge';
 import { useCategories } from 'src/api/shared/usegetCategory';
-import { uploadbadgeschema } from 'src/schemas/badge';
+import { uploadbadgeschema } from 'src/schemas/badges/badge';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
 

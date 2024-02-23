@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { CacheProvider } from '@emotion/react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Box, CircularProgress } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AuthConsumer, AuthProvider } from 'src/contexts/auth-context';
 import { useNProgress } from 'src/hooks/use-nprogress';
@@ -26,13 +26,25 @@ const queryClient = new QueryClient(
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        retry: 2, 
+        retry: 2,
       },
     },
   }
 )
 
-const SplashScreen = () => null;
+const SplashScreen = () => <Box
+  sx={{
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}>
+  <img src='/assets/logos/sublogoblack.png' />
+  <CircularProgress
+    sx={{ color: 'neutral.2000', my: 5 }}
+    size={'30px'} />
+</Box>;
 
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;

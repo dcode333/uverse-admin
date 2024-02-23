@@ -154,7 +154,7 @@ export const AuthProvider = (props) => {
     const { Token: authToken, user } = userInfo;
   
 
-    if (!user?.profile) throw new Error('You are not allowed to Login !');
+    if (!user?.profile) throw new Error('Profile is not created !');
 
     if (!user?.is_superuser && !user?.is_staff) throw new Error('You are not allowed to Login');
 

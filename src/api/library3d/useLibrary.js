@@ -33,6 +33,24 @@ const deleteLibraryItem = async ({ token, libraryId }) => {
     }
 };
 
+
+const LibraryDetail = async ({ token, libraryId }) => {
+
+    try {
+        const response = await axios.get(`/api/library/${libraryId}/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.data;
+
+    } catch (error) {
+        throw new Error(error.message || 'Library detail Failed');
+    }
+};
+
+
 const UploadLibrary = async ({
     title,
     description,
@@ -89,6 +107,14 @@ const useUploadLibrary = () => {
     })
 };
 
+const useLibrary = ({ token, libraryId }) => {
+    return useQuery({
+        queryKey: ['librarydetail', libraryId],
+        queryFn: () => LibraryDetail({ token, libraryId }),
+        staleTime: Infinity,
+        refetchOnMount: false,
+    })
+};
 
 
 const useLibraries = (token) => {
@@ -108,4 +134,4 @@ const useDeleteLibraryItem = () => {
 }
 
 
-export { useLibraries, useUploadLibrary, useDeleteLibraryItem };
+export { useLibraries, useUploadLibrary, useDeleteLibraryItem, useLibrary };

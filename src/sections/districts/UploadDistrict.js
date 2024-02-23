@@ -18,7 +18,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useDistrictBrand } from 'src/api/brand/usegetBrand';
 import { useUploadDistrict } from 'src/api/districts/useCreateDistrict';
-import { uploadDistrictSchema } from 'src/schemas/district';
+import { uploadDistrictSchema } from 'src/schemas/districts/district';
 
 
 
@@ -47,7 +47,6 @@ function UploadLibrary(props) {
         validationSchema: uploadDistrictSchema,
         onSubmit: async (values, helpers) => {
 
-            // const medias = Object.values(values.media);
 
             try {
 

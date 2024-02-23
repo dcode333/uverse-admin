@@ -15,7 +15,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadCheckin } from 'src/api/checkin/useCheckin';
 import { useCategories } from 'src/api/shared/usegetCategory';
-import { uploadcheckinschema } from 'src/schemas/checkin';
+import { uploadcheckinschema } from 'src/schemas/checkins/checkin';
 import { extractHashtags } from 'src/utils/extractHashtags';
 
 

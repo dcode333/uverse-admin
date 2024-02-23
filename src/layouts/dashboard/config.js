@@ -79,7 +79,7 @@ export const items = [
   },
   {
     title: 'Library',
-    path: '/library',
+    path: '/libraries',
     icon: (
       <SvgIcon fontSize="small">
         <XCircleIcon />

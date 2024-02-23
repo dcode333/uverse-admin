@@ -6,18 +6,18 @@ import CommentIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
 import RepostIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import SavedIcon from '@heroicons/react/24/outline/BookmarkIcon';
 
-import { useCheckindetail } from 'src/api/checkin/useCheckin';
+import { useLibrary } from 'src/api/library3d/useLibrary';
 import { useAuth } from 'src/hooks/use-auth';
 import FailedToFetch from 'src/components/fetchfail';
 import { formatDate } from 'src/utils/format-date';
 import { LoadingButton } from '@mui/lab';
-import UpdateCheckinModal from './components/updateCheckinModal'
+import UpdateLibraryModal from './components/updateLibraryModel';
 
 
 const placeholder = '/assets/avatars/avatarmed.png'
-function CheckinInfo({ checkinId }) {
+function LibraryInfo({ libraryId }) {
     const { authToken } = useAuth();
-    const { data, isLoading, isError, refetch } = useCheckindetail({ token: authToken, checkinId });
+    const { data, isLoading, isError, refetch } = useLibrary({ token: authToken, libraryId });
     const [openEditModal, setOpenEditModal] = useState(false)
     const handleOpenEditModal = () => setOpenEditModal(true);
     const handleCloseEditModal = () => setOpenEditModal(false);
@@ -143,8 +143,8 @@ function CheckinInfo({ checkinId }) {
                                             <CardMedia
                                                 component="img"
                                                 sx={{ height: 100, width: 100, borderRadius: '10%', mx: 1 }}
-                                                image={data?.media || placeholder}
-                                                alt="green iguana"
+                                                image={data?.media[0].media || placeholder}
+                                                alt="library media"
                                             />
                                         </Box>
                                     </Box>
@@ -246,32 +246,13 @@ function CheckinInfo({ checkinId }) {
                                         </Box >
                                     </Box>
 
-                                    {/* <Box sx={{ display: 'flex', p: 1 }}>
-                                    <Box sx={{ width: '50%', color: 'neutral.5000' }}>
-                                        <Typography
-                                            gutterBottom
-                                            fontSize={'12px'}
-                                            component="div">
-                                            Hashtag
-                                        </Typography>
-                                    </Box >
-                                    <Box sx={{ width: '50%', color: 'neutral.4000' }}>
-                                        <Typography
-                                            gutterBottom
-                                            fontSize={'11px'}
-                                            component="div">
-                                            {data?.hashtag || 'N/A'}
-                                        </Typography>
-                                    </Box >
-                                </Box> */}
-
                                     <Box sx={{ display: 'flex', p: 1 }}>
                                         <Box sx={{ width: '50%', color: 'neutral.5000' }}>
                                             <Typography
                                                 gutterBottom
                                                 fontSize={'12px'}
                                                 component="div">
-                                                Giveaway Type
+                                                Category
                                             </Typography>
                                         </Box >
                                         <Box sx={{ width: '50%', color: 'neutral.4000' }}>
@@ -279,7 +260,7 @@ function CheckinInfo({ checkinId }) {
                                                 gutterBottom
                                                 fontSize={'11px'}
                                                 component="div">
-                                                {data?.giveaways_type || 'N/A'}
+                                                {data?.category || 'N/A'}
                                             </Typography>
                                         </Box >
                                     </Box>
@@ -325,13 +306,13 @@ function CheckinInfo({ checkinId }) {
             </Grid >
 
             {data ?
-                <UpdateCheckinModal
+                <UpdateLibraryModal
                     openEditModal={openEditModal}
                     handleCloseEditModal={handleCloseEditModal}
                     handleOpenEditModal={handleOpenEditModal}
                     handleRefetch={handleRefetch}
                     data={data ? data : {}}
-                    checkinId={checkinId}
+                    libraryId={libraryId}
                 /> :
                 <></>
             }
@@ -339,7 +320,7 @@ function CheckinInfo({ checkinId }) {
     )
 }
 
-export default CheckinInfo
+export default LibraryInfo
 
 const styles = {
     statsCard: { padding: '30px', mx: 2, textAlign: 'center', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.4000' },

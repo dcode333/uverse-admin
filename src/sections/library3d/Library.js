@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Alert, Box, Modal, Snackbar } from '@mui/material';
+import Link from 'next/link';
 
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 import Skeleton from '../../components/skeleton'
@@ -76,25 +77,28 @@ function Library(props) {
                                 >
                                     Delete
                                 </LoadingButton>
-                                <CardMedia
-                                    sx={{ height: 200 }}
-                                    image={item.media ? item.media[0]?.media : "/assets/errors/error-404.png"}
-                                    title="library"
-                                />
-                                <CardContent>
-                                    <Typography
-                                        gutterBottom
-                                        variant="body1"
-                                        color={'neutral.4000'}
-                                        component="div">
-                                        {item.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary">
-                                        {item.description}
-                                    </Typography>
-                                </CardContent>
+                                <Link href={`/libraries/${item.id}`}
+                                    style={{ textDecoration: 'none' }}>
+                                    <CardMedia
+                                        sx={{ height: 200 }}
+                                        image={item.media ? item.media[0]?.media : "/assets/errors/error-404.png"}
+                                        title="library"
+                                    />
+                                    <CardContent>
+                                        <Typography
+                                            gutterBottom
+                                            variant="body1"
+                                            color={'neutral.4000'}
+                                            component="div">
+                                            {item.title}
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.secondary">
+                                            {item.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Link>
                             </Card>
                         </Grid>
                     ))}

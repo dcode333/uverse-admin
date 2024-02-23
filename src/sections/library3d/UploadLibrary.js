@@ -14,7 +14,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useBadgeTitle } from 'src/api/badge/useBadge';
 import { useUploadLibrary } from 'src/api/library3d/useLibrary';
-import { uploadlibraryschema } from 'src/schemas/library';
+import { uploadlibraryschema } from 'src/schemas/library/library';
 import { useCategories } from 'src/api/shared/usegetCategory';
 import { getImageDimensions } from 'src/utils/get-image-dimensions';
 import { extractHashtags } from 'src/utils/extractHashtags';

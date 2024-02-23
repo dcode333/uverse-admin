@@ -1,4 +1,4 @@
-import { Grid, Box, Typography, Skeleton, Snackbar, Alert, CircularProgress, TextField, Chip, Autocomplete } from '@mui/material';
+import { Grid, Box, Typography, Skeleton, Snackbar, Alert, CircularProgress, TextField, Chip, Autocomplete, CardMedia } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import React, { useEffect, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,6 +12,7 @@ import FailedToFetch from 'src/components/fetchfail';
 import { useDistrictBrand } from 'src/api/brand/usegetBrand';
 import { filterExistingDistrictBrands } from 'src/utils/array-manipulation';
 import DistrictBrands from './components/districtBrandCard'
+import UpdateDistrictModal from './components/updateDistrictModal';
 
 
 const Info = ({ field, value }) => {
@@ -35,7 +36,7 @@ const Info = ({ field, value }) => {
     </Box>)
 }
 
-function BadgeInfo({ districtId }) {
+function DistrictInfo({ districtId }) {
     const { authToken } = useAuth();
     const queryClient = useQueryClient();
     const [brandApprovalError, setBrandApprovalError] = useState(false);
@@ -43,6 +44,10 @@ function BadgeInfo({ districtId }) {
     const { mutateAsync, isPending } = useAddBrandToDistrict();
     const { data, isLoading, isError, refetch: refetchDistrict } = useDistrict({ token: authToken, districtId });
     const { data: districtBrands, isLoading: districtBrandsLoading, isSuccess: districtBrandsFetched } = useDistrictBrand({ token: authToken });
+    const [openEditModal, setOpenEditModal] = useState(false)
+    const handleOpenEditModal = () => setOpenEditModal(true);
+    const handleCloseEditModal = () => setOpenEditModal(false);
+    const handleRefetch = () => refetchDistrict();
 
     const formik = useFormik({
         initialValues: {
@@ -63,7 +68,7 @@ function BadgeInfo({ districtId }) {
                     brands: values.brands,
                 });
 
-                refetchDistrict()
+                handleRefetch()
                 helpers.resetForm()
 
             } catch (err) {
@@ -113,12 +118,31 @@ function BadgeInfo({ districtId }) {
                             <>
                                 <Box sx={{ my: 2, p: 1, bgcolor: 'neutral.2000', borderRadius: 1 }}>
 
-                                    <Typography variant='h6'
-                                        m={1}
-                                        color={'neutral.1000'}
-                                    >
-                                        District Information
-                                    </Typography>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+
+                                        <Typography variant='h6'
+                                            m={1}
+                                            color={'neutral.1000'}
+                                        >
+                                            District Information
+                                        </Typography>
+                                        <LoadingButton
+                                            sx={{ px: 2, border: 0.5 }}
+                                            onClick={handleOpenEditModal}
+                                        >
+                                            Edit
+                                        </LoadingButton>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'center', p: 2 }} >
+                                        <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} >
+                                            <CardMedia
+                                                component="img"
+                                                sx={{ height: 100, width: 100, borderRadius: '10%', mx: 1 }}
+                                                image={data?.media[0].media || placeholder}
+                                                alt="library media"
+                                            />
+                                        </Box>
+                                    </Box>
                                     <Info field={'Title'}
                                         value={data?.title} />
                                     <Info field={'Description'}
@@ -244,6 +268,17 @@ function BadgeInfo({ districtId }) {
                     </Box>
                 </Grid>
             </Grid >
+            {data ?
+                <UpdateDistrictModal
+                    openEditModal={openEditModal}
+                    handleCloseEditModal={handleCloseEditModal}
+                    handleOpenEditModal={handleOpenEditModal}
+                    handleRefetch={handleRefetch}
+                    data={data ? data : {}}
+                    districtId={districtId}
+                /> :
+                <></>}
+
             <Snackbar open={brandApprovalError}
                 autoHideDuration={6000}
                 onClose={handleClose}>
@@ -257,7 +292,7 @@ function BadgeInfo({ districtId }) {
     )
 }
 
-export default BadgeInfo
+export default DistrictInfo
 
 const styles = {
     statsCard: { padding: '30px', mx: 2, textAlign: 'center', bgcolor: 'neutral.2000', borderRadius: 0.5, color: 'neutral.4000' },
