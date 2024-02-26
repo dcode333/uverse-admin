@@ -9,6 +9,7 @@ import { LoadingButton } from '@mui/lab';
 
 import { useBadge } from 'src/api/badge/useBadge';
 import { useAuth } from 'src/hooks/use-auth';
+import { formatDate } from 'src/utils/format-date';
 import FailedToFetch from 'src/components/fetchfail';
 import UpdateBadgeModal from './components/updateBadgeModal';
 
@@ -18,7 +19,7 @@ const placeholder = '/assets/avatars/avatarmed.png'
 function BadgeInfo({ badgeId }) {
     const { authToken } = useAuth();
     const { data, isLoading, isError, refetch } = useBadge({ token: authToken, badgeId });
-    const [openEditModal, setOpenEditModal] = useState  (false)
+    const [openEditModal, setOpenEditModal] = useState(false)
     const handleOpenEditModal = () => setOpenEditModal(true);
     const handleCloseEditModal = () => setOpenEditModal(false);
     const handleRefetch = () => refetch();
@@ -284,8 +285,83 @@ function BadgeInfo({ badgeId }) {
                                             </Typography>
                                         </Box >
                                     </Box>
-                                </Box>
 
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Constraint number
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data.constraint_number ? data.constraint_number : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Quantity
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data.quantity ? data.quantity : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Required Tokens
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data.required_tokens ? data.required_tokens : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Expiry Date
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data?.expires_date ? formatDate(data?.expires_date) : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+                                </Box>
                             </>}
                     </Box>
                 </Grid>

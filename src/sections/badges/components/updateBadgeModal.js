@@ -1,5 +1,5 @@
 import { LoadingButton } from '@mui/lab';
-import { Box, Button, CircularProgress, Unstable_Grid2 as Grid, Modal, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Unstable_Grid2 as Grid, MenuItem, Modal, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useFormik } from 'formik';
 import { useQueryClient } from '@tanstack/react-query';
@@ -28,6 +28,11 @@ const UpdateBadgeModal = (props) => {
             title: data?.title || '',
             description: data?.description || '',
             additional_information: data?.additional_information || '',
+            giveaways_type: data?.giveaways_type || '',
+            quantity: data?.quantity || '',
+            constraint_number: data?.constraint_number || '',
+            required_tokens: data?.required_tokens || '',
+            expires_date: '',
             media: null,
             submit: null
         },
@@ -36,20 +41,35 @@ const UpdateBadgeModal = (props) => {
 
             try {
                 const hashtags = extractHashtags(values.description);
-                const newTitle = values.title;
-                const newDescription = values.description;
-                const newAddInfo = values.additional_information
+                const newTitle = values.title === data.title ? '' : values.title;
+                const newDescription = values.description === data.description ? '' : values.description;
+                const newAddInfo = values.additional_information === data.additional_information ? '' : values.additional_information;
+                const newGiveaway_type = values.giveaways_type === data.giveaways_type ? '' : values.giveaways_type;
+                const newQuantity = values.giveaways_type === 'Misc' && values.quantity != data.quantity ? values.quantity : ''
+                const newReqTokens = values.giveaways_type === 'Misc' && values.required_tokens != data.required_tokens ? values.required_tokens : ''
+                const newExpires_date = values.expires_date === data.expires_date ? '' : values.expires_date;
+                const newConstraintNo = (values.giveaways_type === 'Follower' ||
+                    values.giveaways_type === 'Followings' ||
+                    values.giveaways_type === 'Creations') && values.constraint_number !== data.constraint_number ? values.constraint_number : ''
+
+
 
                 await mutateAsync({
-                    title: newTitle === data?.title ? '' : newTitle,
-                    description: newDescription === data?.description ? '' : newDescription,
-                    additional_information: newAddInfo === data?.additional_information ? '' : newAddInfo,
+                    title: newTitle,
+                    description: newDescription,
+                    additional_information: newAddInfo,
+                    giveaways_type: newGiveaway_type,
+                    quantity: newQuantity,
+                    constraint_number: newConstraintNo,
+                    required_tokens: newReqTokens,
+                    expires_date: newExpires_date,
                     media: values.media,
                     hashtags,
                     badgeId,
                     token: authToken,
                 })
 
+                values.expires_date = ''
                 handleRefetch()
                 handleCloseEditModal();
                 queryClient.removeQueries({ queryKey: ['badges'], exact: true });
@@ -110,7 +130,7 @@ const UpdateBadgeModal = (props) => {
                                 label="Media"
                                 variant="outlined"
                                 fullWidth
-                                sx={{ mb: 6 }}
+                                sx={{ mb: 4 }}
                                 inputProps={{ style: { color: 'white' }, accept: 'image/*' }}
                                 InputLabelProps={{ shrink: true, }}
                             />
@@ -125,12 +145,34 @@ const UpdateBadgeModal = (props) => {
                                 helperText={formik.touched.description && formik.errors.description}
                                 type="text"
                                 multiline
-                                rows={6}
+                                rows={1}
                                 fullWidth
                                 sx={{ mb: 4 }}
                                 inputProps={{ style: { color: 'white' } }}
                             />
 
+                            <TextField
+                                label="Expiry Date"
+                                value={formik.values.expires_date}
+                                name="expires_date"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.expires_date && formik.errors.expires_date)}
+                                helperText={formik.touched.expires_date && formik.errors.expires_date}
+                                type="date"
+                                variant="filled"
+                                fullWidth
+                                sx={{
+                                    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                        backgroundColor: '#ffffff',
+                                        borderRadius: '2px',
+                                    }, mb: 2
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                            />
                         </Grid>
                         <Grid item
                             xs={12}
@@ -147,7 +189,47 @@ const UpdateBadgeModal = (props) => {
                                 type="text"
                                 variant="filled"
                                 fullWidth
-                                sx={{ mb: 6 }}
+                                sx={{ mb: 4 }}
+                                inputProps={{ style: { color: 'white' } }}
+                            />
+                            <TextField
+                                fullWidth
+                                select
+                                variant='filled'
+                                name='giveaways_type'
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.giveaways_type && formik.errors.giveaways_type)}
+                                helperText={formik.touched.giveaways_type && formik.errors.giveaways_type}
+                                value={formik.values.giveaways_type}
+                                label="Givaways Type"
+                                id='selectfield'
+                                sx={{ mb: 4 }}
+                            >
+                                <MenuItem value={''} >
+                                    None
+                                </MenuItem>
+                                <MenuItem value={'SignUp'}>SignUp</MenuItem>
+                                <MenuItem value={'Follower'}>Follower</MenuItem>
+                                <MenuItem value={'Followings'}>Followings</MenuItem>
+                                <MenuItem value={'Creations'}>Creations</MenuItem>
+                                <MenuItem value={'CheckInRewardedBadge'}>CheckInRewardedBadge</MenuItem>
+                                <MenuItem value={'Misc'}>Misc</MenuItem>
+                                <MenuItem value={'Free'}>Free</MenuItem>
+                            </TextField>
+                            <TextField
+                                label="Quantity"
+                                value={formik.values.quantity}
+                                type="number"
+                                name="quantity"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.quantity && formik.errors.quantity)}
+                                helperText={formik.touched.quantity && formik.errors.quantity}
+                                variant="filled"
+                                disabled={formik.values.giveaways_type !== 'Misc'}
+                                fullWidth
+                                sx={{ mb: 2 }}
                                 inputProps={{ style: { color: 'white' } }}
                             />
                         </Grid>
@@ -166,7 +248,38 @@ const UpdateBadgeModal = (props) => {
                                 type="text"
                                 variant="filled"
                                 fullWidth
-                                sx={{ mb: 6 }}
+                                sx={{ mb: 4 }}
+                                inputProps={{ style: { color: 'white' } }}
+                            />
+
+                            <TextField
+                                label="Constraint number"
+                                value={formik.values.constraint_number}
+                                type="number"
+                                name="constraint_number"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.constraint_number && formik.errors.constraint_number)}
+                                helperText={formik.touched.constraint_number && formik.errors.constraint_number}
+                                variant="filled"
+                                disabled={formik.values.giveaways_type !== 'Follower' && formik.values.giveaways_type !== 'Followings' && formik.values.giveaways_type !== 'Creations'}
+                                fullWidth
+                                sx={{ mb: 4 }}
+                                inputProps={{ style: { color: 'white' } }}
+                            />
+                            <TextField
+                                label="Required tokens"
+                                value={formik.values.required_tokens}
+                                type="number"
+                                name="required_tokens"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.required_tokens && formik.errors.required_tokens)}
+                                helperText={formik.touched.required_tokens && formik.errors.required_tokens}
+                                variant="filled"
+                                disabled={formik.values.giveaways_type !== 'Misc'}
+                                fullWidth
+                                sx={{ mb: 4 }}
                                 inputProps={{ style: { color: 'white' } }}
                             />
                         </Grid>

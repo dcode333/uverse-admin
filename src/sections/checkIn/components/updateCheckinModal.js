@@ -1,13 +1,13 @@
-import { LoadingButton } from '@mui/lab';
-import { Box, Button, CircularProgress, Unstable_Grid2 as Grid, Modal, TextField, Typography } from '@mui/material'
 import React from 'react'
+import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
 import { useQueryClient } from '@tanstack/react-query';
+import { Box, Button, CircularProgress, Unstable_Grid2 as Grid, MenuItem, Modal, TextField, Typography } from '@mui/material'
 
-import { updateCheckinSchema } from 'src/schemas/checkins/updatecheckin';
+import { useAuth } from 'src/hooks/use-auth';
 import { extractHashtags } from 'src/utils/extractHashtags';
 import { useUpdateCheckin } from 'src/api/checkin/useUpdateCheckin';
-import { useAuth } from 'src/hooks/use-auth';
+import { updateCheckinSchema } from 'src/schemas/checkins/updatecheckin';
 
 const UpdateCheckinModal = (props) => {
     const {
@@ -26,6 +26,9 @@ const UpdateCheckinModal = (props) => {
         initialValues: {
             title: data?.title || '',
             description: data?.description || '',
+            giveaways_type: data?.giveaways_type || '',
+            required_tokens: data?.required_tokens || '',
+            expires_date: '',
             media: null,
             submit: null
         },
@@ -36,16 +39,22 @@ const UpdateCheckinModal = (props) => {
                 const hashtags = extractHashtags(values.description);
                 const newTitle = values.title;
                 const newDescription = values.description;
+                const newGiveaways_type = values.giveaways_type;
+                const newRequired_tokens = values.required_tokens
+                const newExpires_date = values.expires_date
 
                 await mutateAsync({
                     title: newTitle === data?.title ? '' : newTitle,
                     description: newDescription === data?.description ? '' : newDescription,
+                    required_tokens: (newGiveaways_type === 'Misc' && newRequired_tokens !== data?.required_tokens) ? newRequired_tokens : '',
+                    giveaways_type: newGiveaways_type === data?.giveaways_type ? '' : newGiveaways_type,
+                    expires_date: newExpires_date === data?.expires_date ? '' : newExpires_date,
                     media: values.media,
                     hashtags,
                     checkinId,
                     token: authToken,
                 })
-
+                values.expires_date = ''
                 handleRefetch()
                 handleCloseEditModal();
                 queryClient.removeQueries({ queryKey: ['checkins'], exact: true });
@@ -112,6 +121,25 @@ const UpdateCheckinModal = (props) => {
                                 InputLabelProps={{ shrink: true, }}
                             />
 
+                            <TextField
+                                fullWidth
+                                select
+                                variant='filled'
+                                name='giveaways_type'
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.giveaways_type && formik.errors.giveaways_type)}
+                                helperText={formik.touched.giveaways_type && formik.errors.giveaways_type}
+                                value={formik.values.giveaways_type}
+                                label="Giveaways Type"
+                                id='selectfield'
+                                sx={{ mb: 6 }}
+                            >
+                                <MenuItem value={"Misc"} >Misc</MenuItem>
+                                <MenuItem value={"Free"}>Free</MenuItem>
+                                <MenuItem value={"BadgeRewardedCheckIn"}>BadgeRewardedCheckIn</MenuItem>
+                            </TextField>
+
                         </Grid>
 
                         <Grid item
@@ -128,6 +156,22 @@ const UpdateCheckinModal = (props) => {
                                 helperText={formik.touched.title && formik.errors.title}
                                 type="text"
                                 variant="filled"
+                                fullWidth
+                                sx={{ mb: 6 }}
+                                inputProps={{ style: { color: 'white' } }}
+                            />
+
+                            <TextField
+                                label="Required tokens"
+                                value={formik.values.required_tokens}
+                                type="number"
+                                name="required_tokens"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.required_tokens && formik.errors.required_tokens)}
+                                helperText={formik.touched.required_tokens && formik.errors.required_tokens}
+                                variant="filled"
+                                disabled={formik.values.giveaways_type !== 'Misc'}
                                 fullWidth
                                 sx={{ mb: 6 }}
                                 inputProps={{ style: { color: 'white' } }}
@@ -149,10 +193,33 @@ const UpdateCheckinModal = (props) => {
                                 helperText={formik.touched.description && formik.errors.description}
                                 type="text"
                                 multiline
-                                rows={6}
+                                rows={2}
                                 fullWidth
                                 sx={{ mb: 4 }}
                                 inputProps={{ style: { color: 'white' } }}
+                            />
+                            <TextField
+                                label="Expiry Date"
+                                value={formik.values.expires_date}
+                                name="expires_date"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                                error={!!(formik.touched.expires_date && formik.errors.expires_date)}
+                                helperText={formik.touched.expires_date && formik.errors.expires_date}
+                                type="date"
+                                variant="filled"
+                                fullWidth
+                                sx={{
+                                    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                        backgroundColor: '#ffffff',
+                                        borderRadius: '2px',
+                                    },
+                                    mb: 6
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
                             />
                         </Grid>
 

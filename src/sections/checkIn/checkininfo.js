@@ -246,25 +246,6 @@ function CheckinInfo({ checkinId }) {
                                         </Box >
                                     </Box>
 
-                                    {/* <Box sx={{ display: 'flex', p: 1 }}>
-                                    <Box sx={{ width: '50%', color: 'neutral.5000' }}>
-                                        <Typography
-                                            gutterBottom
-                                            fontSize={'12px'}
-                                            component="div">
-                                            Hashtag
-                                        </Typography>
-                                    </Box >
-                                    <Box sx={{ width: '50%', color: 'neutral.4000' }}>
-                                        <Typography
-                                            gutterBottom
-                                            fontSize={'11px'}
-                                            component="div">
-                                            {data?.hashtag || 'N/A'}
-                                        </Typography>
-                                    </Box >
-                                </Box> */}
-
                                     <Box sx={{ display: 'flex', p: 1 }}>
                                         <Box sx={{ width: '50%', color: 'neutral.5000' }}>
                                             <Typography
@@ -283,8 +264,83 @@ function CheckinInfo({ checkinId }) {
                                             </Typography>
                                         </Box >
                                     </Box>
-                                </Box>
 
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Constraint Number
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data?.constraint_number}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Required Tokens
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data.required_tokens ? data.required_tokens : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Quantity
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data.quantity ? data.quantity : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', p: 1 }}>
+                                        <Box sx={{ width: '50%', color: 'neutral.5000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'12px'}
+                                                component="div">
+                                                Expiry Date
+                                            </Typography>
+                                        </Box >
+                                        <Box sx={{ width: '50%', color: 'neutral.4000' }}>
+                                            <Typography
+                                                gutterBottom
+                                                fontSize={'11px'}
+                                                component="div">
+                                                {data?.expires_date ? formatDate(data.expires_date) : 'N/A'}
+                                            </Typography>
+                                        </Box >
+                                    </Box>
+                                </Box>
                             </>}
                     </Box>
                 </Grid>

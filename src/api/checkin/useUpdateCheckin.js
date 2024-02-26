@@ -8,15 +8,25 @@ const UpdateCheckin = async ({
     media,
     hashtags,
     checkinId,
+    giveaways_type,
+    required_tokens,
+    expires_date,
     token
 }) => {
     try {
 
-        if (!title && !description && !media)
+        if (!title && !description && !media && !required_tokens && !giveaways_type && !expires_date)
             throw new Error('Nothing seems to be updated !');
 
         const formData = new FormData();
+
         if (title) formData.append('title', title);
+
+        if (giveaways_type) formData.append('giveaways_type', giveaways_type);
+        if (required_tokens || (giveaways_type !== 'Misc' && giveaways_type !== "")) formData.append('required_tokens', required_tokens);
+
+        if (expires_date) formData.append('expires_date', expires_date);
+
         if (media) formData.append('media', media);
         if (description) {
 

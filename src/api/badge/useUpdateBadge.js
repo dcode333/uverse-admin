@@ -9,19 +9,34 @@ const UpdateBadge = async ({
     additional_information,
     hashtags,
     badgeId,
+    giveaways_type,
+    quantity,
+    constraint_number,
+    required_tokens,
+    expires_date,
     token
 }) => {
     try {
 
-        if (!title && !description && !additional_information && !media)
-            throw new Error('Nothing seems to be updated !');
+
+        if (!title && !description && !additional_information &&
+            !media && !giveaways_type && !quantity && !constraint_number &&
+            !required_tokens && !expires_date) throw new Error('Nothing seems to be updated !');
 
         const formData = new FormData();
         if (title) formData.append('title', title);
         if (media) formData.append('media', media);
         if (additional_information) formData.append('additional_information', additional_information);
-        if (description) {
+        if (giveaways_type) formData.append('giveaways_type', giveaways_type);
+        if (expires_date) formData.append('expires_date', expires_date);
+        if (quantity || (giveaways_type !== 'Misc' && giveaways_type !== "")) formData.append('quantity', quantity);
+        if (required_tokens || (giveaways_type !== 'Misc' && giveaways_type !== "")) formData.append('required_tokens', required_tokens);
+        if (constraint_number || (giveaways_type !== 'Follower' && giveaways_type !== "Follower" && giveaways_type !== "Creations" && giveaways_type !== ""))
+            formData.append('constraint_number', constraint_number);
 
+
+
+        if (description) {
             formData.append('description', description);
             hashtags.forEach((hashtag, index) => {
                 formData.append(`hashtags`, hashtag);
